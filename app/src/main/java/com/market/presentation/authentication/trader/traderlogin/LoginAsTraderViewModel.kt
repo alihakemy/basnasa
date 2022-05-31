@@ -1,4 +1,4 @@
-package com.market.presentation.authentication.trader
+package com.market.presentation.authentication.trader.traderlogin
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.market.presentation.authentication.trader
+package com.market.presentation.authentication.trader.traderlogin
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -7,11 +7,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.market.R
 import com.market.data.models.SendLogin
 import com.market.data.models.get.login.LoginResponse
 import com.market.databinding.ActivityLoginAsTraderBinding
-import com.market.presentation.authentication.user.login.LoginViewModel
+import com.market.presentation.authentication.user.forget.ForgetPasswordStep1
 import com.market.presentation.location.MapsActivity
 import com.market.utils.ResultState
 import com.market.utils.isValidEmail
@@ -30,6 +29,11 @@ class LoginAsTrader : AppCompatActivity() {
         val pd = ProgressDialog(this)
         pd.setMessage("loading")
         pd.setCancelable(false)
+        binding.textView3.setOnClickListener {
+
+            val intent = Intent(this, ForgetPasswordStep1::class.java)
+            startActivity(intent)
+        }
 
         binding.imageView3.setOnClickListener {
             onBackPressed()

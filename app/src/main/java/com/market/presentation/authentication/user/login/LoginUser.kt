@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import com.market.data.models.SendLogin
 import com.market.data.models.get.login.LoginResponse
 import com.market.databinding.LoginUserActivityBinding
-import com.market.presentation.authentication.trader.LoginAsTrader
+import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
 import com.market.presentation.authentication.user.create.CreateUserAccountActivity
 import com.market.presentation.bases.BaseActivity
 import com.market.utils.ResultState
