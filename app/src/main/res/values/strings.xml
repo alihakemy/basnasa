@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">market</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="login">Login</string>
+
+
+    <string name="skip">skip</string>
+    <string name="phoneNumber">PhoneNo.</string>
+    <string name="password">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="EnterCode">Enter Code</string>
+
+    <string name="changeNumber">Change Number</string>
+    <string name="resend">Resend</string>
+    <string name="createNewAccount">Create New Account</string>
+    <string name="fullName">Full Name</string>
+    <string name="phoneNumbers">Phone Number</string>
+    <string name="Email">Email</string>
+    <string name="Next">Next</string>
+    <string name="newAccount">Register</string>
+    <string name="haveAccount">No Account ?</string>
+    <string name="Conditions">Term and Conditions</string>
+    <string name="forgetPassword">Forget Password ?</string>
+    <string name="loginAsTrader">Login As Trader</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="done">done</string>
+    <string name="detect_location">detect Location</string>
+    <string name="choicelocation">Choice You Location</string>
+    <string name="start">start</string>
+</resources>

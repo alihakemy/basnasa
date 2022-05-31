@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">market</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
+    <string name="skip">تخطى</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="phoneNumber">رقم الهاتف</string>
+    <string name="password">كلمه المرور</string>
+    <string name="EnterCode">ادخل الرقم الذى تم ارساله الى</string>
+    <string name="changeNumber">تغير الرقم</string>
+    <string name="resend">ارسال مره اخرى</string>
+    <string name="createNewAccount">انشاء حساب جديد</string>
+    <string name="fullName">الاسم بالكامل</string>
+    <string name="phoneNumbers">رقم المحمول</string>
+    <string name="Email">البريد الالكترونى</string>
+    <string name="Next">متابعه</string>
+    <string name="haveAccount">ليس لدى حساب؟</string>
+    <string name="Conditions">الشروط والاحكام</string>
+
+    <string name="newAccount">تسجيل جديد</string>
+    <string name="forgetPassword">نسيت كلمه السر ؟</string>
+    <string name="loginAsTrader">تسجيل الدخول كتاجر</string>
+    <string name="title_home">رئسيه</string>
+    <string name="title_dashboard">وحده تحكم</string>
+    <string name="title_notifications">اشعارات</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="forget_password">نسيان كلمه السر</string>
+    <string name="done">تم</string>
+    <string name="detect_location">تحديد الموقع تلقائيا</string>
+    <string name="choicelocation">اختار العنوان الخاص بك</string>
+    <string name="start">ابداء</string>
+
+</resources>
