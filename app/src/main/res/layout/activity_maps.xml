@@ -16,6 +16,7 @@
         map:layout_constraintTop_toTopOf="parent"
         tools:context=".presentation.location.MapsActivity" />
 
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -41,18 +42,14 @@
                 android:text="@string/choicelocation"
                 android:textColor="#808080" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName2"
+            <fragment android:id="@+id/autocomplete_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/editetext_rec"
 
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                />
 
-                android:drawableStart="@drawable/ic_baseline_search_24"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="10dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/location"

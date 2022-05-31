@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.common.api.Status
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -20,6 +22,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.market.R
 import com.market.databinding.ActivityMapsBinding
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.utils.LocationHelper
@@ -34,12 +41,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityMapsBinding
 
     private var mlocation: Location? = null
-    val viewModel :MapViewModel by viewModels()
+    val viewModel: MapViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var coder = Geocoder(this)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Places.initialize(applicationContext, "AIzaSyC2SNZwXMICS8FEfqU72VN9EkfOEEuhKyc")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -61,30 +69,48 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
 
+        // Initialize the AutocompleteSupportFragment.
+        val autocompleteFragment =
+            supportFragmentManager.findFragmentById(R.id.autocomplete_fragment)
+                    as AutocompleteSupportFragment
 
-        binding.editTextTextPersonName2.setOnKeyListener(object : View.OnKeyListener {
-            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
-                // If the event is a key-down event on the "enter" button
-                if (event.action === KeyEvent.ACTION_DOWN &&
-                    keyCode == KeyEvent.KEYCODE_ENTER
-                ) {
-                    val locationName = binding.editTextTextPersonName2.text.toString()
-                    val addressList: List<Address> = coder.getFromLocationName(locationName, 5)
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+
+                val loc = Location(LocationManager.GPS_PROVIDER)
+
+                place.latLng?.let {
+                    loc.latitude = it.latitude
+                    loc.longitude = it.longitude
+                    showLocation(loc)
+                } ?: let {
+                    val addressList: List<Address> = coder.getFromLocationName(place.name, 5)
                     if (!addressList.isNullOrEmpty()) {
                         val location: Address = addressList[0]
-                        val loc = Location(LocationManager.GPS_PROVIDER)
                         loc.latitude = location.latitude
                         loc.longitude = location.longitude
                         showLocation(loc)
+
                     }
-                    return true
                 }
-                return false
+
+
+            }
+
+            override fun onError(status: Status) {
+
             }
         })
+
+
+
         binding.button.setOnClickListener {
             mlocation?.let {
-                viewModel.storeLocation(it.latitude.toString(),it.longitude.toString())
+                viewModel.storeLocation(it.latitude.toString(), it.longitude.toString())
                 val intent = Intent(baseContext, MainActivityUser::class.java)
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK

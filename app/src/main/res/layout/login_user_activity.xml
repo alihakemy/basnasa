@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="@string/Email"
+            android:hint="@string/phoneNumber"
 
             >
 
@@ -51,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#E37494"
 
-                android:inputType="textEmailAddress" />
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
