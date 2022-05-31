@@ -1,70 +1,46 @@
-package com.market.presentation.authentication.user.login
+package com.market.presentation.authentication.trader
 
 import android.app.ProgressDialog
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.market.R
 import com.market.data.models.SendLogin
 import com.market.data.models.get.login.LoginResponse
-import com.market.databinding.LoginUserActivityBinding
-import com.market.presentation.authentication.trader.LoginAsTrader
-import com.market.presentation.authentication.user.create.CreateUserAccountActivity
-import com.market.presentation.bases.BaseActivity
-import com.market.utils.ResultState
-import com.market.presentation.authentication.user.forget.ForgetPasswordStep1
+import com.market.databinding.ActivityLoginAsTraderBinding
+import com.market.presentation.authentication.user.login.LoginViewModel
 import com.market.presentation.location.MapsActivity
+import com.market.utils.ResultState
 import com.market.utils.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class LoginUser : BaseActivity() {
+class LoginAsTrader : AppCompatActivity() {
 
-    private lateinit var binding: LoginUserActivityBinding
-
-    private val viewModel: LoginViewModel by viewModels()
+    private lateinit var binding: ActivityLoginAsTraderBinding
+    private val viewModel: LoginAsTraderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LoginUserActivityBinding.inflate(layoutInflater)
+        binding = ActivityLoginAsTraderBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val pd = ProgressDialog(this)
         pd.setMessage("loading")
-
         pd.setCancelable(false)
-        binding.registerUser.setOnClickListener {
 
-            val intent = Intent(this, CreateUserAccountActivity::class.java)
-            startActivity(intent)
-
+        binding.imageView3.setOnClickListener {
+            onBackPressed()
         }
-        binding.textView3.setOnClickListener {
-
-            val intent = Intent(this, ForgetPasswordStep1::class.java)
-            startActivity(intent)
-        }
-
-
-
-        binding.textView4.setOnClickListener {
-            val intent = Intent(this, LoginAsTrader::class.java)
-            startActivity(intent)
-
-        }
-
-
-
-
 
         binding.button.setOnClickListener {
 
             if (binding.phoneTextTextPersonName.text.toString().isValidEmail()) {
                 if (!binding.passwordText.text.toString().isNullOrEmpty()) {
                     pd.show()
-                    viewModel.loginUser(
+                    viewModel.loginTrader(
                         SendLogin(
                             binding.phoneTextTextPersonName.text.toString(),
                             binding.passwordText.text.toString()
@@ -101,12 +77,9 @@ class LoginUser : BaseActivity() {
                     Toast.makeText(this, result.toString(), Toast.LENGTH_LONG).show()
 
                 }
-
-
             }
-
-
         })
+
 
     }
 }

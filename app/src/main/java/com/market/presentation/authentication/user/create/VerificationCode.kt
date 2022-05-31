@@ -3,7 +3,6 @@ package com.market.presentation.authentication.user.create
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +10,11 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.market.R
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import com.market.data.models.SendVerificationPhone
 import com.market.data.models.get.verificationPhone.VerificationPhone
-import com.market.databinding.GetUserDataFragmentBinding
 import com.market.databinding.VerificationCodeFragmentBinding
 import com.market.presentation.location.MapsActivity
-import com.market.presentation.mainscreen.user.MainActivityUser
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match

@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.market.data.models.get.OnBoardingGet
 import com.market.databinding.OnBoardingActivityBinding
 import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

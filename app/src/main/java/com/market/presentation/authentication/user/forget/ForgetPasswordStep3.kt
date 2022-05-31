@@ -7,8 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.market.R
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import com.market.data.models.ConfirmNewPassword
 import com.market.data.models.get.getconfirenewpassword.GetConfirmNewPassword
 import com.market.databinding.NewPasswordActivityBinding

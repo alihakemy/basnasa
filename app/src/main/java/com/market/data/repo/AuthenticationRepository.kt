@@ -1,12 +1,9 @@
 package com.market.data.repo
 
-import android.content.SharedPreferences
-import com.market.data.models.get.OnBoardingGet
 import com.market.data.models.get.login.LoginResponse
 import com.market.data.models.get.register.RegisterResponse
 import com.market.data.services.Authentication
-import com.market.data.services.OnBoardingServices
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import com.market.data.models.*
 import com.market.data.models.get.forgetpassword.GetForgetPassword
 import com.market.data.models.get.getconfirenewpassword.GetConfirmNewPassword

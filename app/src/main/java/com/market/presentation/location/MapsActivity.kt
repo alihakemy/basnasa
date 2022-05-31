@@ -38,7 +38,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var coder = Geocoder(this)
-        var address: List<Address>? = null
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -66,7 +65,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.editTextTextPersonName2.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
                 // If the event is a key-down event on the "enter" button
-                if (event.getAction() === KeyEvent.ACTION_DOWN &&
+                if (event.action === KeyEvent.ACTION_DOWN &&
                     keyCode == KeyEvent.KEYCODE_ENTER
                 ) {
                     val locationName = binding.editTextTextPersonName2.text.toString()

@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.market.data.models.get.OnBoardingGet
 import com.market.data.repo.OnBoardingRepository
-import com.market.data.services.OnBoardingServices
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

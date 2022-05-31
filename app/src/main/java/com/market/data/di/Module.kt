@@ -1,4 +1,4 @@
-package com.market.base.di
+package com.market.data.di
 
 import android.content.Context
 import android.content.SharedPreferences

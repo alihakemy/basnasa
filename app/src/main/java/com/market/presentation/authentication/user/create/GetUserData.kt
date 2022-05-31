@@ -14,7 +14,7 @@ import com.market.R
 import com.market.data.models.SendRegister
 import com.market.data.models.get.register.RegisterResponse
 import com.market.databinding.GetUserDataFragmentBinding
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match

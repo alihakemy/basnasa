@@ -7,8 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.market.R
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import com.market.data.models.ForgetPassword
 import com.market.data.models.get.forgetpassword.GetForgetPassword
 import com.market.databinding.ActivityForgetPasswordStep1Binding

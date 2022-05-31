@@ -2,7 +2,7 @@ package com.market.data.repo
 
 import com.market.data.models.get.OnBoardingGet
 import com.market.data.services.OnBoardingServices
-import com.market.base.utils.ResultState
+import com.market.utils.ResultState
 import javax.inject.Inject
 
 class OnBoardingRepository @Inject constructor(private val onBoardingServices: OnBoardingServices) {

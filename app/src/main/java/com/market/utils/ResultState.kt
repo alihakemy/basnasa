@@ -1,4 +1,4 @@
-package com.market.base.utils
+package com.market.utils
 
 sealed class ResultState<out R> {
     data class Success<out T>(val data: T) : ResultState<T>()
