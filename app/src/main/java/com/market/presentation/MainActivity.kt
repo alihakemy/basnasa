@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.view.WindowCompat
 import com.market.databinding.ActivityMainBinding
 import com.market.presentation.bases.BaseActivity
+import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.onboarding.OnBoarding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,13 +26,20 @@ class MainActivity() : BaseActivity() {
         if (checkIsLogin()) {
 
 
-
             if (getLoginData().Roles.equals("Tager")) {
 
+
             } else {
-                val intent = Intent(this, MainActivityUser::class.java)
-                startActivity(intent)
-                finish()
+                if (getLocation()) {
+                    val intent = Intent(this, MainActivityUser::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
             }
 
 

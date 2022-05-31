@@ -22,6 +22,11 @@ abstract class BaseActivity : AppCompatActivity() {
             .isNullOrEmpty()
     }
 
+    fun getLocation(): Boolean {
+        return !viewModel.getSharedPreferences().getString("latitude", "").toString()
+            .isNullOrEmpty()
+    }
+
     fun getLoginData(): User {
         val gson = Gson()
 
