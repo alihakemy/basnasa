@@ -1,4 +1,4 @@
-package com.market.presentation.authentication.user.forget
+package com.market.presentation.authentication.forget
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

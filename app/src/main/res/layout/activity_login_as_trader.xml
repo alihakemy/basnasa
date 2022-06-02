@@ -142,7 +142,7 @@
                 android:text="@string/haveAccount" />
 
             <TextView
-                android:id="@+id/registerUser"
+                android:id="@+id/registerTager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -74,6 +74,7 @@ class VerificationCode : Fragment() {
 
         val phone = arguments?.getString("phone")
 
+        binding?.textView10?.text=phone.toString()
 
         binding?.button?.setOnClickListener {
 

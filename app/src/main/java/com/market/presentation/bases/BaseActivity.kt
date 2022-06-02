@@ -6,9 +6,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.market.data.models.get.User
+import com.market.presentation.bases.methods.BaseMethods
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), BaseMethods {
 
     private val viewModel: BaseViewModel by viewModels()
 
@@ -17,17 +18,17 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    fun checkIsLogin(): Boolean {
+    override fun checkIsLogin(): Boolean {
         return !viewModel.getSharedPreferences().getString("loginData", "").toString()
             .isNullOrEmpty()
     }
 
-    fun getLocation(): Boolean {
+    override fun getLocation(): Boolean {
         return !viewModel.getSharedPreferences().getString("latitude", "").toString()
             .isNullOrEmpty()
     }
 
-    fun getLoginData(): User {
+    override fun getLoginData(): User {
         val gson = Gson()
 
         return gson.fromJson(
@@ -36,5 +37,10 @@ abstract class BaseActivity : AppCompatActivity() {
         )
     }
 
+    override fun getLatLong(): Pair<String, String> {
 
+        return Pair(viewModel.getSharedPreferences().getString("latitude","0")?:"0",
+            viewModel.getSharedPreferences().getString("longitude","0") ?:"0" )
+
+    }
 }

@@ -47,7 +47,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var coder = Geocoder(this)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Places.initialize(applicationContext, "AIzaSyC2SNZwXMICS8FEfqU72VN9EkfOEEuhKyc")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -75,7 +74,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     as AutocompleteSupportFragment
 
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(listOf(Place.Field.ID, Place.Field.NAME))
+        autocompleteFragment.setPlaceFields(
+            listOf(
+                Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.LAT_LNG
+            )
+        )
 
         // Set up a PlaceSelectionListener to handle the response.
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
@@ -111,11 +116,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.button.setOnClickListener {
             mlocation?.let {
                 viewModel.storeLocation(it.latitude.toString(), it.longitude.toString())
-                val intent = Intent(baseContext, MainActivityUser::class.java)
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                ActivityCompat.finishAffinity(this)
+
+                if (intent.getStringExtra("role").equals("tager")) {
+
+
+                } else {
+                    val intent = Intent(baseContext, MainActivityUser::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    ActivityCompat.finishAffinity(this)
+                }
+
 
             } ?: let {
                 Toast.makeText(this, "اختر موقعك", Toast.LENGTH_LONG).show()

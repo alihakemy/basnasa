@@ -13,7 +13,7 @@ import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
 import com.market.presentation.authentication.user.create.CreateUserAccountActivity
 import com.market.presentation.bases.BaseActivity
 import com.market.utils.ResultState
-import com.market.presentation.authentication.user.forget.ForgetPasswordStep1
+import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.location.MapsActivity
 import com.market.utils.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +61,7 @@ class LoginUser : BaseActivity() {
 
         binding.button.setOnClickListener {
 
-            if (binding.phoneTextTextPersonName.text.toString().isValidEmail()) {
+
                 if (!binding.passwordText.text.toString().isNullOrEmpty()) {
                     pd.show()
                     viewModel.loginUser(
@@ -76,11 +76,7 @@ class LoginUser : BaseActivity() {
 
                 }
 
-            } else {
 
-                Toast.makeText(this, "تحقق من البريد الالكترونى ", Toast.LENGTH_LONG).show()
-
-            }
 
         }
 

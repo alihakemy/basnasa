@@ -1,4 +1,4 @@
-package com.market.presentation.authentication.user.forget
+package com.market.presentation.authentication.forget
 
 import android.app.ProgressDialog
 import android.content.Intent

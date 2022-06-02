@@ -1,4 +1,4 @@
-package com.market.presentation.authentication.user.forget
+package com.market.presentation.authentication.forget
 
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ForgetPasswordStep3 : AppCompatActivity() {
   lateinit var binding:NewPasswordActivityBinding
-  val viewModel :ResetPasswordViewModel by viewModels ()
+  val viewModel : ResetPasswordViewModel by viewModels ()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=NewPasswordActivityBinding.inflate(layoutInflater)

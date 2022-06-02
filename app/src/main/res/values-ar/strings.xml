@@ -36,5 +36,6 @@
     <string name="detect_location">تحديد الموقع تلقائيا</string>
     <string name="choicelocation">اختار العنوان الخاص بك</string>
     <string name="start">ابداء</string>
+    <string name="shope_name">اسم المتجر</string>
 
 </resources>

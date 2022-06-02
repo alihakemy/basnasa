@@ -10,7 +10,8 @@ import androidx.lifecycle.Observer
 import com.market.data.models.SendLogin
 import com.market.data.models.get.login.LoginResponse
 import com.market.databinding.ActivityLoginAsTraderBinding
-import com.market.presentation.authentication.user.forget.ForgetPasswordStep1
+import com.market.presentation.authentication.trader.create.traderjoin.JoinAsTraderActivity
+import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.location.MapsActivity
 import com.market.utils.ResultState
 import com.market.utils.isValidEmail
@@ -29,6 +30,11 @@ class LoginAsTrader : AppCompatActivity() {
         val pd = ProgressDialog(this)
         pd.setMessage("loading")
         pd.setCancelable(false)
+        binding.registerTager.setOnClickListener {
+
+            val intent = Intent(this, JoinAsTraderActivity::class.java)
+            startActivity(intent)
+        }
         binding.textView3.setOnClickListener {
 
             val intent = Intent(this, ForgetPasswordStep1::class.java)
@@ -41,7 +47,7 @@ class LoginAsTrader : AppCompatActivity() {
 
         binding.button.setOnClickListener {
 
-            if (binding.phoneTextTextPersonName.text.toString().isValidEmail()) {
+
                 if (!binding.passwordText.text.toString().isNullOrEmpty()) {
                     pd.show()
                     viewModel.loginTrader(
@@ -56,11 +62,7 @@ class LoginAsTrader : AppCompatActivity() {
 
                 }
 
-            } else {
 
-                Toast.makeText(this, "تحقق من البريد الالكترونى ", Toast.LENGTH_LONG).show()
-
-            }
 
         }
 
@@ -70,6 +72,7 @@ class LoginAsTrader : AppCompatActivity() {
                 is ResultState.Success<LoginResponse> -> {
                     viewModel.storeLogin(result.data.data.user)
                     val intent = Intent(this, MapsActivity::class.java)
+                    intent.putExtra("role",result.data.data.user.Roles.toString().trim().toLowerCase())
                     startActivity(intent)
                     finish()
 

@@ -27,7 +27,14 @@ class MainActivity() : BaseActivity() {
 
 
             if (getLoginData().Roles.equals("Tager")) {
+                if (getLocation()) {
 
+
+                } else {
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
 
             } else {
                 if (getLocation()) {
@@ -44,7 +51,6 @@ class MainActivity() : BaseActivity() {
 
 
         } else {
-
             val intent = Intent(this, OnBoarding::class.java)
             startActivity(intent)
             finish()

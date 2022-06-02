@@ -32,11 +32,17 @@
         <entry key="..\:/Users/Ali/AndroidStudioProjects/market/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13766566908935443" />
         <entry key="..\:/Users/Ali/AndroidStudioProjects/market/app/src/main/res/menu/bottom_nav_menu_user.xml" value="0.13766566908935443" />
         <entry key="..\:/Users/Ali/AndroidStudioProjects/market/app/src/main/res/menu/menu_main.xml" value="0.13766566908935443" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/editetext_rec.xml" value="0.115" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_shopping_bag_24.xml" value="0.115" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_complete_tager_data.xml" value="0.14130434782608695" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_login_as_trader.xml" value="0.17916666666666667" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_maps.xml" value="0.15806159420289856" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/create_user_account_activity.xml" value="0.17916666666666667" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/get_user_data_fragment.xml" value="0.17916666666666667" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/join_as_trader_activity.xml" value="0.22" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/login_user_activity.xml" value="0.17916666666666667" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/tager_code_verification_activity.xml" value="0.14356884057971014" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/verification_code_fragment.xml" value="0.14356884057971014" />
       </map>
     </option>
   </component>
