@@ -40,6 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/choicelocation"
+                android:fontFamily="@font/fonts"
+
                 android:textColor="#808080" />
 
             <fragment android:id="@+id/autocomplete_fragment"
@@ -64,6 +66,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:text="@string/detect_location"
+                    android:fontFamily="@font/fonts"
+
                     android:textColor="#E37494"
                     map:layout_constraintBottom_toBottomOf="@+id/imageView6"
                     map:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +117,8 @@
             android:gravity="center"
             android:text="@string/start"
             android:textColor="@color/white"
+            android:fontFamily="@font/fonts"
+
             android:textSize="20dp" />
     </com.google.android.material.card.MaterialCardView>
 

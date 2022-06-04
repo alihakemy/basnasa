@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.telephony.TelephonyManager
 import androidx.core.util.PatternsCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -11,7 +14,17 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
 
+fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    observe(lifecycleOwner, object : Observer<T> {
+        override fun onChanged(t: T?) {
+            observer.onChanged(t)
+            t?.let {
+                removeObserver(this)
+            }
 
+        }
+    })
+}
 fun prepareFilePart(partName: String, fileUri: String): MultipartBody.Part {
 
     val file: File = File(fileUri)

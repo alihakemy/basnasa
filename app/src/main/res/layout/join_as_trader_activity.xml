@@ -23,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
+        android:fontFamily="@font/fonts"
+
         android:layout_marginBottom="64dp"
         android:text="@string/createNewAccount"
         android:textColor="#E37494"
@@ -47,6 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/fonts"
+
             android:text="@string/fullName"
             android:textColor="#FC808080" />
 
@@ -55,6 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/fonts"
+
             android:background="@drawable/editetext_rec"
 
 
@@ -69,6 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/phoneNumbers"
+            android:fontFamily="@font/fonts"
+
             android:textColor="#FC808080" />
 
         <EditText
@@ -76,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/fonts"
 
             android:background="@drawable/editetext_rec"
             android:drawableStart="@drawable/phone"
@@ -88,6 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/shope_name"
+            android:fontFamily="@font/fonts"
+
             android:textColor="#FC808080" />
 
         <EditText
@@ -95,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/fonts"
 
             android:background="@drawable/editetext_rec"
             android:drawableStart="@drawable/ic_baseline_shopping_bag_24"
@@ -104,6 +116,7 @@
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
+            android:fontFamily="@font/fonts"
 
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -116,6 +129,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/editetext_rec"
+            android:fontFamily="@font/fonts"
 
             android:drawableStart="@drawable/mail"
             android:ems="10"
@@ -125,6 +139,7 @@
         <TextView
             android:id="@+id/textView14"
             android:layout_width="match_parent"
+            android:fontFamily="@font/fonts"
 
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -137,6 +152,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/editetext_rec"
+            android:fontFamily="@font/fonts"
 
             android:drawableStart="@drawable/ic_baseline_vpn_key_24"
             android:ems="10"
@@ -163,6 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/fonts"
 
             android:layout_marginTop="60dp"
             android:layout_marginEnd="16dp"
@@ -176,6 +193,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/fonts"
+
             android:text="@string/Conditions"
             android:textColor="#E37494" />
     </LinearLayout>

@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/fonts"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
         android:text="@string/login"
@@ -61,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#E37494"
+                android:fontFamily="@font/fonts"
 
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#E37494"
-
+            android:fontFamily="@font/fonts"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -103,6 +105,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/forgetPassword"
         android:textColor="#E37494"
+        android:fontFamily="@font/fonts"
         app:layout_constraintStart_toStartOf="@+id/textField"
         app:layout_constraintTop_toBottomOf="@+id/textField" />
 
@@ -139,6 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/fonts"
                 android:text="@string/haveAccount" />
 
             <TextView
@@ -147,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/newAccount"
+                android:fontFamily="@font/fonts"
                 android:textColor="#E37494" />
         </LinearLayout>
 
@@ -155,6 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/fonts"
             android:text="@string/Conditions"
             android:textColor="#E37494" />
     </LinearLayout>

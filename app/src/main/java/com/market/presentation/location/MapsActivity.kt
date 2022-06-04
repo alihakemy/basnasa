@@ -7,12 +7,12 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.View
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.common.api.Status
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,7 +22,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
@@ -32,6 +31,7 @@ import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.utils.LocationHelper
 import com.market.utils.PermissionProvider
+import com.market.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -53,19 +53,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(com.market.R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        val permissionProvider: PermissionProvider = PermissionProvider(this@MapsActivity, this)
+        val permissionProvider = PermissionProvider(this@MapsActivity, this)
         permissionProvider.requestLocationPermission()
+
+        val location = LocationHelper.getInstance(this)
+        permissionProvider.locationPermissionGranted.observe(this, androidx.lifecycle.Observer {
+
+            location.getLocation()
+
+        })
+        location.locatioLiveData.observeOnce(this, Observer {
+            it?.let { it1 ->
+                showLocation(it1)
+
+            }
+            Log.e("LOCATIOMIAL", it?.longitude.toString())
+
+        })
         binding.location.setOnClickListener {
-
-            permissionProvider.locationPermissionGranted.observe(this, androidx.lifecycle.Observer {
-                LocationHelper.getInstance(context = baseContext, this)
-                    .getLocation {
-
-                        showLocation(it)
-
-                    }
-
-            })
+            location.getLocation()
 
         }
 
@@ -126,13 +132,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     ActivityCompat.finishAffinity(this)
 
 
-                } else if(intent.getStringExtra("role").equals("location")){
+                } else if (intent.getStringExtra("role").equals("location")) {
 
                     onBackPressed()
-                }
-
-
-                else {
+                } else {
                     val intent = Intent(baseContext, MainActivityUser::class.java)
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK

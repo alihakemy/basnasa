@@ -23,8 +23,8 @@
     <string name="Email">Email</string>
     <string name="Next">Next</string>
     <string name="newAccount">Register</string>
-    <string name="haveAccount">No Account ?</string>
-    <string name="Conditions">Term and Conditions</string>
+    <string name="haveAccount">No Account?</string>
+    <string name="Conditions">Terms and Conditions</string>
     <string name="forgetPassword">Forget Password ?</string>
     <string name="loginAsTrader">Login As Trader</string>
     <string name="title_home">Home</string>

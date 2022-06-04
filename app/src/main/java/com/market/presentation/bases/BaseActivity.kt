@@ -43,4 +43,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseMethods {
             viewModel.getSharedPreferences().getString("longitude","0") ?:"0" )
 
     }
+
+
 }

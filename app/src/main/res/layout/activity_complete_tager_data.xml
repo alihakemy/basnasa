@@ -26,6 +26,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
         android:text="@string/CompleteJoin"
+        android:fontFamily="@font/fonts"
         android:textColor="#E37494"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,42 +64,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:fontFamily="@font/fonts"
                 android:text="اضف صوره" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/editetext_rec"
 
 
-                android:hint="الاسم"
-                android:ems="10"
+                style="@style/editext"
 
-                android:padding="10dp" />
+                android:hint="الاسم" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/editetext_rec"
 
+                style="@style/editext"
                 android:hint="البريد الاليكترونى "
-                android:ems="10"
+
 
                 android:padding="10dp" />
 
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
 
+                style="@style/editext"
                 android:hint="اسم المشروع"
-                android:background="@drawable/editetext_rec"
                 android:ems="10"
 
                 android:padding="10dp" />
@@ -106,34 +97,26 @@
 
             <EditText
                 android:id="@+id/shopeName"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                style="@style/editext"
+
 
                 android:hint="المنطقه"
-                android:background="@drawable/editetext_rec"
-                android:ems="10"
+
                 android:inputType="text"
                 android:padding="10dp" />
 
             <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-
+                style="@style/editext"
 
                 android:id="@+id/cat"
                 android:layout_marginTop="8dp"
 
-                android:background="@drawable/editetext_rec"
                 android:padding="10dp"
                 android:inputType="none"
                 />
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/editetext_rec"
 
+                style="@style/editext"
                 android:id="@+id/arrivalTime"
 
                 android:hint="الوقت الازم لتوصيل طلبك"

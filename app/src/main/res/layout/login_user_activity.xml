@@ -15,6 +15,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
         android:text="@string/login"
+        android:fontFamily="@font/fonts"
         android:textColor="#E37494"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -50,10 +51,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#E37494"
+                android:fontFamily="@font/fonts"
 
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="#E37494"
+
+                android:drawableTint="#E37494"
+
+                android:drawableEnd="@drawable/phone"
+                android:text="+965"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -80,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#E37494"
+            android:fontFamily="@font/fonts"
 
             android:inputType="textPassword" />
 
@@ -92,6 +116,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/forgetPassword"
         android:textColor="#E37494"
+        android:fontFamily="@font/fonts"
+
         app:layout_constraintStart_toStartOf="@+id/textField"
         app:layout_constraintTop_toBottomOf="@+id/textField" />
 
@@ -129,14 +155,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/fonts"
+
                 android:text="@string/haveAccount" />
 
             <TextView
                 android:id="@+id/registerUser"
+                android:paddingStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/newAccount"
+                android:fontFamily="@font/fonts"
+
                 android:textColor="#E37494" />
         </LinearLayout>
 
@@ -146,6 +177,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/Conditions"
+            android:fontFamily="@font/fonts"
+
             android:textColor="#E37494" />
     </LinearLayout>
 
@@ -156,6 +189,8 @@
         android:layout_marginStart="16dp"
         android:text="@string/loginAsTrader"
         android:textColor="#E37494"
+        android:fontFamily="@font/fonts"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />

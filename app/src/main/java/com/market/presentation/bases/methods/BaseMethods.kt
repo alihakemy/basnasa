@@ -11,4 +11,5 @@ interface BaseMethods  {
     fun getLatLong():Pair<String,String>
 
 
+
 }
