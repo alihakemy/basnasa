@@ -62,18 +62,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             location.getLocation()
 
         })
-        location.locatioLiveData.observeOnce(this, Observer {
-            it?.let { it1 ->
-                showLocation(it1)
 
-            }
-            Log.e("LOCATIOMIAL", it?.longitude.toString())
-
-        })
         binding.location.setOnClickListener {
+            location.locatioLiveData.observeOnce(this, Observer {
+                it?.let { it1 ->
+                    showLocation(it1)
+
+                }
+                Log.e("LOCATIOMIAL", it?.longitude.toString())
+
+            })
             location.getLocation()
 
         }
+
+
 
         // Initialize the AutocompleteSupportFragment.
         val autocompleteFragment =

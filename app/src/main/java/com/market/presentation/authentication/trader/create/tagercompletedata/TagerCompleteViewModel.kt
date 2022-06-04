@@ -53,7 +53,7 @@ class TagerCompleteViewModel @Inject constructor(private  val  authenticationRep
                }
                else ->{
                    Log.e("REsultALIERREOR",result.toString())
-                   status.postValue(result.toString())
+                   status.postValue(result.message.toString())
                }
 
            }

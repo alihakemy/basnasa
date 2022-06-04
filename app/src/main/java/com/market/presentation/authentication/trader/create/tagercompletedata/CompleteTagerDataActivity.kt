@@ -4,8 +4,10 @@ import android.R
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.FileUtils
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -31,6 +33,8 @@ import com.market.utils.prepareFilePart
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EarlyEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import java.io.File
+import java.net.URI
 
 @AndroidEntryPoint
 class CompleteTagerDataActivity : BaseActivity() {
@@ -38,7 +42,7 @@ class CompleteTagerDataActivity : BaseActivity() {
     val viewModel: TagerCompleteViewModel by viewModels()
     private lateinit var binding: ActivityCompleteTagerDataBinding
     lateinit var listCat: ArrayList<Category>
-    var imageUrl: String? = null
+    var imageUrl: Uri? = null
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -49,7 +53,7 @@ class CompleteTagerDataActivity : BaseActivity() {
                     //Image Uri will not be null for RESULT_OK
                     val fileUri = data?.data
 
-                    imageUrl = fileUri.toString()
+                    imageUrl = fileUri
                     binding.imageView7.setImageURI(fileUri)
                 }
                 ImagePicker.RESULT_ERROR -> {
@@ -174,7 +178,7 @@ class CompleteTagerDataActivity : BaseActivity() {
                         ),
                         intent.getStringExtra("token").toString(),
                         prepareFilePart(
-                            "image", mFileUtils(this).getPath(it.toUri(), this),
+                            "image", mFileUtils(this).getPath(it, this) ?:"",
                         )
                     )
                 }
