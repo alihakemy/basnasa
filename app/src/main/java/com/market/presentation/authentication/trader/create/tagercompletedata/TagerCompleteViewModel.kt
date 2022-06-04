@@ -48,7 +48,7 @@ class TagerCompleteViewModel @Inject constructor(private  val  authenticationRep
            when(val result = authenticationRepository.completeJoinTager(sendCompleteJoin,token,image)){
 
                is ResultState.Success<TagetCompleteData>->{
-                   Log.e("REsultALI",result.data.data.toString())
+                   Log.e("REsultALI",result.data!!.data.toString())
                    status.postValue("Sucess")
                }
                else ->{

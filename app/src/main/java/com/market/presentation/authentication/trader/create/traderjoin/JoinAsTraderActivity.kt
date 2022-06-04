@@ -71,7 +71,7 @@ class JoinAsTraderActivity : AppCompatActivity() {
                         finish()
                         Toast.makeText(
                            this,
-                            result.data.data.activation_code.toString(),
+                            result.data!!.data.activation_code.toString(),
                             Toast.LENGTH_LONG
                         ).show()
 

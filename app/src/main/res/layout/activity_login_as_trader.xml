@@ -67,6 +67,27 @@
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.Design.TextInputLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="#E37494"
+
+                android:drawableTint="#E37494"
+
+                android:drawableEnd="@drawable/phone"
+                android:text="+965"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

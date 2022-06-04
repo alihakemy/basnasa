@@ -102,7 +102,7 @@ class GetUserData : Fragment() {
 
                         Toast.makeText(
                             context,
-                            result.data.data.activation_code.toString(),
+                            result.data!!.data.activation_code.toString(),
                             Toast.LENGTH_LONG
                         ).show()
 

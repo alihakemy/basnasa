@@ -38,13 +38,13 @@ class ForgetPasswordStep1 : AppCompatActivity() {
                                 }
                                 Toast.makeText(
                                     this,
-                                    result.data.data.toString(),
+                                    result.data!!.data.toString(),
                                     Toast.LENGTH_LONG
                                 ).show()
 
                                 val intent = Intent(this, ForgetPasswordStep2::class.java)
                                 intent.putExtra("phone", binding.phoneNumber.text.toString())
-                                intent.putExtra("code",  result.data.data.toString())
+                                intent.putExtra("code",  result.data!!.data.toString())
                                 startActivity(intent)
 
                                 finish()

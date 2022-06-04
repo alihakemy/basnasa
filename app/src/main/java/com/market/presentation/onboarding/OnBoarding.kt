@@ -34,9 +34,11 @@ class OnBoarding : BaseActivity() {
 
             when (val result = it) {
                 is ResultState.Success<OnBoardingGet> -> {
-                    val adapter = ViewPagerAdapter(this, result.data)
+                    val adapter = result?.data?.let { it1 -> ViewPagerAdapter(this, it1) }
 
-                    init(adapter)
+                    if (adapter != null) {
+                        init(adapter)
+                    }
                     binding.parent.visibility=View.VISIBLE
 
                 }

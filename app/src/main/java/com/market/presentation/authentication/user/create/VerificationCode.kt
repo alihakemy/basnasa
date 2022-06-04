@@ -92,7 +92,7 @@ class VerificationCode : Fragment() {
                         if (pd.isShowing) {
                             pd.dismiss()
                         }
-                        viewModel.storeLogin(result.data.data.user)
+                        viewModel.storeLogin(result.data!!.data.user)
                         val intent = Intent(getContext(), MapsActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK

@@ -88,7 +88,7 @@ class CompleteTagerDataActivity : BaseActivity() {
 
                 is ResultState.Success<Categories> -> {
                     val list: ArrayList<String> = ArrayList()
-                    listCat = result.data.data.categories
+                    listCat = result.data!!.data.categories
                     result.data.data.categories.forEach {
                         list.add(it.name)
                     }
