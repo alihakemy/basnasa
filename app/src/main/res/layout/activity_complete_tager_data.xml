@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".presentation.authentication.user.create.CreateUserAccountActivity">
 
+    <include layout="@layout/dialog"
+        android:id="@+id/include"
+
+        />
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="35dp"
@@ -119,6 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
 
+
                 android:id="@+id/cat"
                 android:layout_marginTop="8dp"
 
@@ -132,6 +137,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/editetext_rec"
 
+                android:id="@+id/arrivalTime"
 
                 android:hint="الوقت الازم لتوصيل طلبك"
                 android:ems="10"
@@ -143,6 +149,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/editetext_rec"
 
+                android:id="@+id/description"
 
                 android:hint="اكتب نبزه مختصره عن المتجر"
 
@@ -170,6 +177,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
 
+                        android:id="@+id/faceLink"
 
                         android:background="@null"
 
@@ -200,9 +208,10 @@
                     android:weightSum="2">
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/instaLink"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+
 
 
                         android:layout_weight="1"
@@ -243,6 +252,7 @@
                         android:layout_height="50dp"
 
 
+                        android:id="@+id/snapLink"
 
                         android:layout_weight="1"
 
@@ -273,6 +283,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
 
+                        android:id="@+id/webLink"
 
                         android:layout_weight="1"
 
@@ -317,6 +328,7 @@
                         android:background="@null"
 
 
+                        android:id="@+id/phone"
                         android:layout_weight="1"
 
                         android:ems="10"
@@ -346,6 +358,7 @@
                         android:layout_height="50dp"
 
 
+                        android:id="@+id/whatLink"
 
                         android:layout_weight="1"
 

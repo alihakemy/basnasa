@@ -195,10 +195,7 @@ class AuthenticationRepository @Inject constructor(
                 sendCompleteJoin.about
             )
 
-            val whatsapp: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                sendCompleteJoin.whatsapp
-            )
+
             val phone: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.phone
@@ -212,7 +209,7 @@ class AuthenticationRepository @Inject constructor(
                 lat = lat,
                 long = long,
                 about = about,
-                whatsapp = whatsapp,
+
                 facebook_link = facebook_link,
                 instagram_link = instagram_link,
                 snapchat_link = snapchat_link,

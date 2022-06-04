@@ -28,6 +28,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.market.R
 import com.market.databinding.ActivityMapsBinding
+import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.utils.LocationHelper
 import com.market.utils.PermissionProvider
@@ -117,8 +118,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mlocation?.let {
                 viewModel.storeLocation(it.latitude.toString(), it.longitude.toString())
 
-                if (intent.getStringExtra("role").equals("tager")) {
-
+                if (intent.getStringExtra("role")?.toLowerCase().equals("tager")) {
+                    val intent = Intent(baseContext, TaderMainActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    ActivityCompat.finishAffinity(this)
 
 
                 } else if(intent.getStringExtra("role").equals("location")){

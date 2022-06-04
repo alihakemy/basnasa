@@ -65,7 +65,7 @@ interface Authentication {
         @Part("lat ") lat: RequestBody,
         @Part("long") long: RequestBody,
         @Part("about") about: RequestBody,
-        @Part("whatsapp") whatsapp: RequestBody,
+
         @Part("phone ") phone: RequestBody,
         @Header("Authorization") token: String,
         @Part image: MultipartBody.Part

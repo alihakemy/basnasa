@@ -86,6 +86,7 @@ class LoginUser : BaseActivity() {
                 is ResultState.Success<LoginResponse> -> {
                     viewModel.storeLogin(result.data.data.user)
                     val intent = Intent(this, MapsActivity::class.java)
+                    intent.putExtra("role",result.data.data.user.Roles)
                     startActivity(intent)
                     finish()
 

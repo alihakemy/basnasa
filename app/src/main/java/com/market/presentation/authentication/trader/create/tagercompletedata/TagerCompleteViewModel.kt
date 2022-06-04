@@ -28,6 +28,8 @@ class TagerCompleteViewModel @Inject constructor(private  val  authenticationRep
             getCategories()
         }
 
+    val status:MutableLiveData<String> = MutableLiveData()
+
     private fun getCategories(){
 
         viewModelScope.launch(Dispatchers.IO){
@@ -47,10 +49,11 @@ class TagerCompleteViewModel @Inject constructor(private  val  authenticationRep
 
                is ResultState.Success<TagetCompleteData>->{
                    Log.e("REsultALI",result.data.data.toString())
+                   status.postValue("Sucess")
                }
                else ->{
                    Log.e("REsultALIERREOR",result.toString())
-
+                   status.postValue(result.toString())
                }
 
            }

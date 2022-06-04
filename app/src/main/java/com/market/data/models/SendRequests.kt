@@ -39,6 +39,6 @@ data class SendCompleteJoin(
     val lat: String,
     val long: String,
     val about: String,
-    val whatsapp: String,
+
     val phone: String
 )

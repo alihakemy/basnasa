@@ -8,5 +8,11 @@ data class User(
     val imagePath: String,
     val name: String,
     val phone: String,
-    val rate: Int
+    val rate: Int,
+    var shop_name: String? ,
+    var instagram_link: String?,
+    var facebook_link: String?,
+    var whatsapp_link: String?,
+    var snapchat_link: String?,
+    var arrivaltime: String ?
 )

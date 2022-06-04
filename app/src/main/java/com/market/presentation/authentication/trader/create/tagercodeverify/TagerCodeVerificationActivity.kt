@@ -61,7 +61,7 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
                             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                         intent.putExtra("token",result.data.token.toString())
                         startActivity(intent)
-                        ActivityCompat.finishAffinity(this)
+                        finish()
 
                     }
                     else -> {
