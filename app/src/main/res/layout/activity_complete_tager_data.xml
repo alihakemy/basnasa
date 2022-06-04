@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.authentication.user.create.CreateUserAccountActivity">
 
-    <include layout="@layout/dialog"
-        android:id="@+id/include"
 
-        />
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="35dp"
@@ -407,5 +404,9 @@
         </LinearLayout>
     </ScrollView>
 
+    <include layout="@layout/dialog"
+        android:id="@+id/include"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
