@@ -48,6 +48,7 @@ object Module {
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(ChuckerInterceptor(appContext))
 
+
             .build()
     }
 
@@ -62,6 +63,7 @@ object Module {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(baseUrl)
+
             .addConverterFactory(gsonConverterFactory).build()
     }
 

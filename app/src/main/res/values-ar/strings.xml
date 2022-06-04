@@ -37,5 +37,7 @@
     <string name="choicelocation">اختار العنوان الخاص بك</string>
     <string name="start">ابداء</string>
     <string name="shope_name">اسم المتجر</string>
+    <string name="CompleteJoin">اكمل طلب الانضمام</string>
+    <string name="locationChoice">اختر الموقع</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.market.data.models.get.tagetcomplet
+package com.market.data.models.get.CompleteTagerData
 
 import com.market.data.models.get.User
 

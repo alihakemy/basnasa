@@ -2,7 +2,7 @@ package com.market.data.models.get
 
 data class User(
     val Roles: String,
-    val cats: List<Any>,
+    val cats: List<String>,
     val email: String,
     val id: Int,
     val imagePath: String,

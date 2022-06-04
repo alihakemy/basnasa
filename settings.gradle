@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+
     }
 }
 dependencyResolutionManagement {
@@ -13,6 +14,7 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
 
     }
+
 }
 rootProject.name = "market"
 include ':app'

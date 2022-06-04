@@ -5,8 +5,23 @@ import android.content.Intent
 import android.telephony.TelephonyManager
 import androidx.core.util.PatternsCompat
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 
+fun prepareFilePart(partName: String, fileUri: String): MultipartBody.Part {
+
+    val file: File = File(fileUri)
+
+    // create RequestBody instance from file
+    val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+
+    // MultipartBody.Part is used to send also the actual file name
+    return MultipartBody.Part.createFormData(partName, file.name, requestFile)
+}
 
 fun getIso(context:Context): String {
     return try {

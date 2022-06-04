@@ -4,6 +4,395 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.authentication.trader.create.tagercompletedata.CompleteTagerDataActivity">
+    tools:context=".presentation.authentication.user.create.CreateUserAccountActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:rotation="180"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/CompleteJoin"
+        android:textColor="#E37494"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+
+
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+
+                app:srcCompat="@drawable/ic_baseline_add_circle_24" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="اضف صوره" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/editetext_rec"
+
+
+                android:hint="الاسم"
+                android:ems="10"
+
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/editetext_rec"
+
+                android:hint="البريد الاليكترونى "
+                android:ems="10"
+
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+
+                android:hint="اسم المشروع"
+                android:background="@drawable/editetext_rec"
+                android:ems="10"
+
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/shopeName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+
+                android:hint="المنطقه"
+                android:background="@drawable/editetext_rec"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:id="@+id/cat"
+                android:layout_marginTop="8dp"
+
+                android:background="@drawable/editetext_rec"
+                android:padding="10dp"
+                android:inputType="none"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/editetext_rec"
+
+
+                android:hint="الوقت الازم لتوصيل طلبك"
+                android:ems="10"
+
+                android:padding="10dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/editetext_rec"
+
+
+                android:hint="اكتب نبزه مختصره عن المتجر"
+
+
+                android:padding="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editetext_rec"
+
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+
+                        android:background="@null"
+
+
+                        android:layout_weight="1"
+
+                        android:ems="10"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/facebook" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editetext_rec"
+
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+
+                        android:layout_weight="1"
+
+                        android:background="@null"
+                        android:ems="10"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/in" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editetext_rec"
+
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+
+
+                        android:layout_weight="1"
+
+                        android:background="@null"
+                        android:ems="10"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/snapchat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editetext_rec"
+                    android:layout_marginRight="4dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+
+                        android:layout_weight="1"
+
+                        android:background="@null"
+                        android:ems="10"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/web" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editetext_rec"
+
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+                        android:background="@null"
+
+
+                        android:layout_weight="1"
+
+                        android:ems="10"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/phone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editetext_rec"
+                    android:layout_marginRight="4dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+
+
+                        android:layout_weight="1"
+
+                        android:background="@null"
+                        android:ems="10"
+                        android:padding="10dp" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/wh" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/location"
+                style="@style/myMaterialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/locationChoice"
+                app:backgroundTint="@null" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button"
+                style="@style/myMaterialButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:elevation="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/next"
+                android:layout_marginBottom="50dp"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

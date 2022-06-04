@@ -56,10 +56,10 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
                         if (pd.isShowing) {
                             pd.dismiss()
                         }
-                        viewModel.storeLogin(result.data.data.user)
                         val intent = Intent(this, CompleteTagerDataActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        intent.putExtra("token",result.data.token.toString())
                         startActivity(intent)
                         ActivityCompat.finishAffinity(this)
 

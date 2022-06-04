@@ -2,11 +2,13 @@ package com.market.presentation.bases.methods
 
 import com.market.data.models.get.User
 
-interface BaseMethods :BaseLocationMethod {
+interface BaseMethods  {
     fun checkIsLogin(): Boolean
 
     fun getLoginData(): User
 
+    fun getLocation(): Boolean
+    fun getLatLong():Pair<String,String>
 
 
 }

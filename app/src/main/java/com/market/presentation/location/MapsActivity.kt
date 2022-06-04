@@ -120,7 +120,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (intent.getStringExtra("role").equals("tager")) {
 
 
-                } else {
+
+                } else if(intent.getStringExtra("role").equals("location")){
+
+                    onBackPressed()
+                }
+
+
+                else {
                     val intent = Intent(baseContext, MainActivityUser::class.java)
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
