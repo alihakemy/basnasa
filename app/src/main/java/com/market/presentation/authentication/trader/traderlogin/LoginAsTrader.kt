@@ -14,13 +14,14 @@ import com.market.databinding.ActivityLoginAsTraderBinding
 import com.market.presentation.authentication.trader.create.traderjoin.JoinAsTraderActivity
 import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.authentication.trader.create.tagercodeverify.TagerCodeVerificationActivity
+import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
 import com.market.utils.ResultState
 import com.market.utils.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginAsTrader : AppCompatActivity() {
+class LoginAsTrader : BaseActivity() {
 
     private lateinit var binding: ActivityLoginAsTraderBinding
     private val viewModel: LoginAsTraderViewModel by viewModels()
@@ -72,7 +73,7 @@ class LoginAsTrader : AppCompatActivity() {
 
             when (val result = it) {
                 is ResultState.Success<LoginResponse> -> {
-                    result.data?.data?.user?.let { it1 -> viewModel.storeLogin(it1) }
+                    result.data?.data?.user?.let { it1 -> storeLoginData(it1) }
                     val intent = Intent(this, MapsActivity::class.java)
                     intent.putExtra(
                         "role",

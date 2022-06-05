@@ -33,11 +33,6 @@ class LoginViewModel @Inject constructor(private  val  authenticationRepository:
 
         }
     }
-    fun storeLogin(user: User){
-        val gson = Gson()
-        val jsonObject = gson.toJson(user)
-        sharedPreferences.edit().putString("loginData",jsonObject).commit()
 
-    }
 
 }

@@ -7,41 +7,39 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.market.data.models.get.User
 import com.market.presentation.bases.methods.BaseMethods
+import com.market.presentation.bases.methods.LoginData
 
 
-abstract class BaseActivity : AppCompatActivity(), BaseMethods {
+abstract class BaseActivity : AppCompatActivity() {
 
     private val viewModel: BaseViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
 
+
     }
 
-    override fun checkIsLogin(): Boolean {
-        return !viewModel.getSharedPreferences().getString("loginData", "").toString()
-            .isNullOrEmpty()
+
+    fun checkIsLogin(): Boolean {
+        return viewModel.checkIsLogin()
     }
 
-    override fun getLocation(): Boolean {
-        return !viewModel.getSharedPreferences().getString("latitude", "").toString()
-            .isNullOrEmpty()
+    fun getLoginData(): User {
+        return viewModel.getLoginData()
     }
 
-    override fun getLoginData(): User {
-        val gson = Gson()
-
-        return gson.fromJson(
-            viewModel.getSharedPreferences().getString("loginData", "").toString(),
-            User::class.java
-        )
+    fun getLocation(): Boolean {
+        return viewModel.getLocation()
     }
 
-    override fun getLatLong(): Pair<String, String> {
+    fun getLatLong(): Pair<String, String> {
+        return viewModel.getLatLong()
+    }
 
-        return Pair(viewModel.getSharedPreferences().getString("latitude","0")?:"0",
-            viewModel.getSharedPreferences().getString("longitude","0") ?:"0" )
-
+    fun storeLoginData(user: User){
+        viewModel.storeLoginData(user)
     }
 
 

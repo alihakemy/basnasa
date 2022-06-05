@@ -36,11 +36,6 @@ class TagerCodeVerificationViewModel @Inject constructor(
         return registerResults
     }
 
-    fun storeLogin(user: User){
-        val gson = Gson()
-        val jsonObject = gson.toJson(user)
-        sharedPreferences.edit().putString("loginData",jsonObject).commit()
 
-    }
 
 }

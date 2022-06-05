@@ -89,13 +89,14 @@ class LocationHelper(val activity: Activity) {
                 locatioLiveData.postValue(location)
 
 
+                removeObserver()
 
                 Log.i("test", "Latitute: $location.latitute ; Longitute: $location.longitute")
 
             }
             //  getLocationRealTime()
 
-        val isGPSEnabled = locationManager!!
+        val isGPSEnabled = locationManager
             .isProviderEnabled(LocationManager.GPS_PROVIDER)
 
         if (ActivityCompat.checkSelfPermission(
@@ -115,14 +116,23 @@ class LocationHelper(val activity: Activity) {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        if (isGPSEnabled) {
-            locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                0L,
-                0f,
-                locationListener
-            )
+        val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+        location?.let {
+            locatioLiveData.postValue(location)
+        }?:let {
+
+            if (isGPSEnabled) {
+                locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    0L,
+                    0f,
+                    locationListener
+                )
+            }
+
         }
+
 
     }
 
