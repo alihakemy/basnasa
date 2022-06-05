@@ -11,9 +11,9 @@ import javax.inject.Inject
 @HiltViewModel
 class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPreferences) :
     ViewModel() {
-
+    // Dependency Inversion Principle
     private fun getSharedPreferences() = sharedPreferences
-   private  var loginData: LoginData = LoginData(getSharedPreferences())
+    private var loginData: LoginData = LoginData(getSharedPreferences())
 
 
     private fun checkIsLogin(baseMethods: BaseMethods): Boolean {
@@ -31,7 +31,8 @@ class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPre
     private fun getLatLong(baseMethods: BaseMethods): Pair<String, String> {
         return baseMethods.getLatLong()
     }
-    private fun storeLoginData(baseMethods: BaseMethods,user: User){
+
+    private fun storeLoginData(baseMethods: BaseMethods, user: User) {
         baseMethods.storeLoginData(user)
     }
 
@@ -39,6 +40,6 @@ class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPre
     fun getLocation() = getLocation(loginData)
     fun getLoginData() = getLoginData(loginData)
     fun getLatLong() = getLatLong(loginData)
-    fun storeLoginData(user: User)=storeLoginData(loginData,user)
+    fun storeLoginData(user: User) = storeLoginData(loginData, user)
 
 }
