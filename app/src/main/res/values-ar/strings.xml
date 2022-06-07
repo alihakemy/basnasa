@@ -39,5 +39,6 @@
     <string name="shope_name">اسم المتجر</string>
     <string name="CompleteJoin">اكمل طلب الانضمام</string>
     <string name="locationChoice">اختر الموقع</string>
+    <string name="near_by_you">استكشف الاقرب اليك </string>
 
 </resources>
