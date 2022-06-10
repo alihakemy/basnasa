@@ -3,6 +3,7 @@ package com.market.presentation.bases
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import com.market.data.models.get.User
+import com.market.data.models.get.login.LoginResponse
 import com.market.presentation.bases.methods.BaseMethods
 import com.market.presentation.bases.methods.LoginData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,7 @@ class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPre
         return baseMethods.getLocation()
     }
 
-    private fun getLoginData(baseMethods: BaseMethods): User {
+    private fun getLoginData(baseMethods: BaseMethods):LoginResponse {
         return baseMethods.getLoginData()
     }
 
@@ -32,7 +33,7 @@ class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPre
         return baseMethods.getLatLong()
     }
 
-    private fun storeLoginData(baseMethods: BaseMethods, user: User) {
+    private fun storeLoginData(baseMethods: BaseMethods, user:LoginResponse) {
         baseMethods.storeLoginData(user)
     }
 
@@ -40,6 +41,6 @@ class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPre
     fun getLocation() = getLocation(loginData)
     fun getLoginData() = getLoginData(loginData)
     fun getLatLong() = getLatLong(loginData)
-    fun storeLoginData(user: User) = storeLoginData(loginData, user)
+    fun storeLoginData(user: LoginResponse) = storeLoginData(loginData, user)
 
 }

@@ -12,13 +12,13 @@ class UserProductsAdapter() :
     RecyclerView.Adapter<UserProductsAdapter.UserMerchantsViewHolder>() {
 
 
-    inner class UserMerchantsViewHolder(binding: FavUserItem1Binding) :
+    inner class UserMerchantsViewHolder(binding: UserProductitemHomeBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserMerchantsViewHolder {
 
         return UserMerchantsViewHolder(
-            FavUserItem1Binding.inflate(
+            UserProductitemHomeBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false

@@ -9,8 +9,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.market.R
 import com.market.databinding.ActivityMainUserBinding
+import com.market.presentation.bases.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivityUser : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivityUser : BaseActivity() {
 
     private lateinit var binding: ActivityMainUserBinding
 

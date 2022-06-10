@@ -14,14 +14,15 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
 
-class LocationHelper(val activity: Activity) {
+class LocationHelper(val activity: Activity) : LocationListener {
 
 
     private var locationManager: LocationManager = activity
         .getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
 
-    val  locatioLiveData :MutableLiveData<Location?> = MutableLiveData()
+    val locatioLiveData: MutableLiveData<Location?> = MutableLiveData()
+
     companion object {
 
         fun getInstance(activity: Activity): LocationHelper {
@@ -36,7 +37,7 @@ class LocationHelper(val activity: Activity) {
         getLastKnowLocationGps()
 
 
-       getLocationRealTime()
+        getLocationRealTime()
 
     }
 
@@ -76,25 +77,12 @@ class LocationHelper(val activity: Activity) {
     }
 
 
-    private lateinit var locationListener: LocationListener
     private fun removeObserver() {
-        locationManager.removeUpdates(locationListener)
+        locationManager.removeUpdates(this)
     }
 
     private fun getLocationRealTime() {
 
-
-            locationListener = LocationListener { location ->
-
-                locatioLiveData.postValue(location)
-
-
-                removeObserver()
-
-                Log.i("test", "Latitute: $location.latitute ; Longitute: $location.longitute")
-
-            }
-            //  getLocationRealTime()
 
         val isGPSEnabled = locationManager
             .isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -120,14 +108,14 @@ class LocationHelper(val activity: Activity) {
 
         location?.let {
             locatioLiveData.postValue(location)
-        }?:let {
+        } ?: let {
 
             if (isGPSEnabled) {
                 locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     0L,
                     0f,
-                    locationListener
+                    this
                 )
             }
 
@@ -135,11 +123,6 @@ class LocationHelper(val activity: Activity) {
 
 
     }
-
-
-
-
-
 
 
     fun showSettingsAlert() {
@@ -163,7 +146,16 @@ class LocationHelper(val activity: Activity) {
         alertDialog.show()
     }
 
+    override fun onLocationChanged(location: Location) {
 
+        locatioLiveData.postValue(location)
+
+
+        removeObserver()
+
+        Log.i("test", "Latitute: $location.latitute ; Longitute: $location.longitute")
+
+    }
 
 
 }

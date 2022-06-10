@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.market.data.models.get.User
+import com.market.data.models.get.login.LoginResponse
 import com.market.presentation.bases.methods.BaseMethods
 import com.market.presentation.bases.methods.LoginData
 
@@ -26,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return viewModel.checkIsLogin()
     }
 
-    fun getLoginData(): User {
+    fun getLoginData():LoginResponse {
         return viewModel.getLoginData()
     }
 
@@ -38,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return viewModel.getLatLong()
     }
 
-    fun storeLoginData(user: User){
+    fun storeLoginData(user: LoginResponse){
         viewModel.storeLoginData(user)
     }
 

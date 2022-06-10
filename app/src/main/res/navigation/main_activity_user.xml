@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/userMoreFragments"
-        android:name="com.market.presentation.mainscreen.user.ui.UserMoreFragments"
+        android:name="com.market.presentation.mainscreen.user.ui.more.UserMoreFragments"
         android:label="fragment_user_more_fragments"
         tools:layout="@layout/fragment_user_more_fragments" />
 </navigation>

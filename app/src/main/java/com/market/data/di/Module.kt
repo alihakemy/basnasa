@@ -7,8 +7,10 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.market.BuildConfig
 import com.market.data.repo.AuthenticationRepository
 import com.market.data.repo.OnBoardingRepository
+import com.market.data.repo.UserRepoImp
 import com.market.data.services.Authentication
 import com.market.data.services.OnBoardingServices
+import com.market.data.services.User
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -87,10 +89,19 @@ object Module {
     fun getAuthenticationRepository(authentication: Authentication): AuthenticationRepository {
         return AuthenticationRepository(authentication)
     }
+    @Provides
+    fun getUserRepoImp(user:User):  UserRepoImp {
+        return   UserRepoImp(user)
+    }
+
 
     @Provides
     fun getAuthentication(retrofit: Retrofit): Authentication {
         return retrofit.create(Authentication ::class.java)
+    }
+    @Provides
+    fun getUserServices(retrofit: Retrofit): User {
+        return retrofit.create(User  ::class.java)
     }
 
 }

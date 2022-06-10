@@ -1,9 +1,13 @@
 package com.market.presentation.mainscreen.user.ui.favorite
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.market.data.models.get.fav.Data
+import com.market.data.models.get.fav.Favourites
 import com.market.databinding.FavUserItem1Binding
 import com.market.databinding.FavUserItem2Binding
 
@@ -13,10 +17,23 @@ private const val GRID_ITEM = 1
 class UserFavAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+
+    private val list: ArrayList<Data> = ArrayList()
     var isSwitchView = true
 
-    inner class UserCategoriesViewHolder(binding: View) :
-        RecyclerView.ViewHolder(binding.rootView)
+    inner class UserCategoriesViewHolder1(var binding: FavUserItem1Binding) :
+        RecyclerView.ViewHolder(binding.root)
+
+
+    inner class UserCategoriesViewHolder(var binding: FavUserItem2Binding) :
+        RecyclerView.ViewHolder(binding.root)
+
+
+    fun setList(list: ArrayList<Data>) {
+        this.list.clear()
+        this.list.addAll(list)
+    }
+
 
     override fun getItemViewType(position: Int): Int {
         return if (isSwitchView) {
@@ -39,8 +56,8 @@ class UserFavAdapter() :
                     parent.context
                 ), parent, false
             )
-            return UserCategoriesViewHolder(
-                view.root
+            return UserCategoriesViewHolder1(
+                view
             )
 
         } else {
@@ -49,7 +66,7 @@ class UserFavAdapter() :
                     LayoutInflater.from(
                         parent.context
                     ), parent, false
-                ).root
+                )
             )
         }
 
@@ -58,7 +75,24 @@ class UserFavAdapter() :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
+
+        if (holder is UserCategoriesViewHolder) {
+            Glide.with(holder.binding.image.context).load(list[position].image_path?.toString()).into(holder.binding.image)
+            holder.binding.textView30.text=list[position].name?.toString()
+            holder.binding.textView35.text=list[position].meta_description?.toString()
+
+        } else  if (holder is UserCategoriesViewHolder1 ) {
+            Glide.with(holder.binding.image.context).load(list[position].image_path?.toString()).into(holder.binding.image)
+            holder.binding.textView30.text=list[position].name?.toString()
+            holder.binding.textView35.text=list[position].meta_description?.toString()
+        }
+
+
+
     }
 
-    override fun getItemCount(): Int = 100
+
+
+
+    override fun getItemCount(): Int = list.size
 }
