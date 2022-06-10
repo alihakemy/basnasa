@@ -28,8 +28,8 @@
     <string name="forgetPassword">Forget Password ?</string>
     <string name="loginAsTrader">Login As Trader</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Offer</string>
+    <string name="title_notifications">Fav</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="forget_password">Forget Password</string>
     <string name="done">done</string>
@@ -80,4 +80,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="near_by_you">Near By You</string>
+    <string name="favPlaces">Fav Places</string>
+    <string name="more">More</string>
 </resources>

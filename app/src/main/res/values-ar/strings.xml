@@ -28,8 +28,8 @@
     <string name="forgetPassword">نسيت كلمه السر ؟</string>
     <string name="loginAsTrader">تسجيل الدخول كتاجر</string>
     <string name="title_home">رئسيه</string>
-    <string name="title_dashboard">وحده تحكم</string>
-    <string name="title_notifications">اشعارات</string>
+    <string name="title_dashboard">العروص</string>
+    <string name="title_notifications">المفضله</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="forget_password">نسيان كلمه السر</string>
     <string name="done">تم</string>
@@ -40,5 +40,7 @@
     <string name="CompleteJoin">اكمل طلب الانضمام</string>
     <string name="locationChoice">اختر الموقع</string>
     <string name="near_by_you">استكشف الاقرب اليك </string>
+    <string name="favPlaces">الاماكن المضله لديك</string>
+    <string name="more">المزيد</string>
 
 </resources>

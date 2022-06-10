@@ -13,13 +13,18 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.market.presentation.mainscreen.user.ui.dashboard.DashboardFragment"
+        android:name="com.market.presentation.mainscreen.user.ui.offers.OffersFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.market.presentation.mainscreen.user.ui.notifications.NotificationsFragment"
+        android:name="com.market.presentation.mainscreen.user.ui.favorite.FavoriteFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/userMoreFragments"
+        android:name="com.market.presentation.mainscreen.user.ui.UserMoreFragments"
+        android:label="fragment_user_more_fragments"
+        tools:layout="@layout/fragment_user_more_fragments" />
 </navigation>
