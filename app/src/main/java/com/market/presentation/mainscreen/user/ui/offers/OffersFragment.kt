@@ -50,6 +50,8 @@ class OffersFragment : Fragment() {
         }
 
 
+
+
         return root
     }
 
