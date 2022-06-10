@@ -6,8 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.market.databinding.FragmentDashboardBinding
+import com.market.presentation.mainscreen.user.ui.favorite.UserFavAdapter
+import com.market.presentation.mainscreen.user.ui.home.sliderFragment.UserSliderFragment
+import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserOfferAdapter
 
 class OffersFragment : Fragment() {
 
@@ -27,9 +34,20 @@ class OffersFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val adapter = UserOfferAdapter()
+        binding.merchants.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.merchants.adapter = adapter
 
+        activity?.let {
+            val adapter = ScreenSlidePagerAdapter(it)
+            binding.banner.adapter = adapter
 
+            binding.banner.adapter = ScreenSlidePagerAdapter(it)
 
+            TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
+            }.attach()
+
+        }
 
 
         return root
@@ -38,5 +56,11 @@ class OffersFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = 10
+
+        override fun createFragment(position: Int): Fragment = UserSliderFragment()
     }
 }
