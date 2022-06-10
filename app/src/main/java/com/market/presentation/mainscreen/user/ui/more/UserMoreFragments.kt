@@ -1,4 +1,4 @@
-package com.market.presentation.mainscreen.user.ui
+package com.market.presentation.mainscreen.user.ui.more
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
