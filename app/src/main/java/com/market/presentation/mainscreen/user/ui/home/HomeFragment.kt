@@ -58,14 +58,19 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                val addressList: List<Address> = coder.getFromLocation(activity.getLatLong().first.toDouble(), activity.getLatLong().second.toDouble(),1)
+                val addressList: List<Address> = coder.getFromLocation(
+                    activity.getLatLong().first.toDouble(),
+                    activity.getLatLong().second.toDouble(),
+                    1
+                )
                 if (!addressList.isNullOrEmpty()) {
                     val location: Address = addressList[0]
-                    binding.textView39.text=location.countryName.toString()
+                    binding.textView39.text = location.countryName.toString()
 
                 }
             }
         }
+
 
 
 

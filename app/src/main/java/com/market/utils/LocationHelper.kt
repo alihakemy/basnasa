@@ -87,6 +87,7 @@ class LocationHelper(val activity: Activity) : LocationListener {
         val isGPSEnabled = locationManager
             .isProviderEnabled(LocationManager.GPS_PROVIDER)
 
+
         if (ActivityCompat.checkSelfPermission(
                 activity,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -106,6 +107,12 @@ class LocationHelper(val activity: Activity) : LocationListener {
         }
         val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
+        locationManager.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            0L,
+            0f,
+            this
+        )
         location?.let {
             locatioLiveData.postValue(location)
         } ?: let {
@@ -117,10 +124,25 @@ class LocationHelper(val activity: Activity) : LocationListener {
                     0f,
                     this
                 )
+
             }
 
         }
 
+
+    }
+
+
+
+
+    override fun onLocationChanged(location: Location) {
+
+        locatioLiveData.postValue(location)
+
+
+        removeObserver()
+
+        Log.i("test", "Latitute: $location.latitute ; Longitute: $location.longitute")
 
     }
 
@@ -145,17 +167,5 @@ class LocationHelper(val activity: Activity) : LocationListener {
         }
         alertDialog.show()
     }
-
-    override fun onLocationChanged(location: Location) {
-
-        locatioLiveData.postValue(location)
-
-
-        removeObserver()
-
-        Log.i("test", "Latitute: $location.latitute ; Longitute: $location.longitute")
-
-    }
-
 
 }

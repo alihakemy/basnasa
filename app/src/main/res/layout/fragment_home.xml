@@ -178,15 +178,22 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/button3"
+        android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
+        app:queryBackground="@null"
 
+
+        app:queryHint="ابحث عن الاماكن القريبه"
+        app:iconifiedByDefault="false"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/round_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+
+    </androidx.appcompat.widget.SearchView>
 </androidx.constraintlayout.widget.ConstraintLayout>
