@@ -30,4 +30,9 @@
         <item   name="android:fontFamily">@font/fonts</item>
         <item name="android:padding">10dp</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">#E37494</item>
+    </style>
 </resources>

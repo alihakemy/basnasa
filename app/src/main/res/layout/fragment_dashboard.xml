@@ -60,6 +60,16 @@
               >
 
 
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/fonts"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="استكشف اخر العروض المميزه" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="60dp" />

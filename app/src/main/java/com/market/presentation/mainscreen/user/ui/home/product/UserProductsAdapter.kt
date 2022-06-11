@@ -1,19 +1,39 @@
 package com.market.presentation.mainscreen.user.ui.home.product
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.market.databinding.FavUserItem1Binding
-import com.market.databinding.UserMerchantsItemsBinding
+import com.bumptech.glide.Glide
+import com.market.data.models.get.homeusers.Product
 import com.market.databinding.UserProductitemHomeBinding
 
 
-class UserProductsAdapter() :
+class UserProductsAdapter(private val products: List<Product>) :
     RecyclerView.Adapter<UserProductsAdapter.UserMerchantsViewHolder>() {
 
 
-    inner class UserMerchantsViewHolder(binding: UserProductitemHomeBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class UserMerchantsViewHolder(val binding: UserProductitemHomeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(product: Product) {
+
+            Glide.with(binding.imageView14.context).load(product.image_path).into(binding.imageView14)
+
+            binding.textView29.text=product.name
+            binding.textView31.text=product.tager
+            binding.textView34.text=product.content
+
+            binding.textView32.text=product.mainprice
+
+            binding.textView33.text=product.prefitPrice
+            binding.textView33.paintFlags = binding.textView33.paintFlags or  Paint.STRIKE_THRU_TEXT_FLAG
+
+            Glide.with(binding.circleImageView.context).load(product.tager_image).into(binding.circleImageView)
+
+
+
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserMerchantsViewHolder {
 
@@ -29,7 +49,9 @@ class UserProductsAdapter() :
 
     override fun onBindViewHolder(holder: UserMerchantsViewHolder, position: Int) {
 
+        holder.bind(products[position])
+
     }
 
-    override fun getItemCount(): Int = 10
+    override fun getItemCount(): Int = products.size
 }

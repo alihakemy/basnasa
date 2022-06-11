@@ -15,7 +15,9 @@ import com.market.databinding.FragmentDashboardBinding
 import com.market.presentation.mainscreen.user.ui.favorite.UserFavAdapter
 import com.market.presentation.mainscreen.user.ui.home.sliderFragment.UserSliderFragment
 import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserOfferAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OffersFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
