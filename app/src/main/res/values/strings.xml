@@ -53,5 +53,12 @@
     <string name="near_by_you">Near By You</string>
     <string name="favPlaces">Fav Places</string>
     <string name="more">More</string>
-    <string name="search">البحث</string>
+    <string name="search">Search</string>
+    <string name="product_name">Product Name</string>
+    <string name="opioon">Clients</string>
+    <string name="ALL">ALL</string>
+    <string name="AddComment">Add Comment</string>
+    <string name="rate">Rating</string>
+    <string name="ProductDetails">Product Details</string>
+    <string name="cancel">Cancel</string>
 </resources>

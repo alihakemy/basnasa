@@ -11,5 +11,6 @@ data class Products(
     val prefitPrice: String,
     val rate:Double,
     val tager: String,
-    val tager_image: String
+    val tager_image: String,
+
 )

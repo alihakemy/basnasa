@@ -43,5 +43,12 @@
     <string name="favPlaces">الاماكن المضله لديك</string>
     <string name="more">المزيد</string>
     <string name="search">البحث</string>
+    <string name="product_name">اسم المنتج</string>
+    <string name="opioon">اراء العملاء</string>
+    <string name="ALL">عرض الكل</string>
+    <string name="AddComment">اضف تعليق</string>
+    <string name="rate">التقيم</string>
+    <string name="ProductDetails">تفاصيل المنتج</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

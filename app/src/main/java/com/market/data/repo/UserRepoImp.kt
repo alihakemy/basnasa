@@ -2,14 +2,13 @@ package com.market.data.repo
 
 import android.util.Log
 import com.market.BuildConfig
+import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
-import com.market.data.services.OnBoardingServices
 import com.market.data.services.User
 import com.market.utils.ResultState
-import retrofit2.http.Query
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(private val userService: User) {
@@ -22,6 +21,46 @@ class UserRepoImp @Inject constructor(private val userService: User) {
 
         return try {
             val result = userService.getSearch(query)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+    suspend fun deleteComments(ProductId:String,token:String):ResultState<DefaultResponse>{
+
+        return try {
+            val result = userService.deleteComment(getToken(token),ProductId)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+    suspend fun editeComments(hashMap: HashMap<String, String>, token: String, commentId: Int):ResultState<DefaultResponse>{
+
+        return try {
+            val result = userService.editComment(getToken(token),hashMap,commentId)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+
+            Log.e("ResultsEROR",e.localizedMessage.toString())
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+    suspend fun addComments(hashMap: HashMap<String,String>,token:String):ResultState<DefaultResponse>{
+
+        return try {
+            val result = userService.addComment(getToken(token),hashMap)
             ResultState.Success(result)
         }
         catch (e:Exception){
