@@ -4,6 +4,7 @@ import android.util.Log
 import com.market.BuildConfig
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
+import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.services.OnBoardingServices
 import com.market.data.services.User
@@ -29,6 +30,20 @@ class UserRepoImp @Inject constructor(private val userService: User) {
         }
 
     }
+    suspend fun productDetails(productId: String):ResultState<ProductDetails>{
+
+        return try {
+            val result = userService.getProductDetails(productId)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+
 
     suspend fun getUserHomeScreen(
         latitude: String,

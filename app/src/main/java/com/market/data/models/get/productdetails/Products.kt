@@ -9,7 +9,7 @@ data class Products(
     val mainprice: String,
     val name: Any,
     val prefitPrice: String,
-    val rate: Any,
+    val rate:Double,
     val tager: String,
     val tager_image: String
 )
