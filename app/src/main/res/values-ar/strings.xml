@@ -42,5 +42,6 @@
     <string name="near_by_you">استكشف الاقرب اليك </string>
     <string name="favPlaces">الاماكن المضله لديك</string>
     <string name="more">المزيد</string>
+    <string name="search">البحث</string>
 
 </resources>

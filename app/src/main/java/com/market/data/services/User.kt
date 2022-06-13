@@ -2,6 +2,7 @@ package com.market.data.services
 
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
+import com.market.data.models.get.search.SearchResults
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -17,5 +18,9 @@ interface User {
     suspend fun getUserHomeScreen(@Query("latitude")latitude:String,
                                   @Query("longitude")longitude:String ):HomeUser
 
+
+    @GET("api/search/merchants")
+    suspend fun getSearch(@Query("q")query:String,
+                                  ):SearchResults
 
 }

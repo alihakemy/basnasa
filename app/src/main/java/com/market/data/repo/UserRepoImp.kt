@@ -4,6 +4,7 @@ import android.util.Log
 import com.market.BuildConfig
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
+import com.market.data.models.get.search.SearchResults
 import com.market.data.services.OnBoardingServices
 import com.market.data.services.User
 import com.market.utils.ResultState
@@ -14,6 +15,20 @@ class UserRepoImp @Inject constructor(private val userService: User) {
 
     private fun getToken(token: String): String = "Bearer $token"
 
+
+
+    suspend fun search(query: String):ResultState<SearchResults>{
+
+        return try {
+            val result = userService.getSearch(query)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
 
     suspend fun getUserHomeScreen(
         latitude: String,
