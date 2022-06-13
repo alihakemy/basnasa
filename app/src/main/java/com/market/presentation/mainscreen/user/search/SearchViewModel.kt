@@ -33,7 +33,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun performSearch(string: String) {
+    private fun performSearch(string: String) {
 
         viewModelScope.launch {
             val response = repoImp.search(string)

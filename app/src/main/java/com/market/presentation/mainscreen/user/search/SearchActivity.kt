@@ -1,5 +1,8 @@
 package com.market.presentation.mainscreen.user.search
 
+import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -7,25 +10,58 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.*
+import androidx.recyclerview.widget.GridLayoutManager
 import com.market.data.models.get.search.SearchResults
 import com.market.databinding.ActivitySearchBinding
+import com.market.presentation.bases.BaseActivity
+import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.mainscreen.user.search.adapter.SearchAdapter
+import com.market.presentation.mainscreen.user.ui.home.merchants.UserMerchantsAdapter
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BaseActivity() {
 
     lateinit var binding: ActivitySearchBinding
 
-    val viewModel :SearchViewModel by viewModels()
+    val viewModel: SearchViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var coder = Geocoder(this)
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                val addressList: List<Address> = coder.getFromLocation(
+                    getLatLong().first.toDouble(),
+                    getLatLong().second.toDouble(),
+                    1
+                )
+                if (!addressList.isNullOrEmpty()) {
+                    val location: Address = addressList[0]
+                    binding.textView39.text = location.countryName.toString()
+
+                }
+            }
+
+        }
+        binding.imageView22.setOnClickListener {
+            onBackPressed()
+        }
+
+        binding.textView39.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            intent.putExtra("role", "location")
+
+            startActivity(intent)
+        }
 
         viewModel.getSearchText().observe(this, Observer {
             binding.searchText.setText(it)
@@ -46,12 +82,13 @@ class SearchActivity : AppCompatActivity() {
             }
         })
         viewModel.results.observe(this, Observer {
-            when(val result =it){
+            when (val result = it) {
 
-                is ResultState.Success<SearchResults> ->{
+                is ResultState.Success<SearchResults> -> {
 
+                    result.data?.let { it1 -> initAdapter(searchResults = it1) }
                 }
-                else ->{
+                else -> {
 
                 }
 
@@ -62,8 +99,10 @@ class SearchActivity : AppCompatActivity() {
 
     }
 
-    fun initAdapter(){
+    fun initAdapter(searchResults: SearchResults) {
 
+        binding.recyclerView3.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerView3.adapter = SearchAdapter(searchResults)
     }
 
 }

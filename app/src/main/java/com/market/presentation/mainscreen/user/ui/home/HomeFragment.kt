@@ -23,6 +23,8 @@ import com.market.data.models.get.homeusers.*
 import com.market.databinding.FragmentHomeBinding
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.mainscreen.user.search.SearchActivity
+import com.market.presentation.mainscreen.user.search.adapter.SearchAdapter
 import com.market.presentation.mainscreen.user.ui.home.categories.UserCategoriesAdapter
 import com.market.presentation.mainscreen.user.ui.home.merchants.UserMerchantsAdapter
 import com.market.presentation.mainscreen.user.ui.home.product.UserProductsAdapter
@@ -73,6 +75,11 @@ class HomeFragment : Fragment() {
 
 
 
+        binding.searchText.setOnClickListener {
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+
+            startActivity(intent)
+        }
 
         binding.textView39.setOnClickListener {
             val intent = Intent(requireContext(), MapsActivity::class.java)

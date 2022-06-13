@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_margin="4dp"
     android:layout_height="wrap_content"
-    app:strokeColor="@color/white"
+    app:strokeColor="#85A9A9A9"
     app:strokeWidth="1dp"
     android:elevation="5dp"
     app:cardCornerRadius="25dp"
@@ -22,10 +22,11 @@
 
         <ImageView
             android:id="@+id/imageView25"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/profile_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/circle_gray" />
@@ -38,8 +39,8 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
-            app:icon_size="22dp"
+            android:layout_marginBottom="2dp"
+            app:icon_size="10dp"
             app:icon_type="heart"
             app:layout_constraintBottom_toBottomOf="@+id/imageView25"
             app:layout_constraintEnd_toEndOf="@+id/imageView25"

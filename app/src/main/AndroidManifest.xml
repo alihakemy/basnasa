@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Market"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.mainscreen.user.search.SearchActivity"
+            android:name=".presentation.mainscreen.user.displayproduct.DisplayProduct"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".presentation.mainscreen.user.search.SearchActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.mainscreen.trader.TaderMainActivity"
             android:exported="false"

@@ -1,21 +1,21 @@
-package com.market.presentation.mainscreen.user.ui.home.merchants
+package com.market.presentation.mainscreen.user.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.market.BuildConfig
-import com.market.data.models.get.homeusers.Merchant
-import com.market.databinding.UserMerchantsItemsBinding
+import com.market.data.models.get.search.SearchResults
+import com.market.databinding.SearchItemUserBinding
 
 
-class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
-    RecyclerView.Adapter<UserMerchantsAdapter.UserMerchantsViewHolder>() {
+class SearchAdapter(private  val searchResults:SearchResults) :
+    RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
 
-    inner class UserMerchantsViewHolder(val binding: UserMerchantsItemsBinding) :
+    inner class SearchViewHolder(val binding: SearchItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(get: Merchant?) {
+        fun bind(get: com.market.data.models.get.search.Merchant) {
 
             Glide.with(binding.profileImage.context).load(get?.imagePath).into(binding.profileImage)
             binding.textView24.text=get?.name.toString()
@@ -25,6 +25,7 @@ class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
             binding.ratingBar.rating=get?.rate?.toFloat() ?:0.0f
 
             binding.ratingBar.numStars =4
+            binding.starButton.isLiked=get?.favaurite
 
             if(BuildConfig.DEBUG){
 
@@ -37,10 +38,10 @@ class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserMerchantsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
 
-        return UserMerchantsViewHolder(
-            UserMerchantsItemsBinding.inflate(
+        return SearchViewHolder(
+            SearchItemUserBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -49,11 +50,11 @@ class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
 
     }
 
-    override fun onBindViewHolder(holder: UserMerchantsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
 
-        holder.bind(merchants?.get(position))
+        holder.bind(searchResults?.data.merchants.get(position))
 
     }
 
-    override fun getItemCount(): Int = merchants?.size ?:0
+    override fun getItemCount(): Int = searchResults?.data.merchants.size ?:0
 }
