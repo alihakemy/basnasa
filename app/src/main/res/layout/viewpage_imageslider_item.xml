@@ -26,7 +26,7 @@
         android:layout_height="125dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/two_light"
 
         android:text="اكتشف الاماكن الاقرب اليك"
         android:textColor="#71777f"
@@ -39,12 +39,12 @@
         android:layout_height="125dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/two_bold"
 
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="40dp"
-        android:textStyle="bold" />
+     />
 
 
 </LinearLayout>

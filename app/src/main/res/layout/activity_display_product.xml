@@ -21,11 +21,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/two_bold"
                 android:text="@string/product_name"
 
+                android:textSize="16sp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
                 app:layout_constraintStart_toStartOf="@+id/materialCardView"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -37,10 +37,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
 
-                android:fontFamily="@font/fonts"
+                android:textSize="16sp"
+                android:fontFamily="@font/two_bold"
                 android:text="@string/ProductDetails"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/materialCardView"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout15" />
 
@@ -64,8 +64,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/fonts"
+                    android:fontFamily="@font/text_medium"
                     android:gravity="center"
+                    android:textSize="10sp"
 
                     android:text="TextView" />
 
@@ -110,7 +111,7 @@
 
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_baseline_arrow_forward_24"
+                        android:background="@drawable/ic_vuesax_linear_arrow_left"
                         android:backgroundTint="#AEE37494"
                         android:padding="10dp" />
                 </com.google.android.material.card.MaterialCardView>
@@ -124,12 +125,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:background="@drawable/rec_red"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/text_medium"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="20% off"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="8sp"
                 app:layout_constraintBottom_toBottomOf="@+id/productName"
                 app:layout_constraintStart_toEndOf="@+id/productName"
                 app:layout_constraintTop_toTopOf="@+id/productName" />
@@ -142,7 +143,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="300 EGP"
                 android:textColor="#E37494"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView45" />
@@ -216,19 +217,20 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                app:cardBackgroundColor="#11707070"
+                app:cardBackgroundColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView46"
                 app:strokeColor="#BC707070"
-                app:strokeWidth="1dp">
+                app:strokeWidth=".3dp">
 
                 <TextView
                     android:id="@+id/productDetails"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:fontFamily="@font/fonts"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/two_light"
                     android:text="@string/lorem_ipsum" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -247,7 +249,8 @@
 
                 android:layout_margin="20dp"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/text_medium"
+                android:textSize="13sp"
                 android:text="@string/opioon"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -260,7 +263,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_margin="20dp"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/two_light"
                 android:text="@string/ALL"
                 android:textColor="#E37494"
 
@@ -280,6 +283,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/CommentsRec"
             android:layout_width="match_parent"
+            tools:itemCount="2"
+            tools:listitem="@layout/comments_item"
             android:nestedScrollingEnabled="false"
             android:layout_height="wrap_content" />
 
@@ -289,11 +294,12 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
+            android:textSize="13sp"
             android:hint="اكتب تعليقك هنا"
             android:padding="10dp"
-            android:background="@drawable/editetext_rec"
+            android:background="@drawable/editetext_comment"
 
 
             android:ems="10"
@@ -315,7 +321,8 @@
 
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/two_light"
+                android:textSize="13sp"
                 android:gravity="center"
                 android:text="@string/rate"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -361,8 +368,9 @@
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/fonts"
+                    android:fontFamily="@font/two_light"
                     android:gravity="center"
+                    android:textSize="12sp"
                     android:text="@string/AddComment"
                     android:textColor="@color/white"
 

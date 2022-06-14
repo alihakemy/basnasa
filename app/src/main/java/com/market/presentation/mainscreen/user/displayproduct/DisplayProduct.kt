@@ -44,7 +44,8 @@ class DisplayProduct : BaseActivity() {
         }
 
         val productId:String= intent.getStringExtra("productId").toString()
-        intent.getStringExtra("productId")?.let { viewModel.getProductDetails(it) }
+        intent.getStringExtra("productId")?.let { viewModel.getProductDetails(it,
+        getLatLong().first,getLatLong().second) }
         viewModel.results.observe(this, Observer {
             if (pd.isShowing) {
                 pd.dismiss()
@@ -87,7 +88,7 @@ class DisplayProduct : BaseActivity() {
                     viewModel.addComment(
                         getLoginData().data.token,
                         productId, binding.ratingBar2.rating, binding.CommentText.text.toString()
-                    )
+                    ,  getLatLong().first,getLatLong().second)
                     binding.CommentText.setText("")
                     binding.ratingBar2.rating = 0.0f
 
@@ -103,7 +104,7 @@ class DisplayProduct : BaseActivity() {
                     viewModel.editeComment(
                         getLoginData().data.token,
                         productId, binding.ratingBar2.rating, binding.CommentText.text.toString(),
-                   CommentId )
+                   CommentId ,  getLatLong().first,getLatLong().second)
                     binding.CommentText.setText("")
                     binding.ratingBar2.rating = 0.0f
 

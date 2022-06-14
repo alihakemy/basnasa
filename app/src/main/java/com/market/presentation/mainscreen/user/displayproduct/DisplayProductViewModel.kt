@@ -18,10 +18,11 @@ private val savedStateHandle: SavedStateHandle) :ViewModel(){
 
 
 
-    fun getProductDetails(productId: String) {
+    fun getProductDetails(productId: String, latitude: String,
+                          longitude: String) {
 
         viewModelScope.launch {
-            val response = repoImp.productDetails(productId)
+            val response = repoImp.productDetails(productId,latitude,longitude)
             results.postValue(response)
 
         }
@@ -29,7 +30,8 @@ private val savedStateHandle: SavedStateHandle) :ViewModel(){
 
     }
 
-    fun addComment(token:String, ProductId:String, rate: Float, comment:String){
+    fun addComment(token:String, ProductId:String, rate: Float, comment:String, latitude: String,
+                   longitude: String){
         viewModelScope.launch {
             val map :HashMap<String,String> = HashMap()
             map["product_id"]=ProductId
@@ -45,7 +47,7 @@ private val savedStateHandle: SavedStateHandle) :ViewModel(){
 
                 }
             }
-            val responses = repoImp.productDetails(ProductId)
+            val responses = repoImp.productDetails(ProductId,latitude, longitude)
             results.postValue(responses)
 
 
@@ -68,7 +70,9 @@ private val savedStateHandle: SavedStateHandle) :ViewModel(){
 
     }
 
-    fun editeComment(token:String, ProductId:String, rate: Float, comment:String, commentId: Int){
+    fun editeComment(token:String, ProductId:String, rate: Float, comment:String, commentId: Int
+        , latitude: String,
+                     longitude: String){
         viewModelScope.launch {
 
             viewModelScope.launch {
@@ -87,7 +91,7 @@ private val savedStateHandle: SavedStateHandle) :ViewModel(){
 
                     }
                 }
-                val responses = repoImp.productDetails(ProductId)
+                val responses = repoImp.productDetails(ProductId,latitude,longitude)
                 results.postValue(responses)
 
 

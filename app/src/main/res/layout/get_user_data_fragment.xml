@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/text_medium"
 
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
@@ -48,7 +48,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:layout_marginTop="16dp"
             android:text="@string/fullName"
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:padding="10dp"
             android:background="@drawable/editetext_rec"
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:text="@string/phoneNumbers"
             android:textColor="#FC808080" />
@@ -86,7 +86,7 @@
             android:layout_height="50dp"
 
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:padding="10dp"
 
@@ -99,7 +99,7 @@
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -110,7 +110,7 @@
             android:id="@+id/editTextTextPersonName3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:layout_marginTop="8dp"
             android:padding="10dp"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/password"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:textColor="#FC808080" />
 
@@ -139,7 +139,7 @@
             android:background="@drawable/editetext_rec"
 
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:padding="10dp"
             android:drawableStart="@drawable/ic_baseline_vpn_key_24"
@@ -167,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:layout_marginTop="60dp"
             android:layout_marginEnd="16dp"
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/Conditions"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:textColor="#E37494" />
     </LinearLayout>

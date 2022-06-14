@@ -31,6 +31,8 @@ interface User {
     @GET("/api/product/{productId}")
     suspend fun getProductDetails(
         @Path("productId") productId: String,
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String
     ): ProductDetails
 
 

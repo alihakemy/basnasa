@@ -26,9 +26,9 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
         android:text="@string/CompleteJoin"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/text_medium"
         android:textColor="#E37494"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:fontFamily="@font/fonts"
+                android:textSize="12sp"
+                android:fontFamily="@font/two_light"
                 android:text="اضف صوره" />
 
             <EditText
@@ -72,6 +73,7 @@
 
 
                 style="@style/editext"
+                android:textSize="14sp"
 
                 android:hint="الاسم" />
 
@@ -80,6 +82,7 @@
 
                 style="@style/editext"
                 android:hint="البريد الاليكترونى "
+                android:textSize="14sp"
 
 
                 android:padding="10dp" />
@@ -91,6 +94,7 @@
                 style="@style/editext"
                 android:hint="اسم المشروع"
                 android:ems="10"
+                android:textSize="14sp"
 
                 android:padding="10dp" />
 
@@ -101,6 +105,7 @@
 
 
                 android:hint="المنطقه"
+                android:textSize="14sp"
 
                 android:inputType="text"
                 android:padding="10dp" />
@@ -110,6 +115,7 @@
 
                 android:id="@+id/cat"
                 android:layout_marginTop="8dp"
+                android:textSize="14sp"
 
                 android:padding="10dp"
                 android:inputType="none"
@@ -121,6 +127,7 @@
 
                 android:hint="الوقت الازم لتوصيل طلبك"
                 android:ems="10"
+                android:textSize="14sp"
 
                 android:padding="10dp" />
             <EditText
@@ -128,6 +135,7 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/editetext_rec"
+                android:textSize="14sp"
 
                 android:id="@+id/description"
 

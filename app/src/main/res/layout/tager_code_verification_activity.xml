@@ -43,7 +43,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:text="@string/EnterCode" />
 
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:text="01015124020"
             android:textColor="#E37494" />
@@ -63,7 +63,7 @@
             style="?android:listSeparatorTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:layout_marginEnd="16dp"
             android:backgroundTint="#E37494"
@@ -93,7 +93,7 @@
         style="@style/myMaterialButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/text_medium"
 
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/resend"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/two_light"
 
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +123,7 @@
         android:layout_marginStart="16dp"
         android:text="@string/resend"
         android:textColor="#E37494"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/two_light"
 
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintStart_toEndOf="@+id/textView12"

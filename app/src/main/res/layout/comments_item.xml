@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
 
         android:layout_margin="10dp"
-        app:cardBackgroundColor="#11707070"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#BC707070"
-        app:strokeWidth="1dp">
+        app:strokeWidth=".3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,7 +30,8 @@
                 android:layout_margin="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="8dp"
-                android:fontFamily="@font/fonts"
+                android:textSize="11sp"
+                android:fontFamily="@font/two_light"
                 android:text="@string/lorem_ipsum"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/text_medium"
                 android:text="TextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

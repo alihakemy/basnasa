@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/choicelocation"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/text_medium"
 
                 android:textColor="#808080" />
 
@@ -66,7 +66,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:text="@string/detect_location"
-                    android:fontFamily="@font/fonts"
+                    android:fontFamily="@font/two_light"
 
                     android:textColor="#E37494"
                     map:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -117,7 +117,7 @@
             android:gravity="center"
             android:text="@string/start"
             android:textColor="@color/white"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/text_medium"
 
             android:textSize="20dp" />
     </com.google.android.material.card.MaterialCardView>

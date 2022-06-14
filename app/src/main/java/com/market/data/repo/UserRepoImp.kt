@@ -70,10 +70,11 @@ class UserRepoImp @Inject constructor(private val userService: User) {
         }
 
     }
-    suspend fun productDetails(productId: String):ResultState<ProductDetails>{
+    suspend fun productDetails(productId: String, latitude: String,
+                               longitude: String):ResultState<ProductDetails>{
 
         return try {
-            val result = userService.getProductDetails(productId)
+            val result = userService.getProductDetails(productId,latitude, longitude)
             ResultState.Success(result)
         }
         catch (e:Exception){

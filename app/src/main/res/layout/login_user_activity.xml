@@ -15,7 +15,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
         android:text="@string/login"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/text_medium"
         android:textColor="#E37494"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#E37494"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/two_light"
 
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#E37494"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:inputType="textPassword" />
 
@@ -116,7 +116,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/forgetPassword"
         android:textColor="#E37494"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/two_light"
 
         app:layout_constraintStart_toStartOf="@+id/textField"
         app:layout_constraintTop_toBottomOf="@+id/textField" />
@@ -139,6 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
 
+            android:fontFamily="@font/text_medium"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="16dp"
             android:text="@string/login"
@@ -155,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/two_light"
 
                 android:text="@string/haveAccount" />
 
@@ -166,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/newAccount"
-                android:fontFamily="@font/fonts"
+                android:fontFamily="@font/two_light"
 
                 android:textColor="#E37494" />
         </LinearLayout>
@@ -177,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/Conditions"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/two_light"
 
             android:textColor="#E37494" />
     </LinearLayout>
@@ -189,7 +190,7 @@
         android:layout_marginStart="16dp"
         android:text="@string/loginAsTrader"
         android:textColor="#E37494"
-        android:fontFamily="@font/fonts"
+        android:fontFamily="@font/two_light"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

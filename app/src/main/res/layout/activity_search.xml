@@ -105,10 +105,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/fonts"
+            android:fontFamily="@font/text_medium"
             android:text="@string/search"
+            android:textSize="17sp"
             android:textColor="@color/black"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView22"
             app:layout_constraintTop_toTopOf="parent" />
