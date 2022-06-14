@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.market.data.models.get.homeusers.Product
 import com.market.databinding.UserProductitemHomeBinding
+import com.market.presentation.mainscreen.user.displayproduct.DisplayProduct
 
 
 class UserProductsAdapter(private val products: List<Product>) :
@@ -30,6 +31,9 @@ class UserProductsAdapter(private val products: List<Product>) :
 
             Glide.with(binding.circleImageView.context).load(product.tager_image).into(binding.circleImageView)
 
+            binding.root.setOnClickListener {
+                DisplayProduct.startDisplayProduct(product.id.toString(),it.context)
+            }
 
 
         }

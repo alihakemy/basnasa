@@ -40,56 +40,46 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout12"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
-        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
-        app:tint="@android:color/holo_red_dark" />
-
-    <TextView
-        android:id="@+id/textView39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout12"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout12"
-        app:layout_constraintTop_toTopOf="@+id/imageView19" />
 
     <LinearLayout
         android:id="@+id/linearLayout12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout13">
 
 
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:srcCompat="@drawable/ic_baseline_location_on_24"
-            app:tint="@android:color/holo_red_dark" />
 
         <TextView
             android:id="@+id/textView38"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="موقعى"
+
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:drawableTint="@android:color/holo_red_dark"
+            app:drawableRightCompat="@drawable/ic_baseline_location_on_24" />
+
+
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout12"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout12"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+            app:drawableStartCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
+            app:drawableTint="@android:color/holo_red_dark" />
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

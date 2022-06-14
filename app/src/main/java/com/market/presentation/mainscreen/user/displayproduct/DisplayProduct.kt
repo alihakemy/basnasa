@@ -38,12 +38,12 @@ class DisplayProduct : BaseActivity() {
         pd.setMessage("loading")
 
         pd.setCancelable(false)
-        viewModel.getProductDetails(1.toString())
 
-//        if(!intent.hasExtra("productId")){
-//            return
-//        }
+        if(!intent.hasExtra("productId")){
+            return
+        }
 
+        val productId:String= intent.getStringExtra("productId").toString()
         intent.getStringExtra("productId")?.let { viewModel.getProductDetails(it) }
         viewModel.results.observe(this, Observer {
             if (pd.isShowing) {
@@ -74,6 +74,9 @@ class DisplayProduct : BaseActivity() {
         }
 
 
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
         binding.button.setOnClickListener {
 
             if (!edit) {
@@ -83,7 +86,7 @@ class DisplayProduct : BaseActivity() {
                     pd.show()
                     viewModel.addComment(
                         getLoginData().data.token,
-                        "1", binding.ratingBar2.rating, binding.CommentText.text.toString()
+                        productId, binding.ratingBar2.rating, binding.CommentText.text.toString()
                     )
                     binding.CommentText.setText("")
                     binding.ratingBar2.rating = 0.0f
@@ -99,7 +102,7 @@ class DisplayProduct : BaseActivity() {
                     pd.show()
                     viewModel.editeComment(
                         getLoginData().data.token,
-                        "1", binding.ratingBar2.rating, binding.CommentText.text.toString(),
+                        productId, binding.ratingBar2.rating, binding.CommentText.text.toString(),
                    CommentId )
                     binding.CommentText.setText("")
                     binding.ratingBar2.rating = 0.0f

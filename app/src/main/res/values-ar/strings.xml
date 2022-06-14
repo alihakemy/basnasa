@@ -50,5 +50,6 @@
     <string name="rate">التقيم</string>
     <string name="ProductDetails">تفاصيل المنتج</string>
     <string name="cancel">Cancel</string>
+    <string name="NearByYou">استكشف الاقرب اليك</string>
 
 </resources>
