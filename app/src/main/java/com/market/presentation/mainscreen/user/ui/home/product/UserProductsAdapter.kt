@@ -18,21 +18,24 @@ class UserProductsAdapter(private val products: List<Product>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
 
-            Glide.with(binding.imageView14.context).load(product.image_path).into(binding.imageView14)
+            Glide.with(binding.imageView14.context).load(product.image_path)
+                .into(binding.imageView14)
 
-            binding.textView29.text=product.name
-            binding.textView31.text=product.tager
-            binding.textView34.text=product.content
+            binding.textView29.text = product.name
+            binding.textView31.text = product.tager
+            binding.textView34.text = product.content
 
-            binding.textView32.text=product.mainprice
+            binding.textView32.text = product.mainprice
 
-            binding.textView33.text=product.prefitPrice
-            binding.textView33.paintFlags = binding.textView33.paintFlags or  Paint.STRIKE_THRU_TEXT_FLAG
+            binding.textView33.text = product.prefitPrice
+            binding.textView33.paintFlags =
+                binding.textView33.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-            Glide.with(binding.circleImageView.context).load(product.tager_image).into(binding.circleImageView)
+            Glide.with(binding.circleImageView.context).load(product.tager_image)
+                .into(binding.circleImageView)
 
             binding.root.setOnClickListener {
-                DisplayProduct.startDisplayProduct(product.id.toString(),it.context)
+                DisplayProduct.startDisplayProduct(product.id.toString(), it.context)
             }
 
 
