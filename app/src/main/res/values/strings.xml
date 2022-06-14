@@ -62,4 +62,8 @@
     <string name="ProductDetails">Product Details</string>
     <string name="cancel">Cancel</string>
     <string name="NearByYou">استكشف الاقرب اليك</string>
+    <string name="harf">حرف مميزه</string>
+    <string name="Projects">مشاريع مميزه</string>
+    <string name="locations">موقعى</string>
+    <string name="searchNear">ابحث عن الاماكن القريبه</string>
 </resources>

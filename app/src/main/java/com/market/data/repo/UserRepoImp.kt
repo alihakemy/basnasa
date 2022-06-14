@@ -7,6 +7,7 @@ import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
+import com.market.data.models.get.setions.Sections
 import com.market.data.services.User
 import com.market.utils.ResultState
 import javax.inject.Inject
@@ -122,6 +123,45 @@ class UserRepoImp @Inject constructor(private val userService: User) {
 
         }
 
+    }
+
+    suspend fun getSectionCategories( categoriesId: String,
+                                    token: String,
+                                    latitude: String,
+                                      longitude: String): ResultState<Sections>{
+        return try {
+
+            val result = userService.getSectionCategories(token=getToken(token),
+            categoriesId = categoriesId, latitude = latitude, longitude = longitude)
+            Log.e("Called", "Calleds$result")
+            ResultState.Success(result)
+        } catch (e: Exception) {
+            Log.e("Called", "Calleds${e.localizedMessage}")
+
+
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+    }
+    suspend fun getSectionSubCategories( categoriesId: String,
+                                         subCategoriesId:String,
+                                      token: String,
+                                      latitude: String,
+                                      longitude: String): ResultState<Sections>{
+        return try {
+
+            val result = userService.getSectionSubCategories(token=getToken(token),
+                subcategoriesId = subCategoriesId,
+                categoriesId = categoriesId, latitude = latitude, longitude = longitude)
+            Log.e("Called", "Calleds$result")
+            ResultState.Success(result)
+        } catch (e: Exception) {
+            Log.e("Called", "Calleds${e.localizedMessage}")
+
+
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
     }
 
 }

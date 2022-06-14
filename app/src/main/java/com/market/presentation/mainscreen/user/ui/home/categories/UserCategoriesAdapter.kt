@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.market.data.models.get.homeusers.Category
 import com.market.databinding.UserCategoriesItemsBinding
+import com.market.presentation.mainscreen.user.sections.SectionsActivity
 
 
 class UserCategoriesAdapter(private  val categories: List<Category>) :
@@ -29,6 +30,9 @@ class UserCategoriesAdapter(private  val categories: List<Category>) :
             binding.textView22.text=category.name
             binding.textView23.text=category.content
 
+            binding.root.setOnClickListener {
+                SectionsActivity.startSections(category.id.toString(),binding.root.context)
+            }
 
 
         }
