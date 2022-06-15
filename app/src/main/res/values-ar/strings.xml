@@ -60,5 +60,12 @@
     <string name="discover">استكشف اخر العروض المميزه</string>
     <string name="Fav">المفضله</string>
     <string name="Fav2">الاماكن المفضله لديك</string>
+    <string name="supplier">دخول الموردين</string>
+    <string name="account">الحساب</string>
+    <string name="join">طلب انضمام</string>
+    <string name="notifications">الاشعارات</string>
+    <string name="about">عن تطبيق</string>
+    <string name="share">مشاركه</string>
+    <string name="contactUs">اتصل بنا</string>
 
 </resources>

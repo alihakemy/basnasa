@@ -71,4 +71,11 @@
     <string name="discover">View the latest special offers</string>
     <string name="Fav">Favorite</string>
     <string name="Fav2">your favorite places</string>
+    <string name="supplier">Supplier Login</string>
+    <string name="account">Account</string>
+    <string name="join">Join request</string>
+    <string name="notifications">Notifications</string>
+    <string name="about">About App</string>
+    <string name="share">Share</string>
+    <string name="contactUs">Contact Us</string>
 </resources>
