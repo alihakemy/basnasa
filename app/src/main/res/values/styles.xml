@@ -35,4 +35,10 @@
         <item name="colorControlNormal">@color/grey</item>
         <item name="colorControlActivated">#E37494</item>
     </style>
+
+    <style name="BottomNavigationViewTextStyle">
+
+        <item name="fontFamily">@font/text_medium</item>
+
+    </style>
 </resources>

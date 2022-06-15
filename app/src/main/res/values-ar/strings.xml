@@ -27,7 +27,7 @@
     <string name="newAccount">تسجيل جديد</string>
     <string name="forgetPassword">نسيت كلمه السر ؟</string>
     <string name="loginAsTrader">تسجيل الدخول كتاجر</string>
-    <string name="title_home">رئسيه</string>
+    <string name="title_home">الرئسيه</string>
     <string name="title_dashboard">العروص</string>
     <string name="title_notifications">المفضله</string>
     <string name="title_activity_maps">MapsActivity</string>
