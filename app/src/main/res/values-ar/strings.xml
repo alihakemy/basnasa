@@ -58,5 +58,7 @@
     <string name="details">تفاصل</string>
     <string name="offers">العروض</string>
     <string name="discover">استكشف اخر العروض المميزه</string>
+    <string name="Fav">المفضله</string>
+    <string name="Fav2">الاماكن المفضله لديك</string>
 
 </resources>

@@ -14,13 +14,16 @@ interface User {
 
 
     @GET("api/favourites")
-    suspend fun getFavourites(@Header("Authorization") token: String): Favourites
+    suspend fun getFavourites(@Header("Authorization") token: String,
+                              @Query("lat")lat:String,
+                              @Query("long")long :String
+                              ): Favourites
 
 
     @GET("api/mainPage")
     suspend fun getUserHomeScreen(
         @Query("latitude") latitude: String,
-        @Query("longitude") longitude: String
+        @Query("longitude") longitude: String,
     ): HomeUser
 
 

@@ -1,5 +1,8 @@
 package com.market.presentation.mainscreen.user.ui.favorite
 
+import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,14 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.verificationPhone.VerificationPhone
 import com.market.databinding.FragmentNotificationsBinding
+import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.mainscreen.user.search.SearchActivity
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -41,13 +45,53 @@ class FavoriteFragment : Fragment() {
 
 
         val adapter = UserFavAdapter()
-        binding.recyclerView2.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.recyclerView2.adapter = adapter
+        binding.merchants.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.merchants.adapter = adapter
 
-        binding.imageView15.setOnClickListener {
+
+
+        var coder = Geocoder(requireContext())
+
+        val activitys = (activity as MainActivityUser)
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                val addressList: List<Address> = coder.getFromLocation(
+                    activitys.getLatLong().first.toDouble(),
+                    activitys.getLatLong().second.toDouble(),
+                    1
+                )
+                if (!addressList.isNullOrEmpty()) {
+                    val location: Address = addressList[0]
+                    binding.textView39.text = location.countryName.toString()
+                }
+            }
+
+        }
+
+
+        binding.linearLayout12.setOnClickListener {
+
+            val intent = Intent(requireContext(), MapsActivity::class.java)
+            intent.putExtra("role", "location")
+
+            startActivity(intent)
+
+
+        }
+        binding.imageView31.setOnClickListener {
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
+
+
+        binding.imageView32.setOnClickListener {
 
             val isSwitched: Boolean = adapter.toggleItemViewType()
-            binding.recyclerView2.layoutManager =
+            binding.merchants.layoutManager =
                 if (isSwitched) GridLayoutManager(
                     requireContext(),
                     2
@@ -56,7 +100,9 @@ class FavoriteFragment : Fragment() {
 
         }
 
-        viewModel.getFav((requireActivity() as MainActivityUser).getLoginData().data.token)
+
+        viewModel.getFav((requireActivity() as MainActivityUser).getLoginData().data.token,
+        activitys.getLatLong().first,activitys.getLatLong().second)
 
 
 
