@@ -32,4 +32,16 @@ class SearchViewModel @Inject constructor(
 
     }
 
+    fun perFormLike(merchant_id:String){
+        viewModelScope.launch {
+            repoImp.addFav(merchant_id)
+        }
+    }
+
+    fun perFormUnLike(merchant_id:String){
+        viewModelScope.launch {
+            repoImp.removeFav(merchant_id)
+        }
+    }
+
 }

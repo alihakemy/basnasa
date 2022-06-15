@@ -96,6 +96,7 @@ interface User {
         @Query("lat") latitude: String,
         @Query("long") longitude: String
     ): Offers
+
     @GET("/api/offers/merchants")
     suspend fun getOffer(
 
@@ -103,5 +104,13 @@ interface User {
         @Query("long") longitude: String,
         @Query("id") id: String
     ): Offers
+
+    @POST("/api/FavouriteAd")
+    suspend fun addFav(@Body map: HashMap<String, String>)
+
+    @DELETE("/api/deleteFavouriteAd/{merchant}")
+    suspend fun deleteFav(
+       @Path("merchant") productId: String,
+    ): DefaultResponse
 
 }

@@ -5,7 +5,7 @@ data class Merchant(
     val cats: List<String>,
     val distance: String,
     val email: String,
-    val favaurite: Boolean,
+    var favaurite: Boolean,
     val id: Int,
     val imagePath: String,
     val name: String,

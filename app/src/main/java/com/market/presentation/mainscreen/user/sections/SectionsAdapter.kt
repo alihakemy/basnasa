@@ -4,12 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.like.LikeButton
+import com.like.OnLikeListener
 import com.market.BuildConfig
 import com.market.data.models.get.setions.Merchant
 import com.market.databinding.SearchItemUserBinding
 import com.market.presentation.mainscreen.user.search.adapter.SearchAdapter
 
-class SectionsAdapter(val merchants: List<Merchant>?) :
+class SectionsAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean:Boolean,id:String)->Unit) :
     RecyclerView.Adapter<SectionsAdapter. SectionsViewHolder>() {
 
 
@@ -33,6 +35,21 @@ class SectionsAdapter(val merchants: List<Merchant>?) :
 
             }
             binding.textView26.text=merchants?.distance
+
+            binding.starButton.setOnLikeListener(object : OnLikeListener {
+                override fun liked(likeButton: LikeButton?) {
+                    merchants?.favaurite= likeButton?.isLiked == true
+                    likeButton?.isLiked?.let { likeds(it,merchants?.id.toString()) }
+                }
+
+                override fun unLiked(likeButton: LikeButton?) {
+                    merchants?.favaurite= likeButton?.isLiked == true
+
+                    likeButton?.isLiked?.let { likeds(it,merchants?.id.toString()) }
+
+                }
+
+            })
 
         }
 

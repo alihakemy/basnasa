@@ -4,12 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.like.LikeButton
+import com.like.OnLikeListener
 import com.market.BuildConfig
 import com.market.data.models.get.search.SearchResults
 import com.market.databinding.SearchItemUserBinding
+import java.util.*
 
 
-class SearchAdapter(private  val searchResults:SearchResults) :
+class SearchAdapter(private  val searchResults:SearchResults,inline val likeds:(boolean:Boolean,id:String)->Unit) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
 
@@ -34,6 +37,21 @@ class SearchAdapter(private  val searchResults:SearchResults) :
             }
 
             binding.textView20.text ="("+ get?.rate_count +")"
+
+            binding.starButton.setOnLikeListener(object :OnLikeListener{
+                override fun liked(likeButton: LikeButton?) {
+                    get.favaurite= likeButton?.isLiked == true
+                    likeButton?.isLiked?.let { likeds(it,get?.id.toString()) }
+                }
+
+                override fun unLiked(likeButton: LikeButton?) {
+                    get.favaurite= likeButton?.isLiked == true
+
+                    likeButton?.isLiked?.let { likeds(it,get?.id.toString()) }
+
+                }
+
+            })
 
         }
     }

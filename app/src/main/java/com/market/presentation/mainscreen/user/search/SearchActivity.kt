@@ -72,8 +72,11 @@ class SearchActivity : BaseActivity() {
                     keyCode == KeyEvent.KEYCODE_ENTER
                 ) {
                     // Perform action on key press
-                    viewModel.performSearch(binding.searchText.text.toString(),
-                    getLatLong().first.toString(),getLatLong().second.toString())
+                    Log.e("Clicked","ClikedALI")
+                    viewModel.performSearch(
+                        binding.searchText.text.toString(),
+                        getLatLong().first.toString(), getLatLong().second.toString()
+                    )
                     return true
                 }
                 return false
@@ -97,10 +100,20 @@ class SearchActivity : BaseActivity() {
 
     }
 
-    fun initAdapter(searchResults: SearchResults) {
+    private fun initAdapter(searchResults: SearchResults) {
 
         binding.recyclerView3.layoutManager = GridLayoutManager(this, 2)
-        binding.recyclerView3.adapter = SearchAdapter(searchResults)
+        binding.recyclerView3.adapter = SearchAdapter(searchResults) { boolean, id ->
+
+
+            if (boolean) {
+                viewModel.perFormLike(id)
+            } else {
+                viewModel.perFormUnLike(id)
+
+            }
+
+        }
     }
 
 }

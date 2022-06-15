@@ -121,7 +121,17 @@ class SectionsActivity : BaseActivity() {
     private fun initAdapter(merchants: List<Merchant>?) {
 
         binding.rec.layoutManager = GridLayoutManager(this, 2)
-        binding.rec.adapter = SectionsAdapter(merchants)
+        binding.rec.adapter = SectionsAdapter(merchants){boolean, id ->
+
+
+
+            if (boolean) {
+                viewModels.perFormLike(id)
+            } else {
+                viewModels.perFormUnLike(id)
+
+            }
+        }
     }
 
     private fun getDependOnSubCat(subCategory: SubCategory) {

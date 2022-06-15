@@ -245,4 +245,19 @@ class UserRepoImp @Inject constructor(private val userService: User) {
         }
     }
 
+
+    suspend fun addFav(merchant_id:String){
+        val map :HashMap<String,String> = HashMap()
+        map["merchant_id"] = merchant_id
+
+        userService.addFav(map)
+
+    }
+
+    suspend fun removeFav(merchant_id:String){
+
+        userService.deleteFav(merchant_id)
+
+    }
+
 }
