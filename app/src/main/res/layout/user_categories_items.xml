@@ -101,6 +101,7 @@
             android:id="@+id/imageView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:rotation="180"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_noun_arrow" />
     </LinearLayout>
