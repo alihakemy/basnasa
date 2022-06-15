@@ -55,7 +55,6 @@ object Module {
         } else {
             "ar"
         }
-        Log.d("TAG", "getDisplayLanguage = " + Locale.getDefault().displayLanguage);
 
         return OkHttpClient.Builder()
 
