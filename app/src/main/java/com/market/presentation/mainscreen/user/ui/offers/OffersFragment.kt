@@ -142,13 +142,14 @@ class OffersFragment : Fragment() {
         merchant?.let {
             binding.imageView32.setOnClickListener {
                 flag = if (flag) {
-                    binding.imageView32.setImageResource(R.drawable.ic_group_898)
+                    binding.imageView32.setImageResource(R.drawable.ic_group_96504)
+
                     initMerchantsAdapterHorizontalAdapter(merchant)
                     false
 
                 } else {
+                    binding.imageView32.setImageResource(R.drawable.ic_group_898)
 
-                    binding.imageView32.setImageResource(R.drawable.ic_group_96504)
                     initMercant(merchant)
                     true
 

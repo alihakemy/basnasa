@@ -17,29 +17,16 @@ class UserHorizontalAdapter(
 
 
     inner class MerchantViewHolder1(var binding:OfferHorizontalBinding) :
-        RecyclerView.ViewHolder(binding.root){
-        fun bind(get:Merchant) {
-
-            Glide.with(binding.profileImage.context).load(get?.imagePath).into(binding.profileImage)
-            binding.textView24.text=get?.name.toString()
-            binding.textView26.text=get?.distance.toString()
-
-            binding.textView25.text=get?.shopName.toString()
-            binding.ratingBar.rating=get?.rate?.toFloat() ?:0.0f
-
-            binding.ratingBar.numStars =4
-
-            if(BuildConfig.DEBUG){
-
-                binding.ratingBar.rating=2f
-
-            }
-
-            binding.textView20.text ="("+ get?.rateCount+")"
-
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(get: Merchant) {
+            Glide.with(binding.image.context).load(get.imagePath?.toString())
+                .into(binding.image)
+            binding.textView30.text = get.shopName?.toString()
+            binding.textView35.text = get.name.toString()
+            binding.textView.text = "(" + get.rateCount + ")"
+            binding.ratingBar.rating = get.rate?.toFloat() ?: 0f
         }
-        }
-
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHorizontalAdapter.MerchantViewHolder1 {
 

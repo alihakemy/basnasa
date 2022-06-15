@@ -128,7 +128,12 @@ class FavoriteFragment : Fragment() {
                     Log.e("ALISAMI", result.data?.data.toString())
                     result.data?.data?.let { it1 -> adapter.setList(it1.merchants as ArrayList<Merchant>) }
                     adapter.notifyDataSetChanged()
-                    initCatAdapter(result.data?.data?.subCategories)
+
+                    val sub =result.data?.data?.subCategories
+                    if(!sub.isNullOrEmpty()){
+                        initCatAdapter(sub)
+                    }
+
 
                 }
                 else -> {
