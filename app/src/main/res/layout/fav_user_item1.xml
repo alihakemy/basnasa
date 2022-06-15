@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="162dp"
     android:layout_margin="5dp"
     android:elevation="5dp"
-    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="8dp"
     app:strokeColor="#E37494"
-    app:strokeWidth="1dp">
+    app:strokeWidth=".3dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,8 +18,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,13 +43,14 @@
                 android:fontFamily="@font/text_medium"
                 android:textSize="17sp"
                 android:text="TextView"
-                android:textStyle="bold" />
+                 />
 
             <TextView
                 android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/two_light"
+                android:layout_gravity="center"
                 android:textSize="14sp"
 
                 android:text="TextView" />
@@ -56,7 +58,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,20 +68,20 @@
 
             <ImageView
                 android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+
+                android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
             <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
                 android:foregroundGravity="center"
                 android:gravity="center"
                 android:text="4Km"
+                android:textSize="10sp"
                 android:textColor="#E37494" />
 
             <RatingBar
@@ -87,11 +89,19 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:progressTint="#E37494"
-
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+
+                android:progressTint="#E37494" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:text="4Km"
+                android:textColor="#E37494"
+                android:textSize="10sp" />
         </LinearLayout>
 
 

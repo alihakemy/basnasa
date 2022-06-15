@@ -1,13 +1,10 @@
 package com.market.presentation.mainscreen.user.ui.favorite
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.market.data.models.get.fav.Data
-import com.market.data.models.get.fav.Favourites
+import com.market.data.models.get.fav.Merchant
 import com.market.databinding.FavUserItem1Binding
 import com.market.databinding.FavUserItem2Binding
 
@@ -18,7 +15,7 @@ class UserFavAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    private val list: ArrayList<Data> = ArrayList()
+    private val list: ArrayList<Merchant> = ArrayList()
     var isSwitchView = true
 
     inner class UserCategoriesViewHolder1(var binding: FavUserItem1Binding) :
@@ -29,7 +26,7 @@ class UserFavAdapter() :
         RecyclerView.ViewHolder(binding.root)
 
 
-    fun setList(list: ArrayList<Data>) {
+    fun setList(list: ArrayList<Merchant>) {
         this.list.clear()
         this.list.addAll(list)
     }
@@ -77,14 +74,19 @@ class UserFavAdapter() :
 
 
         if (holder is UserCategoriesViewHolder) {
-            Glide.with(holder.binding.image.context).load(list[position].image_path?.toString()).into(holder.binding.image)
-            holder.binding.textView30.text=list[position].name?.toString()
-            holder.binding.textView35.text=list[position].meta_description?.toString()
+            Glide.with(holder.binding.image.context).load(list[position].imagePath?.toString()).into(holder.binding.image)
+            holder.binding.textView30.text=list[position].shopName?.toString()
+            holder.binding.textView35.text=list[position].name.toString()
+            holder.binding.textView.text="("+list[position].rateCount+")"
+            holder.binding.ratingBar.rating=list[position].rate?.toFloat() ?:0f
 
         } else  if (holder is UserCategoriesViewHolder1 ) {
-            Glide.with(holder.binding.image.context).load(list[position].image_path?.toString()).into(holder.binding.image)
-            holder.binding.textView30.text=list[position].name?.toString()
-            holder.binding.textView35.text=list[position].meta_description?.toString()
+            Glide.with(holder.binding.image.context).load(list[position].imagePath?.toString()).into(holder.binding.image)
+            holder.binding.textView30.text=list[position].shopName?.toString()
+            holder.binding.textView35.text=list[position].name.toString()
+            holder.binding.textView.text="("+list[position].rateCount+")"
+            holder.binding.ratingBar.rating=list[position].rate?.toFloat() ?:0f
+
         }
 
 

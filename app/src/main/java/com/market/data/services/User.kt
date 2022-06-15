@@ -8,16 +8,22 @@ import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import retrofit2.http.*
-import java.net.IDN
 
 interface User {
 
 
     @GET("api/favourites")
     suspend fun getFavourites(@Header("Authorization") token: String,
-                              @Query("lat")lat:String,
-                              @Query("long")long :String
+                              @Query("latitude")lat:String,
+                              @Query("longitude")long :String
                               ): Favourites
+
+    @GET("api/favourites")
+    suspend fun getFavourites(@Header("Authorization") token: String,
+                              @Query("latitude")lat:String,
+                              @Query("longitude")long :String,
+                              @Query("id")subId:String
+    ): Favourites
 
 
     @GET("api/mainPage")

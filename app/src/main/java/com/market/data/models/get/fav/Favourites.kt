@@ -1,7 +1,11 @@
 package com.market.data.models.get.fav
 
+
+import com.google.gson.annotations.SerializedName
+
 data class Favourites(
-    val `data`: ArrayList<Data>,
-    val message: Any,
-    val status: Boolean
+    @SerializedName("data")
+    val `data`: Data?,
+    @SerializedName("status")
+    val status: String?
 )

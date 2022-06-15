@@ -13,12 +13,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.market.R
 import com.market.data.models.get.fav.Favourites
-import com.market.data.models.get.verificationPhone.VerificationPhone
+import com.market.data.models.get.fav.Merchant
 import com.market.databinding.FragmentNotificationsBinding
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.search.SearchActivity
+import com.market.presentation.mainscreen.user.ui.offers.SubCatAdapter
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -47,7 +50,6 @@ class FavoriteFragment : Fragment() {
         val adapter = UserFavAdapter()
         binding.merchants.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.merchants.adapter = adapter
-
 
 
         var coder = Geocoder(requireContext())
@@ -92,17 +94,28 @@ class FavoriteFragment : Fragment() {
 
             val isSwitched: Boolean = adapter.toggleItemViewType()
             binding.merchants.layoutManager =
-                if (isSwitched) GridLayoutManager(
-                    requireContext(),
-                    2
-                ) else LinearLayoutManager(requireContext())
+                if (isSwitched) {
+                    binding.imageView32.setImageResource(R.drawable.ic_group_898)
+
+                    GridLayoutManager(
+                        requireContext(),
+                        2
+                    )
+
+                } else {
+                    binding.imageView32.setImageResource(R.drawable.ic_group_96504)
+
+                    LinearLayoutManager(requireContext())
+                }
 
 
         }
 
 
-        viewModel.getFav((requireActivity() as MainActivityUser).getLoginData().data.token,
-        activitys.getLatLong().first,activitys.getLatLong().second)
+        viewModel.getFav(
+            (requireActivity() as MainActivityUser).getLoginData().data.token,
+            activitys.getLatLong().first, activitys.getLatLong().second
+        )
 
 
 
@@ -113,8 +126,9 @@ class FavoriteFragment : Fragment() {
                 is ResultState.Success<Favourites> -> {
 
                     Log.e("ALISAMI", result.data?.data.toString())
-                    result.data?.data?.let { it1 -> adapter.setList(it1) }
+                    result.data?.data?.let { it1 -> adapter.setList(it1.merchants as ArrayList<Merchant>) }
                     adapter.notifyDataSetChanged()
+                    initCatAdapter(result.data?.data?.subCategories)
 
                 }
                 else -> {
@@ -132,6 +146,25 @@ class FavoriteFragment : Fragment() {
 
         return root
     }
+
+    private fun initCatAdapter(subCategory: List<com.market.data.models.get.fav.SubCategory>?) {
+
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        linearLayoutManager.orientation = RecyclerView.HORIZONTAL
+
+        binding.subcat.layoutManager = linearLayoutManager
+
+        binding.subcat.adapter = FavSubCatAdapter(subCategory) {
+
+            val activitys = (activity as MainActivityUser)
+
+            viewModel.getFav(
+                (requireActivity() as MainActivityUser).getLoginData().data.token,
+                activitys.getLatLong().first, activitys.getLatLong().second, it?.id.toString()
+            )
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

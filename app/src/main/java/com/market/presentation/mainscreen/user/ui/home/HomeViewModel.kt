@@ -1,10 +1,8 @@
 package com.market.presentation.mainscreen.user.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.repo.UserRepoImp
 import com.market.utils.ResultState

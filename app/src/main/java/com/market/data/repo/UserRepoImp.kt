@@ -127,6 +127,33 @@ class UserRepoImp @Inject constructor(private val userService: User) {
 
     }
 
+
+    suspend fun getFav(token: String,lat:String,long:String,id:String): ResultState<Favourites> {
+
+        return try {
+            Log.e("Calledssss", token)
+
+            val result = userService.getFavourites(getToken(token),lat,long,id)
+            Log.e("Called", "Calleds$result")
+            ResultState.Success(result)
+        } catch (e: Exception) {
+            Log.e("Called", "Calleds${e.localizedMessage}")
+
+
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
     suspend fun getOffers(latitude: String, longitude: String): ResultState<Offers>{
         return try {
 
