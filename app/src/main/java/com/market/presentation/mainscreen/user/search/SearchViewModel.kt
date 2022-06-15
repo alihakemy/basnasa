@@ -19,24 +19,12 @@ class SearchViewModel @Inject constructor(
     val results: MutableLiveData<ResultState<SearchResults>> = MutableLiveData()
 
 
-    fun getSearchText(): LiveData<String> {
 
-        return savedStateHandle.getLiveData("String")
-    }
 
-    fun search(string: String) {
-        savedStateHandle.getLiveData<String>("String").also {
-            if (!string.equals(it.value.toString())) {
-                savedStateHandle.set("String", string)
-                performSearch(string)
-            }
-        }
-    }
-
-    private fun performSearch(string: String) {
+  fun performSearch(string: String,lat:String,long:String) {
 
         viewModelScope.launch {
-            val response = repoImp.search(string)
+            val response = repoImp.search(string,lat,long)
             results.postValue(response)
 
         }

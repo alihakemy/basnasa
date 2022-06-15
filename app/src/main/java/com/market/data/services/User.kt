@@ -36,6 +36,8 @@ interface User {
     @GET("api/search/merchants")
     suspend fun getSearch(
         @Query("q") query: String,
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String
     ): SearchResults
 
 

@@ -63,10 +63,7 @@ class SearchActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        viewModel.getSearchText().observe(this, Observer {
-            binding.searchText.setText(it)
 
-        })
 
         binding.searchText.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
@@ -75,7 +72,8 @@ class SearchActivity : BaseActivity() {
                     keyCode == KeyEvent.KEYCODE_ENTER
                 ) {
                     // Perform action on key press
-                    viewModel.search(binding.searchText.text.toString())
+                    viewModel.performSearch(binding.searchText.text.toString(),
+                    getLatLong().first.toString(),getLatLong().second.toString())
                     return true
                 }
                 return false

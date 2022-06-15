@@ -19,10 +19,10 @@ class UserRepoImp @Inject constructor(private val userService: User) {
 
 
 
-    suspend fun search(query: String):ResultState<SearchResults>{
+    suspend fun search(query: String,lat:String,long:String):ResultState<SearchResults>{
 
         return try {
-            val result = userService.getSearch(query)
+            val result = userService.getSearch(query,lat,long)
             ResultState.Success(result)
         }
         catch (e:Exception){
