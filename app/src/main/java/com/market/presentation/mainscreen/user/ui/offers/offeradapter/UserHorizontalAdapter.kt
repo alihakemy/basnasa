@@ -19,7 +19,8 @@ class UserHorizontalAdapter(
     inner class MerchantViewHolder1(var binding:OfferHorizontalBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(get: Merchant) {
-            Glide.with(binding.image.context).load(get.imagePath?.toString())
+            Glide.with(binding.image.context)
+                .load(get.imagePath?.toString())
                 .into(binding.image)
             binding.textView30.text = get.shopName?.toString()
             binding.textView35.text = get.name.toString()

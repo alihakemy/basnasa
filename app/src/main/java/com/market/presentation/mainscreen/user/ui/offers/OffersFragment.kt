@@ -162,7 +162,15 @@ class OffersFragment : Fragment() {
     }
 
     private fun initMercant(merchants: List<Merchant>?) {
-        val adapter = UserOfferAdapter(merchants)
+        val adapter = UserOfferAdapter(merchants){boolean, id ->
+
+            if (boolean) {
+                viewModel?.perFormLike(id)
+            } else {
+                viewModel?.perFormUnLike(id)
+
+            }
+        }
         binding.merchants.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.merchants.adapter = adapter
     }

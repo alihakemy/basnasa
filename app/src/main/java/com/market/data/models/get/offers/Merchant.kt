@@ -11,7 +11,7 @@ data class Merchant(
     @SerializedName("email")
     val email: String?,
     @SerializedName("favaurite")
-    val favaurite: Boolean?,
+    var favaurite: Boolean?,
     @SerializedName("id")
     val id: Int?,
     @SerializedName("imagePath")

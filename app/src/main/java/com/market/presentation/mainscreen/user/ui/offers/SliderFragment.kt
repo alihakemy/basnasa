@@ -39,9 +39,9 @@ class SliderFragment : Fragment() {
         // Inflate the layout for this fragment
 
 
-        val view  = inflater.inflate(R.layout.fragment_slider, container, false)
+        val view = inflater.inflate(R.layout.fragment_slider, container, false)
 
-        val  imageView10=view.findViewById<ImageView>(R.id.imageView10)
+        val imageView10 = view.findViewById<ImageView>(R.id.imageView10)
 
         Glide.with(requireContext()).load(param1).into(imageView10)
         return view
