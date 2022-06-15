@@ -3,10 +3,12 @@ package com.market.data.services
 import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
+import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import retrofit2.http.*
+import java.net.IDN
 
 interface User {
 
@@ -70,5 +72,25 @@ interface User {
         @Query("latitude") latitude: String,
         @Query("longitude") longitude: String
     ): Sections
+
+
+
+
+
+
+
+    @GET("/api/offers/merchants")
+    suspend fun getOffer(
+
+        @Query("lat") latitude: String,
+        @Query("long") longitude: String
+    ): Offers
+    @GET("/api/offers/merchants")
+    suspend fun getOffer(
+
+        @Query("lat") latitude: String,
+        @Query("long") longitude: String,
+        @Query("id") id: String
+    ): Offers
 
 }

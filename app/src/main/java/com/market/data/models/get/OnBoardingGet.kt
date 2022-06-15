@@ -1,5 +1,6 @@
 package com.market.data.models.get
 
+
 data class OnBoardingGet(
     val `data`: List<Data>,
     val status: String

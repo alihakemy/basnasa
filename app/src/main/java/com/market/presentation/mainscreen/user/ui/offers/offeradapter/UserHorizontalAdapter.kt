@@ -6,14 +6,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.market.BuildConfig
 import com.market.data.models.get.offers.Merchant
+import com.market.data.models.get.offers.SubCategory
+import com.market.databinding.OfferHorizontalBinding
 import com.market.databinding.SearchItemUserBinding
 
 
-class UserOfferAdapter(val merchants: List<Merchant>?) :
-    RecyclerView.Adapter<UserOfferAdapter.MerchantViewHolder1>() {
+class UserHorizontalAdapter(
+    val merchants: List<Merchant>?) :
+    RecyclerView.Adapter<UserHorizontalAdapter.MerchantViewHolder1>() {
 
 
-    inner class MerchantViewHolder1(var binding:SearchItemUserBinding) :
+    inner class MerchantViewHolder1(var binding:OfferHorizontalBinding) :
         RecyclerView.ViewHolder(binding.root){
         fun bind(get:Merchant) {
 
@@ -25,7 +28,6 @@ class UserOfferAdapter(val merchants: List<Merchant>?) :
             binding.ratingBar.rating=get?.rate?.toFloat() ?:0.0f
 
             binding.ratingBar.numStars =4
-            binding.starButton.isLiked= get?.favaurite == true
 
             if(BuildConfig.DEBUG){
 
@@ -39,10 +41,10 @@ class UserOfferAdapter(val merchants: List<Merchant>?) :
         }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserOfferAdapter.MerchantViewHolder1 {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHorizontalAdapter.MerchantViewHolder1 {
 
 
-        val view =SearchItemUserBinding.inflate(
+        val view =OfferHorizontalBinding.inflate(
             LayoutInflater.from(
                 parent.context
             ), parent, false
@@ -54,7 +56,7 @@ class UserOfferAdapter(val merchants: List<Merchant>?) :
 
     }
 
-    override fun onBindViewHolder(holder: UserOfferAdapter.MerchantViewHolder1, position: Int) {
+    override fun onBindViewHolder(holder: UserHorizontalAdapter.MerchantViewHolder1, position: Int) {
 
         merchants?.get(position)?.let { holder.bind(it) }
 

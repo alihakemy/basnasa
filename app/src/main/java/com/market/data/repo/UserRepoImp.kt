@@ -5,6 +5,7 @@ import com.market.BuildConfig
 import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
+import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
@@ -125,6 +126,58 @@ class UserRepoImp @Inject constructor(private val userService: User) {
         }
 
     }
+
+    suspend fun getOffers(latitude: String, longitude: String): ResultState<Offers>{
+        return try {
+
+
+                val result = userService.getOffer( latitude = latitude, longitude = longitude)
+                Log.e("Called", "Calleds$result")
+                ResultState.Success(result)
+
+
+        } catch (e: Exception) {
+            Log.e("Called", "Calleds${e.localizedMessage}")
+
+
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+    }
+
+
+    suspend fun getOffers(latitude: String, longitude: String,id:String): ResultState<Offers>{
+        return try {
+
+
+                val result = userService.getOffer( latitude = latitude, longitude = longitude,
+                    id.toString()
+                )
+                Log.e("Called", "Calleds$result")
+                ResultState.Success(result)
+
+
+        } catch (e: Exception) {
+            Log.e("Called", "Calleds${e.localizedMessage}")
+
+
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     suspend fun getSectionCategories( categoriesId: String,
                                     token: String,

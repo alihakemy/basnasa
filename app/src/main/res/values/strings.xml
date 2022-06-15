@@ -64,7 +64,9 @@
     <string name="NearByYou">closest to you</string>
     <string name="harf">Distinctive letter</string>
     <string name="Projects">Featured projects</string>
-    <string name="locations">my site</string>
+    <string name="locations">Location</string>
     <string name="searchNear">Find places nearby</string>
     <string name="details">details</string>
+    <string name="offers">Offers</string>
+    <string name="discover">View the latest special offers</string>
 </resources>

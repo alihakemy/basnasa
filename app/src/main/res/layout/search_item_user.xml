@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="4dp"
-    android:layout_height="wrap_content"
-    app:strokeColor="#85A9A9A9"
-    app:strokeWidth="1dp"
+    android:layout_height="162dp"
     android:elevation="5dp"
-    app:cardCornerRadius="15dp"
-    app:cardForegroundColor="@android:color/transparent">
 
-
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="8dp"
+    app:strokeColor="#F7ACB3"
+    app:strokeWidth="1dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="match_parent">
 
 
         <ImageView
             android:id="@+id/imageView25"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toStartOf="@+id/profile_image"
@@ -34,10 +34,10 @@
         <com.like.LikeButton
 
             android:id="@+id/star_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="2dp"
             app:icon_size="10dp"
@@ -46,14 +46,15 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView25"
             app:layout_constraintStart_toStartOf="@+id/imageView25"
             app:layout_constraintTop_toTopOf="@+id/imageView25"
-            app:like_drawable="@drawable/heart_on"
+            app:like_drawable="@drawable/ic_red_heart"
             app:liked="false"
-            app:unlike_drawable="@drawable/heart" />
+            app:unlike_drawable="@drawable/ic_icon_awesome_heart" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/googleg_disabled_color_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,12 +64,11 @@
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/text_medium"
             android:text="TextView"
             android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image"
             app:layout_constraintStart_toStartOf="@+id/profile_image"
             app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -78,14 +78,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:fontFamily="@font/two_light"
             android:text="TextView"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/profile_image"
             app:layout_constraintStart_toStartOf="@+id/profile_image"
             app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
@@ -100,17 +102,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:textSize="12sp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="10sp" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:theme="@style/RatingBar"
-                android:layout_marginEnd="8dp"
-                android:numStars="5" />
+                android:numStars="4"
+                android:progressTint="#E37494"
+                android:rating="2"
+
+                android:theme="@style/RatingBar" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -118,8 +122,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:text="4Km"
-                android:textSize="12sp"
-                android:textColor="#E37494" />
+                android:textColor="#E37494"
+                android:textSize="10sp" />
 
             <ImageView
                 android:id="@+id/imageView13"

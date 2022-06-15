@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="40dp"
+    android:layout_height="36dp"
+    android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
     android:elevation="5dp"
-    app:cardCornerRadius="10dp"
 
-    android:layout_marginStart="10dp"
-    app:strokeColor="#85A9A9A9"
+    app:cardCornerRadius="5dp"
+    app:strokeColor="@android:color/transparent"
     app:strokeWidth="1dp">
 
 

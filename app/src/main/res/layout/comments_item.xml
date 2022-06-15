@@ -56,6 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:numStars="4"
+                android:progressTint="#E37494"
+
                 android:theme="@style/RatingBar"
                 app:layout_constraintStart_toStartOf="@+id/textView49"
                 app:layout_constraintTop_toBottomOf="@+id/textView49" />

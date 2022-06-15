@@ -56,5 +56,7 @@
     <string name="locations">موقعى</string>
     <string name="searchNear">ابحث عن الاماكن القريبه</string>
     <string name="details">تفاصل</string>
+    <string name="offers">العروض</string>
+    <string name="discover">استكشف اخر العروض المميزه</string>
 
 </resources>
