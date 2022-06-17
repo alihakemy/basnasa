@@ -25,7 +25,6 @@ import com.market.databinding.ActivityDisplayProductBinding
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.user.displayproduct.comments.CommentsAdapter
 import com.market.presentation.mainscreen.user.displayproduct.pagers.ProductImageFragment
-import com.market.presentation.mainscreen.user.ui.offers.SliderFragment
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.ceil
@@ -154,9 +153,9 @@ class DisplayProduct : BaseActivity() {
             startActivity(i)
         }
 
-        val listImages=data?.data?.products?.images?.add(Image(data?.data?.products?.imagePath))
+        val listImages = data?.data?.products?.images?.add(Image(data?.data?.products?.imagePath))
         binding.banner.adapter = ScreenSlidePagerAdapter(
-            this,data?.data?.products?.images
+            this, data?.data?.products?.images
 
         )
 
@@ -179,12 +178,11 @@ class DisplayProduct : BaseActivity() {
         }
         binding.textView20.text = "(" + data?.data?.rates?.size + ")"
 
-        if (!showAll) {
-            data?.data?.rates?.let { renderComments(it, 1) }
 
-
-        } else {
-            data?.data?.rates?.let { renderComments(it, it.size) }
+        if (data?.data?.rates?.size ?: 0 > 0) {
+            val list = ArrayList<Rate>()
+            data?.data?.rates?.let { it1 -> list.add(it1.first()) }
+            renderComments(list, false)
 
         }
         binding.textView47.setOnClickListener {
@@ -193,14 +191,18 @@ class DisplayProduct : BaseActivity() {
 
                 binding.textView47.text = "اخفاء"
 
-                data?.data?.rates?.let { renderComments(it, it.size) }
+
+                data?.data?.rates?.let { renderComments(it, true) }
 
             } else {
                 showAll = false
                 binding.textView47.text = "عرض الكل"
 
+
                 if (data?.data?.rates?.size ?: 0 > 0) {
-                    data?.data?.rates?.let { renderComments(it, 1) }
+                    val list = ArrayList<Rate>()
+                    data?.data?.rates?.let { it1 -> list.add(it1.first()) }
+                    renderComments(list, false)
 
                 }
 
@@ -211,17 +213,17 @@ class DisplayProduct : BaseActivity() {
 
     }
 
-    private fun renderComments(rates: List<Rate>, i: Int) {
+    private fun renderComments(rates: List<Rate>, i: Boolean) {
         binding.CommentsRec.layoutManager = LinearLayoutManager(this)
         binding.CommentsRec.adapter = CommentsAdapter(rates as ArrayList<Rate>,
             getLoginData().data.user.id, i, {
                 deleteComment(it)
 
-            }, {
+            }) {
 
-                editComment(it)
+            editComment(it)
 
-            })
+        }
     }
 
     private fun editComment(rate: Rate) {
@@ -259,7 +261,7 @@ class DisplayProduct : BaseActivity() {
         override fun getItemCount(): Int = images?.size ?: 0
         override fun createFragment(position: Int): Fragment =
             ProductImageFragment.newInstance(
-                images?.get(position)?.imagePath.toString(),""
+                images?.get(position)?.imagePath.toString(), ""
             )
     }
 }
