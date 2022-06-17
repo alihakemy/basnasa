@@ -78,4 +78,5 @@
     <string name="about">About App</string>
     <string name="share">Share</string>
     <string name="contactUs">Contact Us</string>
+    <string name="chat">Chat</string>
 </resources>

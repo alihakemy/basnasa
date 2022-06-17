@@ -60,6 +60,7 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
+
                 val addressList: List<Address> = coder.getFromLocation(
                     activity.getLatLong().first.toDouble(),
                     activity.getLatLong().second.toDouble(),

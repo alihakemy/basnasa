@@ -1,6 +1,11 @@
 package com.market.data.models.get.productdetails
 
+
+import com.google.gson.annotations.SerializedName
+
 data class ProductDetails(
-    val `data`: Data,
-    val status: String
+    @SerializedName("data")
+    val `data`: Data?,
+    @SerializedName("status")
+    val status: String?
 )
