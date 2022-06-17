@@ -14,7 +14,7 @@ class CommentsAdapter(
 ) : RecyclerView.Adapter<CommentsAdapter.CommentsViewHolder>() {
     inner class CommentsViewHolder(val binding: CommentsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(get: Rate) {
+        fun bind(get: Rate,position: Int) {
 
             binding.CommentContent.text = get.comment.toString()
             get.rate?.let {
@@ -29,8 +29,8 @@ class CommentsAdapter(
                 // delete
                 binding.imageView29.setOnClickListener {
 
-                    rates.removeAt(adapterPosition)
-                    notifyItemRemoved(adapterPosition)
+                    rates.removeAt(position)
+                    notifyItemRemoved(position)
                     deleteComment(get)
                 }
 
@@ -62,7 +62,7 @@ class CommentsAdapter(
 
     override fun onBindViewHolder(holder: CommentsAdapter.CommentsViewHolder, position: Int) {
 
-        holder.bind(rates[position])
+        holder.bind(rates[position],position)
 
     }
 
