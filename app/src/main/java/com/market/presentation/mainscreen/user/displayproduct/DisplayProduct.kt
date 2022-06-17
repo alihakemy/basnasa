@@ -162,11 +162,16 @@ class DisplayProduct : BaseActivity() {
         TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
         }.attach()
 
-        binding.textView45.text = data?.data?.products?.discount?.toString() + "Off"
+        binding.textView45.text = data?.data?.products?.discount?.toString() + "%Off"
 
-        binding.textView32.text = data?.data?.products?.mainprice?.toString()
+        binding.textView32.text = data?.data?.products?.prefitPrice?.toString()
 
-        binding.textView33.text = data?.data?.products?.prefitPrice?.toInt().toString()
+        if (data?.data?.products?.mainprice?.toString()?.toDouble() == 0.0) {
+            binding.textView33.visibility = View.GONE
+        } else {
+            binding.textView33.visibility = View.VISIBLE
+        }
+        binding.textView33.text = data?.data?.products?.mainprice
 
         binding.textView33.paintFlags =
             binding.textView33.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -179,10 +184,15 @@ class DisplayProduct : BaseActivity() {
         binding.textView20.text = "(" + data?.data?.rates?.size + ")"
 
 
-        if (data?.data?.rates?.size ?: 0 > 0) {
-            val list = ArrayList<Rate>()
-            data?.data?.rates?.let { it1 -> list.add(it1.first()) }
-            renderComments(list, false)
+        if (!showAll) {
+            if (data?.data?.rates?.size ?: 0 > 0) {
+                val list = ArrayList<Rate>()
+                data?.data?.rates?.let { it1 -> list.add(it1.first()) }
+                renderComments(list, false)
+
+            }
+        } else {
+            data?.data?.rates?.let { renderComments(it, true) }
 
         }
         binding.textView47.setOnClickListener {
