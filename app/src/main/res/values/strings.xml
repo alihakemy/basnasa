@@ -79,4 +79,6 @@
     <string name="share">Share</string>
     <string name="contactUs">Contact Us</string>
     <string name="chat">Chat</string>
+    <string name="delete">delete</string>
+    <string name="edite">Edit</string>
 </resources>

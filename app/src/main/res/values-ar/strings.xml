@@ -68,5 +68,7 @@
     <string name="share">مشاركه</string>
     <string name="contactUs">اتصل بنا</string>
     <string name="chat">مراسله</string>
+    <string name="delete">حذف</string>
+    <string name="edite">تعديل</string>
 
 </resources>

@@ -154,9 +154,10 @@ class DisplayProduct : BaseActivity() {
             startActivity(i)
         }
 
+        val listImages=data?.data?.products?.images?.add(Image(data?.data?.products?.imagePath))
         binding.banner.adapter = ScreenSlidePagerAdapter(
-            this,
-            data?.data?.products?.images
+            this,data?.data?.products?.images
+
         )
 
         TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->

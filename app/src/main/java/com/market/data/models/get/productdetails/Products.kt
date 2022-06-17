@@ -17,7 +17,7 @@ data class Products(
     @SerializedName("image_path")
     val imagePath: String?,
     @SerializedName("images")
-    val images: List<Image>?,
+    val images: ArrayList<Image>?,
     @SerializedName("mainprice")
     val mainprice: String?,
     @SerializedName("name")
