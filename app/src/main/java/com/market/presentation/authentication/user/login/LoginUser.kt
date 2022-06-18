@@ -99,7 +99,7 @@ class LoginUser : BaseActivity() {
                     if (pd.isShowing) {
                         pd.dismiss()
                     }
-                    Toast.makeText(this, result.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, result.message.toString(), Toast.LENGTH_LONG).show()
 
                 }
 

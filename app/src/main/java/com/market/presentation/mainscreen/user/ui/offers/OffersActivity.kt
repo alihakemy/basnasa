@@ -58,6 +58,7 @@ class OffersActivity :BaseActivity() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel?.getOffers(getLatLong().first, getLatLong().second)
 
                 val addressList: List<Address> = coder.getFromLocation(
                     getLatLong().first.toDouble(),
@@ -85,13 +86,7 @@ class OffersActivity :BaseActivity() {
             startActivity(intent)
         }
 
-        if (BuildConfig.DEBUG) {
-            viewModel?.getOffers("29", "48")
 
-        } else {
-            viewModel?.getOffers(getLatLong().first, getLatLong().second)
-
-        }
         viewModel?.results?.observe(this, Observer {
 
             when (val result = it) {

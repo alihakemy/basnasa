@@ -73,5 +73,7 @@
     <string name="MoreUs">المزيد عنا</string>
     <string name="products">تعرف على منتاجتنا</string>
     <string name="love">نصنع لك منتجاتنا بحب</string>
+    <string name="info">معلومات عن البائع</string>
+    <string name="services">الخدمات</string>
 
 </resources>

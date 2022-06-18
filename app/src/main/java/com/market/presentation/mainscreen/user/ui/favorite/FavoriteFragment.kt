@@ -58,6 +58,10 @@ class FavoriteFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
+                viewModel.getFav(
+                    activitys.getLoginData().data.token,
+                    activitys.getLatLong().first, activitys.getLatLong().second
+                )
                 val addressList: List<Address> = coder.getFromLocation(
                     activitys.getLatLong().first.toDouble(),
                     activitys.getLatLong().second.toDouble(),
@@ -112,10 +116,7 @@ class FavoriteFragment : Fragment() {
         }
 
 
-        viewModel.getFav(
-            activitys.getLoginData().data.token,
-            activitys.getLatLong().first, activitys.getLatLong().second
-        )
+
 
 
 

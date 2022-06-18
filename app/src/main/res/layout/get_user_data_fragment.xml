@@ -62,6 +62,7 @@
             android:fontFamily="@font/two_light"
 
             android:padding="10dp"
+
             android:background="@drawable/editetext_rec"
 
 
@@ -109,7 +110,6 @@
             android:id="@+id/editTextTextPersonName3"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:fontFamily="@font/two_light"
 
             android:layout_marginTop="8dp"
             android:padding="10dp"
@@ -138,7 +138,6 @@
             android:background="@drawable/editetext_rec"
 
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/two_light"
 
             android:padding="10dp"
             android:drawableStart="@drawable/ic_baseline_vpn_key_24"

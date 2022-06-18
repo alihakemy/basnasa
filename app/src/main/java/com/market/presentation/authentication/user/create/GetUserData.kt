@@ -109,7 +109,7 @@ class GetUserData : Fragment() {
 
                     }
                     else -> {
-                        Toast.makeText(context, result.toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, result.message.toString(), Toast.LENGTH_LONG).show()
 
                         if (pd.isShowing) {
                             pd.dismiss()

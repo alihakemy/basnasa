@@ -7,10 +7,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.like.LikeButton
+import com.like.OnLikeListener
 import com.market.data.models.get.productdetails.Rate
 import com.market.data.models.get.tagerdetails.Category
 import com.market.data.models.get.tagerdetails.Data
@@ -25,6 +30,7 @@ import com.market.presentation.mainscreen.user.displaytrader.tageradapter.Produc
 import com.market.utils.ResultState
 import com.market.utils.startLink
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -47,7 +53,16 @@ class TraderProfileActivity : BaseActivity() {
         pd.setCancelable(false)
         pd.show()
 
-        viewModel.getProductDetails(intent.getStringExtra("tagerId").toString(), getLatLong().first, getLatLong().second)
+       lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                kotlin.runCatching {
+                    pd.show()
+                }
+                viewModel.getProductDetails(intent.getStringExtra("tagerId").toString(), getLatLong().first, getLatLong().second)
+
+            }
+        }
+
         viewModel.results.observe(this, androidx.lifecycle.Observer {
             if (pd.isShowing) {
                 pd.dismiss()
@@ -72,7 +87,7 @@ class TraderProfileActivity : BaseActivity() {
 
         binding.textView60.setOnClickListener {
             val intent =Intent(this,MoreTagerActivity::class.java)
-            intent.putExtra("tagerId",intent.getStringExtra("tagerId").toString())
+            intent.putExtra("tagerId",data?.merchant?.userId.toString())
             startActivity(intent)
 
         }
@@ -97,7 +112,19 @@ class TraderProfileActivity : BaseActivity() {
 
 
 
+        binding.starButton.setOnLikeListener(object : OnLikeListener {
+            override fun liked(likeButton: LikeButton?) {
 
+                likeButton?.isLiked?.let { viewModel.perFormLike(data?.merchant?.userId.toString()) }
+            }
+
+            override fun unLiked(likeButton: LikeButton?) {
+
+                likeButton?.isLiked?.let { viewModel.perFormUnLike(data?.merchant?.userId.toString()) }
+
+            }
+
+        })
 
 
 

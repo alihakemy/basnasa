@@ -60,7 +60,10 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-
+                homeViewModel.getHomeScreen(
+                    latitude = activity.getLatLong().first,
+                    longitude = activity.getLatLong().second
+                )
                 val addressList: List<Address> = coder.getFromLocation(
                     activity.getLatLong().first.toDouble(),
                     activity.getLatLong().second.toDouble(),
@@ -89,10 +92,7 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        homeViewModel.getHomeScreen(
-            latitude = activity.getLatLong().first,
-            longitude = activity.getLatLong().second
-        )
+
 
         homeViewModel.results.observe(viewLifecycleOwner) {
 

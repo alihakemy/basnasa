@@ -7,7 +7,7 @@
 
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
 
         android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
@@ -22,32 +22,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="29dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView"
-                    android:layout_width="29dp"
-                    android:layout_height="29dp"
-                    android:background="@drawable/googleg_disabled_color_18"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
-                <TextView
-                    android:id="@+id/tagerName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/text_medium"
-                    android:text="ali sami"
-                    android:textColor="@color/black" />
-            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
@@ -192,51 +166,37 @@
                     android:text="TextView"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/rate"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <ImageView
-                    android:id="@+id/imageView45"
+                <RatingBar
+                    android:id="@+id/rate"
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="@+id/textView56"
-                    app:layout_constraintTop_toBottomOf="@+id/textView56"
-                    app:srcCompat="@drawable/ic_group_16477" />
+                    android:layout_gravity="center"
 
-                <TextView
-                    android:id="@+id/textView58"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+
                     android:fontFamily="@font/two_light"
-                    android:text="TextView"
-                    android:textColor="#7BD7C2"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView45"
-                    app:layout_constraintStart_toEndOf="@+id/imageView45"
-                    app:layout_constraintTop_toTopOf="@+id/imageView45" />
+                    android:numStars="4"
+                    android:progressTint="#E37494"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout19"
+                    app:layout_constraintStart_toStartOf="@+id/textView56"
+                    app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout19"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView45">
-
-                    <TextView
-                        android:id="@+id/textView26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:foregroundGravity="center"
-                        android:gravity="center"
-                        android:text="4Km"
-                        android:textColor="#E37494"
-                        android:textSize="10sp" />
+                    app:layout_constraintTop_toBottomOf="@+id/rate">
 
                     <ImageView
                         android:id="@+id/imageView13"
@@ -253,15 +213,6 @@
                         android:layout_weight="1"
                         app:srcCompat="@drawable/circle_gray" />
 
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-
-                        android:numStars="4"
-                        android:progressTint="#E37494" />
 
                     <TextView
                         android:id="@+id/textView"
@@ -273,6 +224,17 @@
                         android:textColor="#E37494"
                         android:textSize="10sp" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView66"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="TextView"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/rate"
+                    app:layout_constraintStart_toEndOf="@+id/rate"
+                    app:layout_constraintTop_toTopOf="@+id/rate" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -288,21 +250,93 @@
                     android:layout_margin="20dp"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/text_medium"
-                    android:text="@string/opioon"
+                    android:text="@string/info"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/info"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/two_light"
+                    android:maxLines="5"
+                    android:text="@string/lorem_ipsum"
+                    android:textColor="#707070"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView48"
+                    app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:id="@+id/tt"
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/text_medium"
+                    android:text="@string/services"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/cat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/two_light"
+                    android:maxLines="5"
+                    android:text="@string/lorem_ipsum"
+                    android:textColor="#707070"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tt"
+                    app:layout_constraintTop_toBottomOf="@+id/tt" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         </LinearLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
+    <ImageView
+        android:id="@+id/imageView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_group_96513" />
 
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chat"
+        android:textColor="@color/white"
+        android:fontFamily="@font/two_light"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView39"
+        app:layout_constraintEnd_toEndOf="@+id/imageView39"
+        app:layout_constraintStart_toStartOf="@+id/imageView39"
+        app:layout_constraintTop_toTopOf="@+id/imageView39" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

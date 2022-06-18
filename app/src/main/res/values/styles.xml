@@ -43,4 +43,13 @@
         <item name="fontFamily">@font/text_medium</item>
 
     </style>
+
+    <style name="Colors_Widget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/white</item>
+        <item name="cornerRadius">1dp</item>
+        <item name="chipStrokeColor">#707070</item>
+        <item name="chipStrokeWidth">.3dp</item>
+        <item name="fontFamily">@font/two_light</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

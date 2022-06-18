@@ -53,7 +53,7 @@ class DisplayProduct : BaseActivity() {
         if (!intent.hasExtra("productId")) {
             return
         }
-
+        pd.show()
         val productId: String = intent.getStringExtra("productId").toString()
         intent.getStringExtra("productId")?.let {
             viewModel.getProductDetails(
