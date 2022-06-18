@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.market.data.models.SendLogin
 import com.market.data.models.SendRegister
 import com.market.data.models.get.register.RegisterResponse
 import com.market.data.repo.AuthenticationRepository
 import com.market.utils.ResultState
 import com.market.data.models.SendVerificationPhone
 import com.market.data.models.get.User
+import com.market.data.models.get.login.Data
+import com.market.data.models.get.login.LoginResponse
 import com.market.data.models.get.verificationPhone.VerificationPhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -51,10 +54,21 @@ class CreateAccountViewModel @Inject constructor(
         return registerResults
     }
 
-    fun storeLogin(user: User){
+    fun storeLogin(user: LoginResponse?){
+
         val gson = Gson()
         val jsonObject = gson.toJson(user)
         sharedPreferences.edit().putString("loginData",jsonObject).commit()
 
+    }
+    val  loginResults:MutableLiveData<ResultState<LoginResponse>> = MutableLiveData()
+
+    fun loginUser(sendLogin: SendLogin){
+        viewModelScope.launch(Dispatchers.IO){
+
+            loginResults.postValue( authenticationRepository.login(sendLogin))
+
+
+        }
     }
 }

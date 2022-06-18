@@ -25,6 +25,7 @@ import com.market.databinding.ActivityDisplayProductBinding
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.user.displayproduct.comments.CommentsAdapter
 import com.market.presentation.mainscreen.user.displayproduct.pagers.ProductImageFragment
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity.Companion.startTagerProfile
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.ceil
@@ -139,6 +140,7 @@ class DisplayProduct : BaseActivity() {
     }
 
     private fun renderProduct(data: ProductDetails?) {
+
 
         binding.productName.text = data?.data?.products?.name.toString()
         binding.textView44.text = data?.data?.products?.tager.toString()

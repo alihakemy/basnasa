@@ -1,16 +1,20 @@
 package com.market.presentation.mainscreen.user
 
+
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.market.R
 import com.market.databinding.ActivityMainUserBinding
 import com.market.presentation.bases.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivityUser : BaseActivity() {
@@ -28,5 +32,11 @@ class MainActivityUser : BaseActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main_user)
 
         navView.setupWithNavController(navController)
+
+
+
+
     }
+
+
 }

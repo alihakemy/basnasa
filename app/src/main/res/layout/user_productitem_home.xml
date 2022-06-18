@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="275dp"
+    android:background="@android:color/transparent"
     android:layout_margin="20dp"
     android:elevation="10dp"
     android:layoutDirection="rtl">
@@ -19,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSizePercent" />
 
 
@@ -33,16 +34,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView14"
         android:layout_width="0dp"
         android:layout_height="150dp"
+        android:layout_marginStart="4dp"
         android:scaleType="matrix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSizePercent"
-        app:srcCompat="@drawable/cast_ic_notification_small_icon" />
+        android:background="@color/black"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSizePercent2"
+        />
 
     <TextView
         android:id="@+id/textView29"
@@ -52,8 +55,8 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/text_medium"
         android:text="TextView"
+        android:textSize="15sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
@@ -76,7 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:rotation="180"
-            app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+            app:tint="#E992A9" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +88,7 @@
 
             android:fontFamily="@font/text_medium"
             android:gravity="end|center"
-            android:paddingStart="20dp"
+            android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@string/details"
             android:textSize="13sp" />
@@ -131,13 +135,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:fontFamily="@font/two_light"
         android:maxLines="2"
 
         android:text="TextView"
+        android:textColor="@color/black"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
         app:layout_constraintEnd_toEndOf="parent"

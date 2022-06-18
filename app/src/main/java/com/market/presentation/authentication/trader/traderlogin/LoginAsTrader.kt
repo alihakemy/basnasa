@@ -53,7 +53,10 @@ class LoginAsTrader : BaseActivity() {
 
 
             if (!binding.passwordText.text.toString().isNullOrEmpty()) {
-                pd.show()
+                if(!pd.isShowing){
+                    pd?.show()
+                }
+
                 viewModel.loginTrader(
                     SendLogin(
                         binding.phoneTextTextPersonName.text.toString(),

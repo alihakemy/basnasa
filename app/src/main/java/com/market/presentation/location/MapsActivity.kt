@@ -27,8 +27,10 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.market.R
 import com.market.databinding.ActivityMapsBinding
+import com.market.presentation.MainActivity
 import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.onboarding.OnBoarding
 import com.market.utils.LocationHelper
 import com.market.utils.PermissionProvider
 import com.market.utils.observeOnce
@@ -139,7 +141,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     onBackPressed()
                 } else {
-                    val intent = Intent(baseContext, MainActivityUser::class.java)
+
+                    val intent = Intent(baseContext, MainActivity::class.java)
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)

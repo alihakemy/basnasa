@@ -7,6 +7,7 @@ import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
+import com.market.data.models.get.tagerdetails.TagerDetails
 import retrofit2.http.*
 
 interface User {
@@ -112,5 +113,31 @@ interface User {
     suspend fun deleteFav(
        @Path("merchant") productId: String,
     ): DefaultResponse
+
+
+
+
+
+
+    @GET("/api/merchant/{tagerId}")
+    suspend fun getTagerDetails(
+        @Path("tagerId") productId: String,
+        @Query("cat_id") cat_id: String,
+
+
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String
+    ): TagerDetails
+
+    @GET("/api/merchant/{tagerId}")
+    suspend fun getTagerDetails(
+        @Path("tagerId") productId: String,
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String
+    ): TagerDetails
+
+
+
+
 
 }

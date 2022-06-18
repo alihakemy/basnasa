@@ -85,11 +85,14 @@ class LoginUser : BaseActivity() {
             when (val result = it) {
                 is ResultState.Success<LoginResponse> -> {
 
-                    result.data?.let { it1 -> storeLoginData(it1) }
-                    val intent = Intent(this, MapsActivity::class.java)
-                    intent.putExtra("role",result.data?.data?.user?.Roles)
-                    startActivity(intent)
-                    finish()
+                    result.data?.let { it1 -> storeLoginData(it1)
+                        val intent = Intent(this, MapsActivity::class.java)
+                        intent.putExtra("role",result.data?.data?.user?.Roles)
+                        startActivity(intent)
+                        finish()
+
+                    }
+
 
                 }
                 else -> {

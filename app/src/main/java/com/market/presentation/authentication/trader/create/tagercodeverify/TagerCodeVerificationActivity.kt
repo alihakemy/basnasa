@@ -59,6 +59,7 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
                         val intent = Intent(this, CompleteTagerDataActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        viewModel.storeToken(result.data!!.token.toString())
                         intent.putExtra("token",result.data!!.token.toString())
                         startActivity(intent)
                         finish()

@@ -7,11 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.market.data.models.SendLogin
 import com.market.utils.ResultState
 import com.market.data.models.SendVerificationPhone
+import com.market.data.models.get.login.LoginResponse
 import com.market.data.models.get.verificationPhone.VerificationPhone
 import com.market.databinding.VerificationCodeFragmentBinding
 import com.market.presentation.location.MapsActivity
@@ -89,21 +92,23 @@ class VerificationCode : Fragment() {
                 when (val result = it) {
 
                     is ResultState.Success<VerificationPhone> -> {
-                        if (pd.isShowing) {
-                            pd.dismiss()
-                        }
-                        viewModel.storeLogin(result.data!!.data.user)
-                        val intent = Intent(getContext(), MapsActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
-                        activity?.let { it1 -> finishAffinity(it1) }
+
+                        viewModel.loginUser(
+                            SendLogin(
+                                phone.toString(),
+                                arguments?.getString("password").toString()
+                            )
+                        )
+
 
                     }
                     else -> {
                         if (pd.isShowing) {
                             pd.dismiss()
                         }
+
+                        Toast.makeText(requireContext(), result.message.toString(), Toast.LENGTH_LONG).show()
+
                     }
 
                 }
@@ -113,6 +118,37 @@ class VerificationCode : Fragment() {
 
 
         }
+
+        viewModel.loginResults.observe(viewLifecycleOwner, Observer {
+
+            when (val result = it) {
+                is ResultState.Success<LoginResponse> -> {
+                    if (pd.isShowing) {
+                        pd.dismiss()
+                    }
+                    viewModel.storeLogin(result.data)
+
+                    val intent = Intent(getContext(), MapsActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    activity?.let { it1 -> finishAffinity(it1) }
+
+
+                }
+                else -> {
+                    if (pd.isShowing) {
+                        pd.dismiss()
+                    }
+                    Toast.makeText(requireContext(), result.message.toString(), Toast.LENGTH_LONG).show()
+
+                }
+
+
+            }
+
+
+        })
 
 
     }

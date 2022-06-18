@@ -9,6 +9,7 @@ import com.like.OnLikeListener
 import com.market.BuildConfig
 import com.market.data.models.get.offers.Merchant
 import com.market.databinding.SearchItemUserBinding
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity
 
 
 class UserOfferAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean:Boolean,id:String)->Unit) :
@@ -51,7 +52,9 @@ class UserOfferAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean
                 }
 
             })
-
+            binding.root.setOnClickListener {
+                TraderProfileActivity.startTagerProfile(get?.id.toString(), it.context)
+            }
         }
         }
 

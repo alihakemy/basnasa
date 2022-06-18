@@ -138,6 +138,7 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:$arch_version")
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
     implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.6.21"
+    implementation  'io.ak1.pix:piximagepicker:1.6.3'
 
 
 }

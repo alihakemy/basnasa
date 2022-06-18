@@ -36,6 +36,10 @@ class TagerCodeVerificationViewModel @Inject constructor(
         return registerResults
     }
 
+    fun storeToken(s:String){
+        sharedPreferences.edit().putString("token",s).commit()
+    }
+
 
 
 }

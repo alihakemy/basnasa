@@ -215,6 +215,7 @@ class OffersFragment : Fragment() {
     }
 
 
+
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity, val banner: List<Banner>?) :
         FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = banner?.size ?: 0

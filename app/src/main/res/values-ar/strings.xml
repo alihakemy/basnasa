@@ -70,5 +70,8 @@
     <string name="chat">مراسله</string>
     <string name="delete">حذف</string>
     <string name="edite">تعديل</string>
+    <string name="MoreUs">المزيد عنا</string>
+    <string name="products">تعرف على منتاجتنا</string>
+    <string name="love">نصنع لك منتجاتنا بحب</string>
 
 </resources>

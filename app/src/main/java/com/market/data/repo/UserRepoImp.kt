@@ -9,6 +9,7 @@ import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
+import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.data.services.User
 import com.market.utils.ResultState
 import javax.inject.Inject
@@ -259,5 +260,40 @@ class UserRepoImp @Inject constructor(private val userService: User) {
         userService.deleteFav(merchant_id)
 
     }
+
+
+    suspend fun TagerDetails(tagerId: String, latitude: String,
+                             longitude: String):ResultState<TagerDetails>{
+
+        return try {
+            val result = userService.getTagerDetails(tagerId,latitude, longitude)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+    suspend fun TagerDetails(catId:String,tagerId: String, latitude: String,
+                               longitude: String):ResultState<TagerDetails>{
+
+        return try {
+            val result = userService.getTagerDetails(tagerId,catId,latitude, longitude)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+
+
+
+
+
 
 }

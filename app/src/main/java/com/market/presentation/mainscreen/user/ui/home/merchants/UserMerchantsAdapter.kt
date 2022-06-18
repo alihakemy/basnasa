@@ -7,9 +7,10 @@ import com.bumptech.glide.Glide
 import com.market.BuildConfig
 import com.market.data.models.get.homeusers.Merchant
 import com.market.databinding.UserMerchantsItemsBinding
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity.Companion.startTagerProfile
 
 
-class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
+class UserMerchantsAdapter(private val merchants: List<Merchant>?) :
     RecyclerView.Adapter<UserMerchantsAdapter.UserMerchantsViewHolder>() {
 
 
@@ -18,21 +19,25 @@ class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
         fun bind(get: Merchant?) {
 
             Glide.with(binding.profileImage.context).load(get?.imagePath).into(binding.profileImage)
-            binding.textView24.text=get?.name.toString()
-            binding.textView26.text=get?.distance.toString()
+            binding.textView24.text = get?.name.toString()
+            binding.textView26.text = get?.distance.toString()
 
-            binding.textView25.text=get?.shop_name.toString()
-            binding.ratingBar.rating=get?.rate?.toFloat() ?:0.0f
+            binding.textView25.text = get?.shop_name.toString()
+            binding.ratingBar.rating = get?.rate?.toFloat() ?: 0.0f
 
-            binding.ratingBar.numStars =4
+            binding.ratingBar.numStars = 4
 
-            if(BuildConfig.DEBUG){
+            if (BuildConfig.DEBUG) {
 
-                    binding.ratingBar.rating=2f
+                binding.ratingBar.rating = 2f
 
             }
 
-            binding.textView20.text ="("+ get?.rate_count +")"
+            binding.textView20.text = "(" + get?.rate_count + ")"
+
+            binding.root.setOnClickListener {
+                startTagerProfile(get?.id.toString(), it.context)
+            }
 
         }
     }
@@ -55,5 +60,5 @@ class UserMerchantsAdapter(private  val merchants: List<Merchant>?) :
 
     }
 
-    override fun getItemCount(): Int = merchants?.size ?:0
+    override fun getItemCount(): Int = merchants?.size ?: 0
 }

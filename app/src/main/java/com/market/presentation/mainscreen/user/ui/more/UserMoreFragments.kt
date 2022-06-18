@@ -1,11 +1,29 @@
 package com.market.presentation.mainscreen.user.ui.more
 
+import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.market.R
+import com.market.databinding.FragmentUserMoreFragmentsBinding
+import com.market.databinding.VerificationCodeFragmentBinding
+import com.market.presentation.authentication.trader.create.tagercompletedata.CompleteTagerDataActivity
+import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
+import com.market.presentation.authentication.user.login.LoginUser
+import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.mainscreen.user.ui.offers.OffersActivity
+import com.market.utils.startLink
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +40,7 @@ class UserMoreFragments : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var binding: FragmentUserMoreFragmentsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -31,12 +50,84 @@ class UserMoreFragments : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_more_fragments, container, false)
+        binding = FragmentUserMoreFragmentsBinding.inflate(inflater, container, false)
+
+        var coder = Geocoder(requireContext())
+
+        val activitys = (activity as MainActivityUser)
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                val addressList: List<Address> = coder.getFromLocation(
+                    activitys.getLatLong().first.toDouble(),
+                    activitys.getLatLong().second.toDouble(),
+                    1
+                )
+                if (!addressList.isNullOrEmpty()) {
+                    val location: Address = addressList[0]
+                    binding.textView39.text = location.countryName.toString()
+                }
+            }
+
+        }
+
+
+        binding.linearLayout12.setOnClickListener {
+
+            val intent = Intent(requireContext(), MapsActivity::class.java)
+            intent.putExtra("role", "location")
+
+            startActivity(intent)
+
+
+        }
+
+
+
+        binding.textView36.setOnClickListener {
+
+            val intent = Intent(requireContext(), LoginAsTrader::class.java)
+            startActivity(intent)
+        }
+
+        binding.account.setOnClickListener {
+            val intent = Intent(requireContext(), LoginUser::class.java)
+            startActivity(intent)
+
+        }
+        binding.join.setOnClickListener {
+
+            val intent = Intent(requireContext(), CompleteTagerDataActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("token", activitys.getLoginData().data.token)
+            startActivity(intent)
+
+        }
+        binding.offers.setOnClickListener {
+            val intent = Intent(requireContext(), OffersActivity::class.java)
+
+            startActivity(intent)
+
+        }
+
+        binding.shareAPP.setOnClickListener {
+            startLink(
+                "https://play.google.com/store/apps/details?id=" + "com.market",
+                requireContext()
+            )
+
+        }
+
+
+
+        return binding?.root
     }
+
 
     companion object {
         /**

@@ -9,6 +9,7 @@ import com.market.data.models.get.offers.Merchant
 import com.market.data.models.get.offers.SubCategory
 import com.market.databinding.OfferHorizontalBinding
 import com.market.databinding.SearchItemUserBinding
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity
 
 
 class UserHorizontalAdapter(
@@ -26,6 +27,9 @@ class UserHorizontalAdapter(
             binding.textView35.text = get.name.toString()
             binding.textView.text = "(" + get.rateCount + ")"
             binding.ratingBar.rating = get.rate?.toFloat() ?: 0f
+           binding.root.setOnClickListener {
+                TraderProfileActivity.startTagerProfile(get?.id.toString(), it.context)
+            }
         }
     }
 

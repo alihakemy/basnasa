@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.market.data.models.get.fav.Merchant
 import com.market.databinding.FavUserItem1Binding
 import com.market.databinding.FavUserItem2Binding
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity
 
 private const val LIST_ITEM = 0
 private const val GRID_ITEM = 1
@@ -79,6 +80,9 @@ class UserFavAdapter() :
             holder.binding.textView35.text=list[position].name.toString()
             holder.binding.textView.text="("+list[position].rateCount+")"
             holder.binding.ratingBar.rating=list[position].rate?.toFloat() ?:0f
+            holder.binding.root.setOnClickListener {
+                TraderProfileActivity.startTagerProfile(list[position]?.id.toString(), it.context)
+            }
 
         } else  if (holder is UserCategoriesViewHolder1 ) {
             Glide.with(holder.binding.image.context).load(list[position].imagePath?.toString()).into(holder.binding.image)
@@ -86,7 +90,9 @@ class UserFavAdapter() :
             holder.binding.textView35.text=list[position].name.toString()
             holder.binding.textView.text="("+list[position].rateCount+")"
             holder.binding.ratingBar.rating=list[position].rate?.toFloat() ?:0f
-
+            holder.binding.root.setOnClickListener {
+                TraderProfileActivity.startTagerProfile(list[position]?.id.toString(), it.context)
+            }
         }
 
 

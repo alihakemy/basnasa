@@ -2,7 +2,10 @@ package com.market.utils
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.telephony.TelephonyManager
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -12,12 +15,16 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 
+fun isAtLeastVersion(version: Int): Boolean {
+    return Build.VERSION.SDK_INT >= version
+}
 
+fun startLink(link: String, context: Context) {
+    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+    context.startActivity(browserIntent)
+}
 
 fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
     observe(lifecycleOwner, object : Observer<T> {
@@ -30,6 +37,7 @@ fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observ
         }
     })
 }
+
 fun prepareFilePart(partName: String, fileUri: String): MultipartBody.Part {
 
     val file: File = File(fileUri)
@@ -41,7 +49,7 @@ fun prepareFilePart(partName: String, fileUri: String): MultipartBody.Part {
     return MultipartBody.Part.createFormData(partName, file.name, requestFile)
 }
 
-fun getIso(context:Context): String {
+fun getIso(context: Context): String {
     return try {
         val telephonyManager =
             context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -55,6 +63,7 @@ fun getIso(context:Context): String {
 fun String.isValidEmail(): Boolean {
     return PatternsCompat.EMAIL_ADDRESS.matcher(this).matches()
 }
+
 fun Intent.clearStack() {
     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 }

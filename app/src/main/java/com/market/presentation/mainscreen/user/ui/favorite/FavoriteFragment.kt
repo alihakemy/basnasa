@@ -113,7 +113,7 @@ class FavoriteFragment : Fragment() {
 
 
         viewModel.getFav(
-            (requireActivity() as MainActivityUser).getLoginData().data.token,
+            activitys.getLoginData().data.token,
             activitys.getLatLong().first, activitys.getLatLong().second
         )
 
@@ -137,7 +137,7 @@ class FavoriteFragment : Fragment() {
 
                 }
                 else -> {
-                    Log.e("ALISAMI", result.data?.data.toString())
+                    Log.e("ALISAMI", result.message.toString())
 
                 }
 

@@ -81,4 +81,7 @@
     <string name="chat">Chat</string>
     <string name="delete">delete</string>
     <string name="edite">Edit</string>
+    <string name="MoreUs">More About Us</string>
+    <string name="products">More about our products</string>
+    <string name="love">make products with love</string>
 </resources>

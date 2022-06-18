@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#E37494"
-                android:fontFamily="@font/two_light"
+                android:textColor="#707070"
 
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,6 +72,7 @@
                 android:backgroundTint="#E37494"
 
                 android:drawableTint="#E37494"
+
 
                 android:drawableEnd="@drawable/phone"
                 android:text="+965"
@@ -103,8 +104,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#E37494"
-            android:fontFamily="@font/two_light"
 
+            android:textColor="#707070"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -142,6 +143,7 @@
             android:fontFamily="@font/text_medium"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="16dp"
+            android:textSize="14sp"
             android:text="@string/login"
             app:backgroundTint="@null" />
 

@@ -9,6 +9,7 @@ import com.like.OnLikeListener
 import com.market.BuildConfig
 import com.market.data.models.get.search.SearchResults
 import com.market.databinding.SearchItemUserBinding
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity
 import java.util.*
 
 
@@ -52,6 +53,11 @@ class SearchAdapter(private  val searchResults:SearchResults,inline val likeds:(
                 }
 
             })
+
+            binding.root.setOnClickListener {
+                TraderProfileActivity.startTagerProfile(get?.id.toString(), it.context)
+            }
+
 
         }
     }
