@@ -85,7 +85,7 @@ class VerificationCode : Fragment() {
             viewModel.verificationPhone(
                 SendVerificationPhone(
                     phone.toString(),
-                    binding?.otpView?.otp.toString()
+                    binding?.otpView?.value.toString()
                 )
             ).observe(viewLifecycleOwner, Observer {
 

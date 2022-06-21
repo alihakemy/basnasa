@@ -10,7 +10,7 @@ import com.market.data.repo.OnBoardingRepository
 import com.market.data.repo.UserRepoImp
 import com.market.data.services.Authentication
 import com.market.data.services.OnBoardingServices
-import com.market.data.services.User
+import com.market.data.services.apis
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -102,7 +102,7 @@ object Module {
     }
 
     @Provides
-    fun getUserRepoImp(user: User): UserRepoImp {
+    fun getUserRepoImp(user: apis): UserRepoImp {
         return UserRepoImp(user)
     }
 
@@ -113,8 +113,8 @@ object Module {
     }
 
     @Provides
-    fun getUserServices(retrofit: Retrofit): User {
-        return retrofit.create(User::class.java)
+    fun getUserServices(retrofit: Retrofit): apis {
+        return retrofit.create(apis::class.java)
     }
 
 }

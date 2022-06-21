@@ -1,15 +1,14 @@
 package com.market.presentation.mainscreen.trader
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.market.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.market.databinding.ActivityTaderMainBinding
+import com.market.presentation.mainscreen.trader.tagerdata.SecondFragment
+import com.market.presentation.mainscreen.trader.tagerpage.FirstFragment
 
 class TaderMainActivity : AppCompatActivity() {
 
@@ -21,10 +20,44 @@ class TaderMainActivity : AppCompatActivity() {
 
         binding = ActivityTaderMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val adapter= ScreenSlidePagerAdapter(this)
+        binding.viewPager22.adapter = adapter
+        binding.store.setCardBackgroundColor(android.graphics.Color.parseColor("#ebd7dd"))
+        binding.setting.setCardBackgroundColor(android.graphics.Color.parseColor("#00000000"))
+        binding.viewPager22.isUserInputEnabled = false
 
+        binding.setting.setOnClickListener {
+            binding.setting.setCardBackgroundColor(android.graphics.Color.parseColor("#ebd7dd"))
+            binding.store.setCardBackgroundColor(android.graphics.Color.parseColor("#00000000"))
+            binding.viewPager22.currentItem=1
+
+        }
+        binding.store.setOnClickListener {
+            binding.store.setCardBackgroundColor(android.graphics.Color.parseColor("#ebd7dd"))
+            binding.setting.setCardBackgroundColor(android.graphics.Color.parseColor("#00000000"))
+
+            binding.viewPager22.currentItem=0
+        }
 
 
     }
 
+    private inner class ScreenSlidePagerAdapter(fa: FragmentActivity) :
+        FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = 2
+        override fun createFragment(position: Int): Fragment {
+
+            return if (position == 0) {
+                FirstFragment()
+
+            } else {
+
+                SecondFragment()
+            }
+
+        }
+
+
+    }
 
 }

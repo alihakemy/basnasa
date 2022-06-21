@@ -6,15 +6,16 @@ import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.offers.Offers
+import com.market.data.models.get.paymentPackages.PaymentPackages
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
-import com.market.data.services.User
+import com.market.data.services.apis
 import com.market.utils.ResultState
 import javax.inject.Inject
 
-class UserRepoImp @Inject constructor(private val userService: User) {
+class UserRepoImp @Inject constructor(private val userService: apis) {
 
     private fun getToken(token: String): String = "Bearer $token"
 
@@ -289,7 +290,19 @@ class UserRepoImp @Inject constructor(private val userService: User) {
         }
 
     }
+    suspend fun getPaymentPackages( latitude: String,
+                             longitude: String):ResultState<PaymentPackages>{
 
+        return try {
+            val result = userService.getPaymentPackages(latitude, longitude)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
 
 
 

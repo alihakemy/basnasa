@@ -1,13 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MyApplications" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">#4CB595</item>
 
     </style>
 
-    <style name="Theme.Market" parent="Theme.MyApplication" />
+    <style name="Theme.Markets" parent="Theme.MyApplications" />
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="android:windowBackground">@drawable/splashs</item>
         <item name="android:statusBarColor">#4CB595</item>

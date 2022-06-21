@@ -30,17 +30,21 @@
 
                 <TextView
                     android:id="@+id/productName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:ems="10"
                     android:fontFamily="@font/text_medium"
-
-                    android:text="@string/product_name"
+                    android:lines="1"
+                    android:text="@string/lorem_ipsum"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+                    app:layout_constraintEnd_toStartOf="@+id/textView45"
                     app:layout_constraintStart_toStartOf="@+id/materialCardView"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
@@ -150,9 +154,9 @@
                     android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:background="@drawable/ic_rectangle_30310"
+                    android:layout_marginEnd="16dp"
 
+                    android:background="@drawable/ic_rectangle_30310"
                     android:fontFamily="@font/rubikregular"
                     android:gravity="center"
                     android:padding="5dp"
@@ -160,7 +164,7 @@
                     android:textColor="@color/white"
                     android:textSize="8sp"
                     app:layout_constraintBottom_toBottomOf="@+id/productName"
-                    app:layout_constraintStart_toEndOf="@+id/productName"
+                    app:layout_constraintEnd_toStartOf="@+id/textView32"
                     app:layout_constraintTop_toTopOf="@+id/productName" />
 
 

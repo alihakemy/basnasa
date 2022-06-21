@@ -5,8 +5,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="next">التالى</string>
+    <string name="previous">السابق</string>
 
 
     <string name="skip">تخطى</string>
@@ -55,7 +55,7 @@
     <string name="Projects">مشاريع مميزه</string>
     <string name="locations">موقعى</string>
     <string name="searchNear">ابحث عن الاماكن القريبه</string>
-    <string name="details">تفاصل</string>
+    <string name="details">التفاصل</string>
     <string name="offers">العروض</string>
     <string name="discover">استكشف اخر العروض المميزه</string>
     <string name="Fav">المفضله</string>
@@ -75,5 +75,22 @@
     <string name="love">نصنع لك منتجاتنا بحب</string>
     <string name="info">معلومات عن البائع</string>
     <string name="services">الخدمات</string>
+    <string name="tager">صفحه التاجر</string>
+    <string name="storepage">صفحه المتجر</string>
+    <string name="member">صلاحية العضوية</string>
+    <string name="tagerinfo">بيانات المتجر</string>
+    <string name="PackagesControl">التحكم بالباقات</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="setting">بياناتي</string>
+    <string name="ProductCount">عدد منتاجات الباقه</string>
+    <string name="CurrentProducts">المناجات الحاليه</string>
+    <string name="AddProduct">اضافه منتج</string>
+    <string name="unActive">غير نشيطه</string>
+    <string name="Pendding">بانتظار الموافقة</string>
+    <string name="Active">نشيطه</string>
+    <string name="PaymentPackages">اختر الباقه</string>
+    <string name="payment">الدفع</string>
+    <string name="paymentMethos">اختر طريقه الدفع المناسبه</string>
+    <string name="pay">مبلغ</string>
 
 </resources>

@@ -70,7 +70,8 @@
     </LinearLayout>
 
 
-    <in.aabhasjindal.otptextview.OtpTextView
+    <com.goodiebag.pinview.Pinview
+
         android:id="@+id/otp_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +79,8 @@
         app:bar_enabled="true"
         app:bar_height="2dp"
         app:height="40dp"
+        app:forceKeyboard="true"
+        app:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

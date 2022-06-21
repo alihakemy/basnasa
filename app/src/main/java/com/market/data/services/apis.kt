@@ -4,13 +4,14 @@ import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.offers.Offers
+import com.market.data.models.get.paymentPackages.PaymentPackages
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
 import retrofit2.http.*
 
-interface User {
+interface apis {
 
 
     @GET("api/favourites")
@@ -135,6 +136,18 @@ interface User {
         @Query("latitude") latitude: String,
         @Query("longitude") longitude: String
     ): TagerDetails
+
+
+
+    @GET("/api/package")
+    suspend fun getPaymentPackages(
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String
+    ): PaymentPackages
+
+
+
+
 
 
 

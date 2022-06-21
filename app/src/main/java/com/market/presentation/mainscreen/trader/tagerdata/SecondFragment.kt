@@ -1,5 +1,6 @@
-package com.market.presentation.mainscreen.trader
+package com.market.presentation.mainscreen.trader.tagerdata
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.market.R
 import com.market.databinding.FragmentSecondBinding
+import com.market.presentation.mainscreen.trader.paymentpakages.PaymentPackagesActivity
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -33,9 +35,11 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.textView77.setOnClickListener {
+            val intent =Intent(requireContext(),PaymentPackagesActivity::class.java)
+            context?.startActivity(intent)
         }
+
     }
 
     override fun onDestroyView() {

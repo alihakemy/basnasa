@@ -34,7 +34,7 @@
     </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlNormal">@color/quantum_grey</item>
         <item name="colorControlActivated">#E37494</item>
     </style>
 
@@ -42,6 +42,12 @@
 
         <item name="fontFamily">@font/text_medium</item>
 
+    </style>
+
+
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/two_light</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="Colors_Widget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">

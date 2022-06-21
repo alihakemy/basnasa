@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="275dp"
-    android:background="@android:color/transparent"
     android:layout_margin="20dp"
+    android:background="@android:color/transparent"
     android:elevation="10dp"
     android:layoutDirection="rtl">
 
@@ -39,24 +39,28 @@
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:layout_marginStart="4dp"
+        android:background="@color/black"
         android:scaleType="matrix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/black"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSizePercent2"
-        />
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSizePercent2" />
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+
+        android:ellipsize="end"
         android:fontFamily="@font/text_medium"
-        android:text="TextView"
-        android:textSize="15sp"
+        android:lines="1"
+        android:text="@string/lorem_ipsum"
         android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
@@ -136,10 +140,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="16dp"
+        android:ellipsize="end"
         android:fontFamily="@font/two_light"
+        android:lines="1"
         android:maxLines="2"
-
-        android:text="TextView"
+        android:text="@string/lorem_ipsum"
         android:textColor="@color/black"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout8"

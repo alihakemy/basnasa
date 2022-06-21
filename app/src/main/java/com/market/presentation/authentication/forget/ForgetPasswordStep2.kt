@@ -18,11 +18,11 @@ class ForgetPasswordStep2 : AppCompatActivity() {
 
         binding.button.setOnClickListener {
 
-            if (!binding.otpView.otp.toString().isNullOrEmpty()) {
-                if (binding.otpView.otp.toString().equals(getIntent().getStringExtra("code"))) {
+            if (!binding.otpView.value.toString().isNullOrEmpty()) {
+                if (binding.otpView.value.toString().equals(getIntent().getStringExtra("code"))) {
                     val intent = Intent(this, ForgetPasswordStep3::class.java)
                     intent.putExtra("phone", getIntent().getStringExtra("phone"))
-                    intent.putExtra("code", binding.otpView.otp.toString())
+                    intent.putExtra("code", binding.otpView.value.toString())
 
                     startActivity(intent)
                     finish()

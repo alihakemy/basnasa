@@ -20,6 +20,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide.with
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.github.dhaval2404.imagepicker.util.FileUriUtils
 import com.google.android.material.navigation.NavigationBarView
 import com.market.data.models.SendCompleteJoin
 import com.market.data.models.get.categories.Categories
@@ -178,7 +179,7 @@ class CompleteTagerDataActivity : BaseActivity() {
                         ),
                         intent.getStringExtra("token").toString(),
                         prepareFilePart(
-                            "image", mFileUtils(this).getPath(it, this) ?:"",
+                            "image", FileUriUtils.getRealPath(this, imageUrl.toString().toUri()).toString(),
                         )
                     )
                 }

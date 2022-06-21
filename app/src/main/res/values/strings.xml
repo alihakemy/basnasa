@@ -86,4 +86,21 @@
     <string name="love">make products with love</string>
     <string name="info">info about Merchant</string>
     <string name="services">Services</string>
+    <string name="tager">Merchant</string>
+    <string name="storepage">Store Page</string>
+    <string name="member">Membership validity</string>
+    <string name="tagerinfo">Merchant Info</string>
+    <string name="PackagesControl">Packages Control</string>
+    <string name="logout">LogOut</string>
+    <string name="setting">Setting</string>
+    <string name="ProductCount">Product Count</string>
+    <string name="CurrentProducts">Current Products</string>
+    <string name="AddProduct">Add Product</string>
+    <string name="unActive">UnActive</string>
+    <string name="Pendding">Pending</string>
+    <string name="Active">Active</string>
+    <string name="PaymentPackages">Payment Packages</string>
+    <string name="payment">Payment</string>
+    <string name="paymentMethos">PaymentMethod</string>
+    <string name="pay">pay</string>
 </resources>
