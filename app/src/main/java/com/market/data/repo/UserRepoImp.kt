@@ -321,5 +321,23 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
     }
 
 
+    suspend fun getBuyPackage(packageId: String, onInvoiceCreated: String):ResultState<DefaultResponse >{
+
+        return try {
+            val map =HashMap<String,String>()
+            map.put("package_id",packageId)
+            map.put("invoiceId",onInvoiceCreated)
+
+            val result = userService.getBuyPackage(map)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            Log.e("ErroePayment",e.localizedMessage.toString())
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
 
 }

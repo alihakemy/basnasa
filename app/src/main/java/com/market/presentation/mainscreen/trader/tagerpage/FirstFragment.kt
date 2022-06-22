@@ -10,7 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.market.BuildConfig
@@ -24,6 +27,7 @@ import com.market.presentation.mainscreen.trader.tagerpage.adapter.ProductAdapte
 import com.market.presentation.mainscreen.user.displaytrader.tageradapter.ProductAdapter
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -51,20 +55,25 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.results.observe(viewLifecycleOwner, Observer {
-            when (val results = it) {
-                is ResultState.Success<TagerProfile> -> {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.results.observe(viewLifecycleOwner, Observer {
+                    when (val results = it) {
+                        is ResultState.Success<TagerProfile> -> {
 
-                    Log.e("TagerProfile", results.data.toString())
-                    renderTagerData(results.data)
-                }
-                else -> {
+                            Log.e("TagerProfile", results.data.toString())
+                            renderTagerData(results.data)
+                        }
+                        else -> {
 
-                }
+                        }
+
+                    }
+
+                })
 
             }
-
-        })
+        }
 
 
     }

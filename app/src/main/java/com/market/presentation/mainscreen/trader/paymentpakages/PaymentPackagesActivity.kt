@@ -53,6 +53,7 @@ class PaymentPackagesActivity : BaseActivity() {
                             val intent =Intent(this, PackagePayment::class.java)
                             intent.putExtra("item",packages)
                             startActivity(intent)
+                            finish()
 
 
                         }

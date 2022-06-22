@@ -17,6 +17,7 @@ open class PackagesAdapter(
     inner class PackagesViewHolder(val binding: PackageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(packageSelected: Package?) {
+            binding.textView71.text=packageSelected?.name.toString()
             binding.textView100.text = packageSelected?.text1.toString()
 
             binding.textView75.text = packageSelected?.text2.toString()

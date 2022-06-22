@@ -10,6 +10,10 @@ import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.data.models.get.tagerprofile.TagerProfile
+import com.market.data.models.get.tagetcomplet.TagetCompleteData
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Response
 import retrofit2.http.*
 
 interface apis {
@@ -154,6 +158,39 @@ interface apis {
         @Query("latitude") latitude: String,
         @Query("longitude") longitude: String
     ): TagerProfile
+
+
+    @POST("/api/assign_package")
+    suspend fun getBuyPackage(@Body packageId: HashMap<String,String>): DefaultResponse
+
+
+
+
+
+
+
+    @Multipart
+    @POST("api/completeTager")
+    suspend fun addProduct(
+        @Part("category_id") category_id: RequestBody,
+        @Part("arrivaltime") arrivaltime: RequestBody,
+        @Part("instagram_link") instagram_link: RequestBody,
+        @Part("facebook_link") facebook_link: RequestBody,
+        @Part("whatsapp_link") whatsapp_link: RequestBody,
+        @Part("snapchat_link") snapchat_link: RequestBody,
+        @Part("lat ") lat: RequestBody,
+        @Part("long") long: RequestBody,
+        @Part("about") about: RequestBody,
+
+        @Part("phone ") phone: RequestBody,
+        @Header("Authorization") token: String,
+        @Part image: MultipartBody.Part
+    ): Response<TagetCompleteData>
+
+
+
+
+
 
 
 
