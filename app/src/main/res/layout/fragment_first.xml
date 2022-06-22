@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -137,6 +143,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubikregular"
@@ -165,15 +172,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout24">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/ic_path_47071"
-            android:fontFamily="@font/two_light"
-            android:gravity="center"
-            android:text="@string/unActive"
-            android:textColor="#707070" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_path_47071" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/two_light"
+                android:gravity="center"
+                android:text="@string/Active"
+                android:textColor="#707070" />
+        </FrameLayout>
 
         <ImageView
             android:layout_width="1dp"
@@ -181,15 +200,26 @@
 
             android:background="@color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/ic_path_47071"
-            android:fontFamily="@font/two_light"
-            android:gravity="center"
-            android:text="@string/Pendding"
-            android:textColor="#707070" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/pending"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_path_47071" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/two_light"
+                android:gravity="center"
+                android:text="@string/Pendding"
+                android:textColor="#707070" />
+        </FrameLayout>
 
         <ImageView
             android:layout_width="1dp"
@@ -197,21 +227,37 @@
 
             android:background="@color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/ic_path_47071"
-            android:fontFamily="@font/two_light"
-            android:gravity="center"
-            android:text="@string/Active"
-            android:textColor="#707070" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/inactive"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_path_47071" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/two_light"
+                android:gravity="center"
+
+                android:text="@string/unActive"
+                android:textColor="#707070" />
+        </FrameLayout>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:nestedScrollingEnabled="false"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -220,3 +266,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

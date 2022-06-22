@@ -9,6 +9,7 @@ import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
+import com.market.data.models.get.tagerprofile.TagerProfile
 import retrofit2.http.*
 
 interface apis {
@@ -148,6 +149,11 @@ interface apis {
 
 
 
+    @GET("/api/merchant_profile")
+    suspend fun getTagerProfile(
+        @Query("latitude") latitude: String,
+        @Query("longitude") longitude: String
+    ): TagerProfile
 
 
 

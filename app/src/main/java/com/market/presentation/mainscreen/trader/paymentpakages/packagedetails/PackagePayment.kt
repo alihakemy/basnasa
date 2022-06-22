@@ -1,14 +1,15 @@
 package com.market.presentation.mainscreen.trader.paymentpakages.packagedetails
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.google.gson.Gson
 import com.market.BuildConfig
 import com.market.R
 import com.market.data.models.get.paymentPackages.Package
-import com.market.data.models.get.paymentPackages.PaymentPackages
 import com.market.databinding.ActivityPackagePaymentBinding
+import com.market.presentation.bases.BaseActivity
 import com.myfatoorah.sdk.entity.executepayment.MFExecutePaymentRequest
 import com.myfatoorah.sdk.entity.initiatepayment.MFInitiatePaymentRequest
 import com.myfatoorah.sdk.entity.initiatepayment.MFInitiatePaymentResponse
@@ -23,7 +24,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class PackagePayment : AppCompatActivity() {
+class PackagePayment : BaseActivity() {
     val TAG = "PackagePayment"
     lateinit var binding: ActivityPackagePaymentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,7 @@ class PackagePayment : AppCompatActivity() {
         setContentView(binding.root)
         val gson = Gson()
 
-        val intentData =intent.getParcelableExtra<Package>("item")
+        val intentData = intent.getParcelableExtra<Package>("item")
         if (BuildConfig.DEBUG) {
             MFSDK.init(
                 "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL",
@@ -80,7 +81,7 @@ class PackagePayment : AppCompatActivity() {
             intentData?.price?.let { it1 -> executePayment(2, it1) }
 
         }
-        binding.textView87.text= intentData?.price.toString() +"K.D"
+        binding.textView87.text = intentData?.price.toString() + "K.D"
 
     }
 
@@ -104,8 +105,7 @@ class PackagePayment : AppCompatActivity() {
     }
 
     private fun executePayment(paymentMethod: Int, price: Double) {
-        val invoiceAmount = 5.5
-        val request = MFExecutePaymentRequest(paymentMethod, invoiceAmount)
+        val request = MFExecutePaymentRequest(paymentMethod, price)
 
         MFSDK.executePayment(
             this,
@@ -118,27 +118,40 @@ class PackagePayment : AppCompatActivity() {
             when (result) {
                 is MFResult.Success -> {
                     Log.d(TAG, "Response: " + Gson().toJson(result.response))
+                    showAlertDialog("Payment done successfully")
+                    sendPayment(price)
+                    binding.done.isVisible = true
+
                 }
                 is MFResult.Fail -> {
                     Log.d(TAG, "Fail: " + Gson().toJson(result.error))
+                    showAlertDialog(Gson().toJson(result.error))
+
                 }
             }
 
         }
     }
 
+    private fun showAlertDialog(text: String) {
+        AlertDialog.Builder(this)
+            .setMessage(text)
+            .setPositiveButton(android.R.string.ok) { _, _ -> }
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
+    }
 
     // to send payment to mail or phone number
-    private fun sendPayment() {
-        val invoiceAmount = 5.5
+    private fun sendPayment(amount: Double) {
+
         val request = MFSendPaymentRequest(
-            invoiceAmount,
-            "Customer name", MFNotificationOption.LINK
+            amount,
+            getLoginData().data.user.name, MFNotificationOption.LINK
         )
         request.customerEmail =
-            "test@test.com" // The email required if you choose MFNotificationOption.ALL or MFNotificationOption.EMAIL
+            getLoginData().data.user.email // The email required if you choose MFNotificationOption.ALL or MFNotificationOption.EMAIL
         request.customerMobile =
-            "12345678" // The mobile required if you choose MFNotificationOption.ALL or MFNotificationOption.SMS
+            getLoginData().data.user.phone // The mobile required if you choose MFNotificationOption.ALL or MFNotificationOption.SMS
         request.mobileCountryCode = MFMobileISO.KUWAIT.code
 
         MFSDK.sendPayment(request, MFAPILanguage.AR) { result: MFResult<MFSendPaymentResponse> ->

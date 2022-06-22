@@ -9,7 +9,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.market.databinding.ActivityTaderMainBinding
 import com.market.presentation.mainscreen.trader.tagerdata.SecondFragment
 import com.market.presentation.mainscreen.trader.tagerpage.FirstFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TaderMainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTaderMainBinding
@@ -20,7 +22,7 @@ class TaderMainActivity : AppCompatActivity() {
 
         binding = ActivityTaderMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val adapter= ScreenSlidePagerAdapter(this)
+        val adapter = ScreenSlidePagerAdapter(this)
         binding.viewPager22.adapter = adapter
         binding.store.setCardBackgroundColor(android.graphics.Color.parseColor("#ebd7dd"))
         binding.setting.setCardBackgroundColor(android.graphics.Color.parseColor("#00000000"))
@@ -29,14 +31,14 @@ class TaderMainActivity : AppCompatActivity() {
         binding.setting.setOnClickListener {
             binding.setting.setCardBackgroundColor(android.graphics.Color.parseColor("#ebd7dd"))
             binding.store.setCardBackgroundColor(android.graphics.Color.parseColor("#00000000"))
-            binding.viewPager22.currentItem=1
+            binding.viewPager22.currentItem = 1
 
         }
         binding.store.setOnClickListener {
             binding.store.setCardBackgroundColor(android.graphics.Color.parseColor("#ebd7dd"))
             binding.setting.setCardBackgroundColor(android.graphics.Color.parseColor("#00000000"))
 
-            binding.viewPager22.currentItem=0
+            binding.viewPager22.currentItem = 0
         }
 
 

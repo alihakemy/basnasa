@@ -11,6 +11,7 @@ import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
+import com.market.data.models.get.tagerprofile.TagerProfile
 import com.market.data.services.apis
 import com.market.utils.ResultState
 import javax.inject.Inject
@@ -305,7 +306,19 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
     }
 
 
+    suspend fun getTagerProfiles( latitude: String,
+                                    longitude: String):ResultState<TagerProfile>{
 
+        return try {
+            val result = userService.getTagerProfile(latitude, longitude)
+            ResultState.Success(result)
+        }
+        catch (e:Exception){
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
 
 
 

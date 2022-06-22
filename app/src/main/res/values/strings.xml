@@ -103,4 +103,10 @@
     <string name="payment">Payment</string>
     <string name="paymentMethos">PaymentMethod</string>
     <string name="pay">pay</string>
+    <string name="AddProducts">Add Products</string>
+    <string name="ProductImage">Product Image</string>
+    <string name="MainPicture">Main Picture</string>
+    <string name="MorePicture">More Picture</string>
+    <string name="price">Price</string>
+    <string name="discount">Discount</string>
 </resources>

@@ -92,5 +92,11 @@
     <string name="payment">الدفع</string>
     <string name="paymentMethos">اختر طريقه الدفع المناسبه</string>
     <string name="pay">مبلغ</string>
+    <string name="AddProducts">اضافه منتج</string>
+    <string name="ProductImage">صور المنتج</string>
+    <string name="MainPicture">الصورة الرئيسية</string>
+    <string name="MorePicture">إضافة المزيد</string>
+    <string name="price">السعر</string>
+    <string name="discount">الخصم</string>
 
 </resources>
