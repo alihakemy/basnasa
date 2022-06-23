@@ -98,15 +98,20 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
         timers = object : CountDownTimer(60000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
+                kotlin.runCatching {
 
-                binding?.textView12?.text =
-                    "أعادة إرسال الرمز خلال" + (millisUntilFinished / 1000).toString()
-                //here you can have your logic to set text to edittext
+                    binding?.textView12?.text =
+                        "أعادة إرسال الرمز خلال" + (millisUntilFinished / 1000).toString()
+                    //here you can have your logic to set text to edittext
+                }
             }
 
             override fun onFinish() {
-                binding?.textView12?.text = "0"
-                binding?.textView13?.isVisible = true
+                kotlin.runCatching {
+                    binding?.textView12?.text = "0"
+                    binding?.textView13?.isVisible = true
+                }
+
             }
         }.start()
     }

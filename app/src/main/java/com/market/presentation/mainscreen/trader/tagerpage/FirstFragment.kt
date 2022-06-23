@@ -92,22 +92,32 @@ class FirstFragment : Fragment() {
         binding.count.text = data?.data?.merchant?.allProducts.toString()
 
         binding.imageView56.setOnClickListener {
-            if (!BuildConfig.DEBUG) {
-                if (data?.data?.merchant?.packageCount!! > data?.data?.merchant?.allProducts!!) {
-                    val intent = Intent(requireContext(), AddProduct::class.java)
-                    requireContext().startActivity(intent)
-                } else {
+//            if (!BuildConfig.DEBUG) {
+//                if (data?.data?.merchant?.packageCount!! > data?.data?.merchant?.allProducts!!) {
+//                    val intent = Intent(requireContext(), AddProduct::class.java)
+//                    requireContext().startActivity(intent)
+//                } else {
+//
+//                    Toast.makeText(requireContext(), "شراء باقه اخرى ", Toast.LENGTH_LONG).show()
+//                    val intent = Intent(requireContext(), PaymentPackagesActivity::class.java)
+//                    context?.startActivity(intent)
+//
+//                }
+//            } else {
+//                val intent = Intent(requireContext(), AddProduct::class.java)
+//                requireContext().startActivity(intent)
+//            }
 
-                    Toast.makeText(requireContext(), "شراء باقه اخرى ", Toast.LENGTH_LONG).show()
-                    val intent = Intent(requireContext(), PaymentPackagesActivity::class.java)
-                    context?.startActivity(intent)
-
-                }
-            } else {
+            if (data?.data?.merchant?.packageCount!! > data?.data?.merchant?.allProducts!!) {
                 val intent = Intent(requireContext(), AddProduct::class.java)
                 requireContext().startActivity(intent)
-            }
+            } else {
 
+                Toast.makeText(requireContext(), "شراء باقه اخرى ", Toast.LENGTH_LONG).show()
+                val intent = Intent(requireContext(), PaymentPackagesActivity::class.java)
+                context?.startActivity(intent)
+
+            }
 
         }
 

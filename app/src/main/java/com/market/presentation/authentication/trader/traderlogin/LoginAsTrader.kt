@@ -90,7 +90,7 @@ class LoginAsTrader : BaseActivity() {
                     if (pd.isShowing) {
                         pd.dismiss()
                     }
-                    Log.e("MessageALI", result.toString())
+                    Log.e("MessageALI", result.message.toString())
                     if (result.message.equals("Sorry This account is not activated")) {
                         val intent = Intent(this, TagerCodeVerificationActivity::class.java)
                         bundle.putString("phone", binding.phoneTextTextPersonName.text.toString())
