@@ -104,8 +104,8 @@
 
             <ImageView
                 android:id="@+id/imageView69"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_margin="30dp"
                 android:layout_marginTop="32dp"
 
@@ -114,10 +114,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView88"
                 app:srcCompat="@drawable/ic_componensst_7___1" />
 
+
+
             <ImageView
                 android:id="@+id/imageView70"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_margin="30dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView69"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -224,9 +226,10 @@
                         app:srcCompat="@drawable/ic_rectangle_30092" />
 
                     <TextView
+                        android:id="@+id/currency"
                         android:layout_width="63dp"
-                        android:layout_height="40dp"
 
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
 
                         android:layout_weight="1"
@@ -248,10 +251,12 @@
                         android:layout_height="match_parent"
                         app:srcCompat="@drawable/ic_rectangle_30304" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/discount"
                         android:layout_width="101dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
+
                         android:layout_weight="1"
                         android:background="@null"
                         android:gravity="center"
@@ -280,7 +285,8 @@
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_rectangle_30096" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/productName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -312,15 +318,17 @@
 
                 </androidx.appcompat.widget.AppCompatImageView>
 
-                <TextView
+                <EditText
+                    android:id="@+id/details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:layout_weight="1"
+                    android:background="@null"
                     android:gravity="start"
                     android:minHeight="180dp"
                     android:padding="@dimen/dimen_8"
-                    android:text="@string/details" />
+                    android:hint="@string/details" />
             </FrameLayout>
 
 
@@ -347,6 +355,14 @@
             android:text="@string/next"
             android:textColor="@color/white"
             android:textSize="22sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>

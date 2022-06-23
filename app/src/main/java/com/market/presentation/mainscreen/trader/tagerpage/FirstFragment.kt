@@ -57,6 +57,7 @@ class FirstFragment : Fragment() {
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getTagerProfile()
                 viewModel.results.observe(viewLifecycleOwner, Observer {
                     when (val results = it) {
                         is ResultState.Success<TagerProfile> -> {
@@ -79,6 +80,9 @@ class FirstFragment : Fragment() {
     }
 
     fun renderTagerData(data: TagerProfile?) {
+        binding.inactive.setBackgroundResource(R.drawable.ic_path_47071)
+        binding.pending.setBackgroundResource(R.drawable.ic_path_47071)
+        binding.active.setBackgroundResource(R.drawable.ic_path_47071)
 
         Glide.with(requireContext()).load(data?.data?.merchant?.imagePath.toString())
             .into(binding.profileImage)

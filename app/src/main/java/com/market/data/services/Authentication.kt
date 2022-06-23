@@ -62,7 +62,7 @@ interface Authentication {
         @Part("facebook_link") facebook_link: RequestBody,
         @Part("whatsapp_link") whatsapp_link: RequestBody,
         @Part("snapchat_link") snapchat_link: RequestBody,
-        @Part("lat ") lat: RequestBody,
+        @Part("lat") lat: RequestBody,
         @Part("long") long: RequestBody,
         @Part("about") about: RequestBody,
 

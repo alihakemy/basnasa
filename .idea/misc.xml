@@ -39,9 +39,11 @@
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.114" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1765" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.145" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_close_white.xml" value="0.1675" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1565" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1765" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_baseline_shopping_bag_24.xml" value="0.115" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_componensst_7___1.xml" value="0.1685" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_component_11___1.xml" value="0.1765" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_component_13___1.xml" value="0.1765" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_ellipse_505.xml" value="0.1765" />
@@ -72,7 +74,7 @@
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/tab_color_selector.xml" value="0.162" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/font/.xml" value="0.1623931623931624" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/font/rubik_mono_one.xml" value="0.1623931623931624" />
-        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_add_product.xml" value="0.14666666666666667" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_add_product.xml" value="0.16666666666666666" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_complete_tager_data.xml" value="0.16666666666666666" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_display_product.xml" value="0.22" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/activity_forget_password_step1.xml" value="0.16770833333333332" />
@@ -91,6 +93,7 @@
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/cat_taget_item.xml" value="0.3333333333333333" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/chips.xml" value="0.22" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/chipss.xml" value="0.3333333333333333" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/circle_image.xml" value="0.1368106028217187" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/comments_item.xml" value="0.3333333333333333" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/content_tader_main.xml" value="0.13760683760683762" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/create_user_account_activity.xml" value="0.17916666666666667" />

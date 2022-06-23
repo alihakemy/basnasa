@@ -22,12 +22,9 @@ class TagerPageViewModel @Inject constructor(
     val results: MutableLiveData<ResultState<TagerProfile>> =
         MutableLiveData<ResultState<TagerProfile>>()
 
-    init {
 
-        getTagerProfile()
-    }
 
-    private fun getTagerProfile(
+   fun getTagerProfile(
 
     ) {
 

@@ -38,6 +38,10 @@ fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observ
     })
 }
 
+fun String.toRequestBody(): RequestBody {
+   return RequestBody.create("multipart/form-data".toMediaTypeOrNull(), this)
+
+}
 fun prepareFilePart(partName: String, fileUri: String): MultipartBody.Part {
 
     val file: File = File(fileUri)

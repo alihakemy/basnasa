@@ -20,16 +20,18 @@ interface apis {
 
 
     @GET("api/favourites")
-    suspend fun getFavourites(@Header("Authorization") token: String,
-                              @Query("latitude")lat:String,
-                              @Query("longitude")long :String
-                              ): Favourites
+    suspend fun getFavourites(
+        @Header("Authorization") token: String,
+        @Query("latitude") lat: String,
+        @Query("longitude") long: String
+    ): Favourites
 
     @GET("api/favourites")
-    suspend fun getFavourites(@Header("Authorization") token: String,
-                              @Query("latitude")lat:String,
-                              @Query("longitude")long :String,
-                              @Query("id")subId:String
+    suspend fun getFavourites(
+        @Header("Authorization") token: String,
+        @Query("latitude") lat: String,
+        @Query("longitude") long: String,
+        @Query("id") subId: String
     ): Favourites
 
 
@@ -92,11 +94,6 @@ interface apis {
     ): Sections
 
 
-
-
-
-
-
     @GET("/api/offers/merchants")
     suspend fun getOffer(
 
@@ -117,12 +114,8 @@ interface apis {
 
     @DELETE("/api/deleteFavouriteAd/{merchant}")
     suspend fun deleteFav(
-       @Path("merchant") productId: String,
+        @Path("merchant") productId: String,
     ): DefaultResponse
-
-
-
-
 
 
     @GET("/api/merchant/{tagerId}")
@@ -143,14 +136,11 @@ interface apis {
     ): TagerDetails
 
 
-
     @GET("/api/package")
     suspend fun getPaymentPackages(
         @Query("latitude") latitude: String,
         @Query("longitude") longitude: String
     ): PaymentPackages
-
-
 
 
     @GET("/api/merchant_profile")
@@ -161,39 +151,24 @@ interface apis {
 
 
     @POST("/api/assign_package")
-    suspend fun getBuyPackage(@Body packageId: HashMap<String,String>): DefaultResponse
-
-
-
-
-
+    suspend fun getBuyPackage(@Body packageId: HashMap<String, String>): DefaultResponse
 
 
     @Multipart
-    @POST("api/completeTager")
+    @POST("/api/add_product")
     suspend fun addProduct(
         @Part("category_id") category_id: RequestBody,
-        @Part("arrivaltime") arrivaltime: RequestBody,
-        @Part("instagram_link") instagram_link: RequestBody,
-        @Part("facebook_link") facebook_link: RequestBody,
-        @Part("whatsapp_link") whatsapp_link: RequestBody,
-        @Part("snapchat_link") snapchat_link: RequestBody,
-        @Part("lat ") lat: RequestBody,
-        @Part("long") long: RequestBody,
+        @Part("mainprice") mainprice: RequestBody,
+        @Part("discount") discount: RequestBody,
+        @Part("stoke") stoke: RequestBody,
+        @Part image: MultipartBody.Part,
+        @Part("name") name: RequestBody,
+        @Part files: List<MultipartBody.Part>,
+        @Part("currecny") long: RequestBody,
         @Part("about") about: RequestBody,
 
-        @Part("phone ") phone: RequestBody,
-        @Header("Authorization") token: String,
-        @Part image: MultipartBody.Part
-    ): Response<TagetCompleteData>
 
-
-
-
-
-
-
-
+        ): DefaultResponse
 
 
 }
