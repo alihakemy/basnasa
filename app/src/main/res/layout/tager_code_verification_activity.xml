@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/two_light"
 
+            android:visibility="gone"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#E37494"
             android:text="@string/changeNumber"

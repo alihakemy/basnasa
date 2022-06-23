@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Markets"
         tools:replace="android:theme"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
         <activity
             android:name=".presentation.mainscreen.trader.addproduct.AddProduct"

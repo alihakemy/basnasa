@@ -86,6 +86,8 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
         startTimer()
 
         binding?.textView13?.setOnClickListener {
+            binding?.textView13?.isVisible = false
+
             viewModel.resendCode(ResendCode(phone.toString(), "phone"))
             startTimer()
         }

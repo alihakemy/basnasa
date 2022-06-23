@@ -12,12 +12,12 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:rotation="180"
-        android:tint="@color/black"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+        app:srcCompat="@drawable/ic_baseline_navigate_next_24"
+        app:tint="@color/black" />
 
     <TextView
         android:id="@+id/textView2"
@@ -25,11 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/text_medium"
+        android:textColor="#E37494"
+        android:textSize="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="64dp"
         android:text="@string/logintagerss"
-        android:textColor="#E37494"
-        android:textSize="25sp"
+
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
