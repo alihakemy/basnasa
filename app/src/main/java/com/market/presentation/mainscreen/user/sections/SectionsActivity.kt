@@ -70,21 +70,14 @@ class SectionsActivity : BaseActivity() {
         }
 
 
-        if (BuildConfig.DEBUG) {
-            intent.getStringExtra("categoryId")?.let {
-                viewModels.getSectionCategories(
-                    it, getLoginData().data.token,
-                    latitude = "29", longitude = "48"
-                )
-            }
-        } else {
+
             intent.getStringExtra("categoryId")?.let {
                 viewModels.getSectionCategories(
                     it, getLoginData().data.token,
                     latitude = getLatLong().first, longitude = getLatLong().second
                 )
             }
-        }
+
 
         viewModels.results.observe(this, Observer {
 

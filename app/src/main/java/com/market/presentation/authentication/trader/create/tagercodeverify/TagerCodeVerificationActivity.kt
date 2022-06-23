@@ -2,25 +2,27 @@ package com.market.presentation.authentication.trader.create.tagercodeverify
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import com.market.R
+import com.market.data.models.ResendCode
 import com.market.data.models.SendVerificationPhone
 import com.market.data.models.get.verificationPhone.VerificationPhone
 import com.market.databinding.TagerCodeVerificationActivityBinding
 import com.market.presentation.authentication.trader.create.tagercompletedata.CompleteTagerDataActivity
-import com.market.presentation.location.MapsActivity
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
+
 
 @AndroidEntryPoint
 class TagerCodeVerificationActivity : AppCompatActivity() {
     var binding: TagerCodeVerificationActivityBinding? = null
     val viewModel: TagerCodeVerificationViewModel by viewModels()
+    var timers: CountDownTimer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = TagerCodeVerificationActivityBinding.inflate(layoutInflater)
@@ -60,7 +62,7 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
                         intent.flags =
                             Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                         viewModel.storeToken(result.data!!.token.toString())
-                        intent.putExtra("token",result.data!!.token.toString())
+                        intent.putExtra("token", result.data!!.token.toString())
                         startActivity(intent)
                         finish()
 
@@ -79,5 +81,36 @@ class TagerCodeVerificationActivity : AppCompatActivity() {
 
         }
 
+        binding?.textView13?.isVisible = false
+
+        startTimer()
+
+        binding?.textView13?.setOnClickListener {
+            viewModel.resendCode(ResendCode(phone.toString(), "phone"))
+            startTimer()
+        }
+
+    }
+
+    fun startTimer() {
+        timers = object : CountDownTimer(60000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+
+                binding?.textView12?.text =
+                    "أعادة إرسال الرمز خلال" + (millisUntilFinished / 1000).toString()
+                //here you can have your logic to set text to edittext
+            }
+
+            override fun onFinish() {
+                binding?.textView12?.text = "0"
+                binding?.textView13?.isVisible = true
+            }
+        }.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timers?.cancel()
     }
 }

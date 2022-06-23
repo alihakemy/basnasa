@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.market.data.models.ResendCode
 import com.market.data.models.SendVerificationPhone
 import com.market.data.models.get.User
 import com.market.data.models.get.verificationPhone.VerificationPhone
@@ -23,6 +24,16 @@ class TagerCodeVerificationViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) :ViewModel() {
 
+  fun resendCode(resendCode: ResendCode) {
+
+      viewModelScope.launch {
+          authenticationRepository.resendCode(resendCode)
+
+      }
+
+
+
+    }
 
     fun verificationPhone(verificationPhone: SendVerificationPhone): LiveData<ResultState<VerificationPhone>> {
         val registerResults: MutableLiveData<ResultState<VerificationPhone>> = MutableLiveData()

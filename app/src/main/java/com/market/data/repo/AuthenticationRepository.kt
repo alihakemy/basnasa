@@ -23,7 +23,15 @@ class AuthenticationRepository @Inject constructor(
     private val authentication: Authentication,
 
     ) {
+    suspend fun resendCode(resendCode: ResendCode) {
+        try {
 
+            val result = authentication.resendCode(resendCode)
+
+
+        } catch (e: Exception) {
+        }
+    }
 
     suspend fun login(sendLogin: SendLogin): ResultState<LoginResponse> {
         return try {

@@ -92,13 +92,10 @@ class OffersFragment : Fragment() {
             startActivity(intent)
         }
 
-        if (BuildConfig.DEBUG) {
-            viewModel?.getOffers("29", "48")
 
-        } else {
             viewModel?.getOffers(activitys.getLatLong().first, activitys.getLatLong().second)
 
-        }
+
         viewModel?.results?.observe(viewLifecycleOwner, Observer {
 
             when (val result = it) {

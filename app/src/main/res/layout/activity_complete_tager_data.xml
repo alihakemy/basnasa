@@ -367,16 +367,57 @@
 
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/location"
-                style="@style/myMaterialButton"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/locationChoice"
-                app:backgroundTint="@null" />
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/appCompatImageView4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_group_96525" />
+
+                <TextView
+                    android:id="@+id/location"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+
+                    android:paddingStart="@dimen/dimen_8"
+                    android:paddingEnd="@dimen/dimen_8"
+                    android:text="@string/locationChoice"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@null"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView3"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView4"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView3"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView3" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="end|center_vertical"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="@+id/location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/location"
+                    app:srcCompat="@drawable/ic_pin" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button"
@@ -384,6 +425,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                app:cornerRadius="15sp"
 
                 android:elevation="10dp"
                 android:layout_marginTop="60dp"

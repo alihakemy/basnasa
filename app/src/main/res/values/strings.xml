@@ -7,6 +7,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="login">Login</string>
+    <string name="logintagerss">Login As Tager</string>
 
 
     <string name="skip">skip</string>
@@ -37,8 +38,8 @@
     <string name="choicelocation">Choice You Location</string>
     <string name="start">start</string>
     <string name="shope_name">Shope Name</string>
-    <string name="CompleteJoin">اكمل طلب الانضمام</string>
-    <string name="locationChoice">اختر الموقع</string>
+    <string name="CompleteJoin">Join Order</string>
+    <string name="locationChoice">Location</string>
     <string name="title_activity_tader_main">TaderMainActivity</string>
 
     <string name="lorem_ipsum">

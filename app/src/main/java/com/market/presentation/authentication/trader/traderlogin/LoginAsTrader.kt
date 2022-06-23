@@ -99,7 +99,7 @@ class LoginAsTrader : BaseActivity() {
                         finish()
                     }
 
-                    Toast.makeText(this, result.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, result.message.toString(), Toast.LENGTH_LONG).show()
 
                 }
             }
