@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import com.market.R
 import com.market.data.models.get.productdetails.Image
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.productdetails.Products
@@ -144,14 +145,14 @@ class ShowProductDetailsTager : BaseActivity() {
             if (!showAll) {
                 showAll = true
 
-                binding.textView47.text = "اخفاء"
+                binding.textView47.text = getString(R.string.hide)
 
 
                 data?.data?.rates?.let { renderComments(it, true) }
 
             } else {
                 showAll = false
-                binding.textView47.text = "عرض الكل"
+                binding.textView47.text = getString(R.string.ShowsALL)
 
 
                 if (data?.data?.rates?.size ?: 0 > 0) {

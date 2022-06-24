@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
@@ -36,12 +33,13 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
 
-                    android:maxWidth="200dp"
                     android:ellipsize="end"
-
                     android:fontFamily="@font/text_medium"
-                   android:maxLines="1"
+                    android:maxWidth="200dp"
+
+                    android:maxLines="1"
                     android:text="@string/lorem_ipsum"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
@@ -105,23 +103,24 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:strokeColor="@color/white"
                     app:strokeWidth="1dp">
+
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/banner"
 
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
+
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
 
                         android:layout_gravity="bottom"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:background="@android:color/transparent"
                         app:tabBackground="@drawable/tab_selector"
                         app:tabGravity="center"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
                         app:tabIndicatorHeight="0dp" />
 
 
@@ -256,8 +255,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    app:cardCornerRadius="12dp"
                     app:cardBackgroundColor="#FCFCFC"
+                    app:cardCornerRadius="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView46"
@@ -434,7 +433,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
-                android:layout_height="80dp"/>
+                android:layout_height="80dp" />
 
         </LinearLayout>
 
@@ -455,9 +454,9 @@
         android:id="@+id/textView55"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/two_light"
         android:text="@string/chat"
         android:textColor="@color/white"
-        android:fontFamily="@font/two_light"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
         app:layout_constraintEnd_toEndOf="@+id/imageView39"
