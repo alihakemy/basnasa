@@ -3,25 +3,32 @@ package com.market.presentation.mainscreen.user.ui.more
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.market.R
+import com.market.data.models.get.links.SocialLinks
 import com.market.databinding.FragmentUserMoreFragmentsBinding
 import com.market.databinding.VerificationCodeFragmentBinding
 import com.market.presentation.authentication.trader.create.tagercompletedata.CompleteTagerDataActivity
 import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
 import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.mainscreen.user.ui.offers.OfferViewModel
 import com.market.presentation.mainscreen.user.ui.offers.OffersActivity
+import com.market.utils.ResultState
 import com.market.utils.startLink
 import kotlinx.coroutines.launch
 
@@ -39,6 +46,7 @@ class UserMoreFragments : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var viewModel: OfferViewModel? = null
 
     lateinit var binding: FragmentUserMoreFragmentsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +62,9 @@ class UserMoreFragments : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel =
+            ViewModelProvider(this)[OfferViewModel::class.java]
+
         binding = FragmentUserMoreFragmentsBinding.inflate(inflater, container, false)
 
         var coder = Geocoder(requireContext())
@@ -90,8 +101,16 @@ class UserMoreFragments : Fragment() {
 
         binding.textView36.setOnClickListener {
 
-            val intent = Intent(requireContext(), LoginAsTrader::class.java)
-            startActivity(intent)
+
+            if (activitys.getLoginData().data.user.Roles.toLowerCase().equals("tager")) {
+                val intent = Intent(requireContext(), TaderMainActivity::class.java)
+                startActivity(intent)
+
+            } else {
+                val intent = Intent(requireContext(), LoginAsTrader::class.java)
+                startActivity(intent)
+            }
+
         }
 
         binding.account.setOnClickListener {
@@ -123,6 +142,47 @@ class UserMoreFragments : Fragment() {
 
         }
 
+        viewModel?.getLinks()?.observe(viewLifecycleOwner, Observer {
+
+            when (val result = it) {
+
+                is ResultState.Success<SocialLinks> -> {
+
+                    binding.imageView34.setOnClickListener {
+                        result.data?.data?.facebook?.let { it1 -> startLink(it1, requireContext()) }
+                    }
+
+                    binding.imageView35.setOnClickListener {
+                        result.data?.data?.twitter?.let { it1 -> startLink(it1, requireContext()) }
+                    }
+
+                    binding.imageView36.setOnClickListener {
+                        val url = "https://api.whatsapp.com/send?phone=" + result.data?.data?.phone
+                        val i = Intent(Intent.ACTION_VIEW)
+                        i.data = Uri.parse(url)
+                        startActivity(i)
+                    }
+
+
+                    binding.imageView37.setOnClickListener {
+                        result.data?.data?.instgrame?.let { it1 ->
+                            startLink(
+                                it1,
+                                requireContext()
+                            )
+                        }
+                    }
+
+
+                }
+                else -> {
+
+                }
+
+            }
+
+
+        })
 
 
         return binding?.root

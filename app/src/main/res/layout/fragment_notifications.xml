@@ -89,6 +89,7 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/text_medium"
                     android:text="@string/Fav"
+                    android:textColor="@color/black"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -29,9 +29,10 @@ class MainActivity() : BaseActivity() {
 
             if (getLoginData().data.user.Roles.toString().toLowerCase().equals("tager")) {
                 if (getLocation()) {
-                    val intent = Intent(this, TaderMainActivity::class.java)
+                    val intent = Intent(this, MainActivityUser::class.java)
                     startActivity(intent)
                     finish()
+
 
 
                 } else {

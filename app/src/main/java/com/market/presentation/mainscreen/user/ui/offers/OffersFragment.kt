@@ -22,6 +22,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.market.BuildConfig
 import com.market.R
+import com.market.data.models.get.links.SocialLinks
 import com.market.data.models.get.offers.Banner
 import com.market.data.models.get.offers.Merchant
 import com.market.data.models.get.offers.Offers
@@ -35,6 +36,7 @@ import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserOfferA
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.annotation.meta.When
 
 @AndroidEntryPoint
 class OffersFragment : Fragment() {
@@ -93,7 +95,7 @@ class OffersFragment : Fragment() {
         }
 
 
-            viewModel?.getOffers(activitys.getLatLong().first, activitys.getLatLong().second)
+        viewModel?.getOffers(activitys.getLatLong().first, activitys.getLatLong().second)
 
 
         viewModel?.results?.observe(viewLifecycleOwner, Observer {
@@ -159,7 +161,7 @@ class OffersFragment : Fragment() {
     }
 
     private fun initMercant(merchants: List<Merchant>?) {
-        val adapter = UserOfferAdapter(merchants){boolean, id ->
+        val adapter = UserOfferAdapter(merchants) { boolean, id ->
 
             if (boolean) {
                 viewModel?.perFormLike(id)
@@ -210,7 +212,6 @@ class OffersFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity, val banner: List<Banner>?) :
