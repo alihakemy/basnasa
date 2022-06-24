@@ -19,6 +19,7 @@ import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.fav.Merchant
 import com.market.databinding.FragmentNotificationsBinding
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.notification.NotificationActivity.Companion.startNotification
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.search.SearchActivity
 import com.market.presentation.mainscreen.user.ui.offers.SubCatAdapter
@@ -92,6 +93,9 @@ class FavoriteFragment : Fragment() {
 
 
 
+        binding.imageView26.setOnClickListener {
+            startNotification(requireContext())
+        }
 
 
         binding.imageView32.setOnClickListener {

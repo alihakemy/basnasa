@@ -166,7 +166,7 @@ interface apis {
         @Part("name") name: RequestBody,
         @Part files: List<MultipartBody.Part>,
         @Part("currecny") long: RequestBody,
-        @Part("about") about: RequestBody,
+        @Part("content") about: RequestBody,
 
 
         ): DefaultResponse

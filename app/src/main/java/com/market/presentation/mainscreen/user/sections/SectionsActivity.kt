@@ -20,6 +20,7 @@ import com.market.data.models.get.setions.SubCategory
 import com.market.databinding.SectionsActivityBinding
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.notification.NotificationActivity
 import com.market.presentation.mainscreen.user.search.SearchActivity
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,6 +57,10 @@ class SectionsActivity : BaseActivity() {
         binding.imageView22.setOnClickListener {
             onBackPressed()
         }
+        binding.imageView26.setOnClickListener {
+            NotificationActivity.startNotification(this)
+        }
+
         binding.textView39.setOnClickListener {
             val intent = Intent(this, MapsActivity::class.java)
             intent.putExtra("role", "location")

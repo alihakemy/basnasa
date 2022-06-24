@@ -29,6 +29,7 @@ import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.offers.SubCategory
 import com.market.databinding.FragmentDashboardBinding
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.notification.NotificationActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.search.SearchActivity
 import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserHorizontalAdapter
@@ -94,6 +95,9 @@ class OffersFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.imageView26.setOnClickListener {
+            NotificationActivity.startNotification(requireContext())
+        }
 
         viewModel?.getOffers(activitys.getLatLong().first, activitys.getLatLong().second)
 

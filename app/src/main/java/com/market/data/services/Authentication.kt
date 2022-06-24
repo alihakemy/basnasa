@@ -5,6 +5,7 @@ import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.forgetpassword.GetForgetPassword
 import com.market.data.models.get.getconfirenewpassword.GetConfirmNewPassword
 import com.market.data.models.get.login.LoginResponse
+import com.market.data.models.get.notification.NotificationModel
 import com.market.data.models.get.register.RegisterResponse
 import com.market.data.models.get.tagetcomplet.TagetCompleteData
 import com.market.data.models.get.verificationPhone.VerificationPhone
@@ -50,6 +51,8 @@ interface Authentication {
     @GET("api/categories")
     suspend fun categories(): Response<Categories>
 
+    @GET("/api/notifcation")
+    suspend fun getNotification(): Response<NotificationModel>
 
 
 

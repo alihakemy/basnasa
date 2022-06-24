@@ -22,6 +22,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.market.data.models.get.homeusers.*
 import com.market.databinding.FragmentHomeBinding
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.notification.NotificationActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.search.SearchActivity
 import com.market.presentation.mainscreen.user.search.adapter.SearchAdapter
@@ -91,7 +92,9 @@ class HomeFragment : Fragment() {
 
             startActivity(intent)
         }
-
+        binding.imageView20.setOnClickListener {
+            NotificationActivity.startNotification(requireContext())
+        }
 
 
         homeViewModel.results.observe(viewLifecycleOwner) {
