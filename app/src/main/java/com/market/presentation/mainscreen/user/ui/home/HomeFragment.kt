@@ -3,6 +3,7 @@ package com.market.presentation.mainscreen.user.ui.home
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.market.data.models.get.homeusers.*
+import com.market.data.models.get.links.SocialLinks
 import com.market.databinding.FragmentHomeBinding
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity
@@ -31,6 +34,7 @@ import com.market.presentation.mainscreen.user.ui.home.merchants.UserMerchantsAd
 import com.market.presentation.mainscreen.user.ui.home.product.UserProductsAdapter
 import com.market.presentation.mainscreen.user.ui.home.sliderFragment.UserSliderFragment
 import com.market.utils.ResultState
+import com.market.utils.startLink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -123,7 +127,47 @@ class HomeFragment : Fragment() {
 
 
 
+        homeViewModel?.getLinks()?.observe(viewLifecycleOwner, Observer {
 
+            when (val result = it) {
+
+                is ResultState.Success<SocialLinks> -> {
+
+                    binding.imageView34.setOnClickListener {
+                        result.data?.data?.facebook?.let { it1 -> startLink(it1, requireContext()) }
+                    }
+
+                    binding.imageView35.setOnClickListener {
+                        result.data?.data?.twitter?.let { it1 -> startLink(it1, requireContext()) }
+                    }
+
+                    binding.imageView36.setOnClickListener {
+                        val url = "https://api.whatsapp.com/send?phone=" + result.data?.data?.phone
+                        val i = Intent(Intent.ACTION_VIEW)
+                        i.data = Uri.parse(url)
+                        startActivity(i)
+                    }
+
+
+                    binding.imageView37.setOnClickListener {
+                        result.data?.data?.instgrame?.let { it1 ->
+                            startLink(
+                                it1,
+                                requireContext()
+                            )
+                        }
+                    }
+
+
+                }
+                else -> {
+
+                }
+
+            }
+
+
+        })
 
 
         return root

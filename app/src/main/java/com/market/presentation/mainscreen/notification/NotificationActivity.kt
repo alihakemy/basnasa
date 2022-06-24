@@ -1,5 +1,6 @@
 package com.market.presentation.mainscreen.notification
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,10 +25,18 @@ class NotificationActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val pd = ProgressDialog(this)
+        pd.setMessage("loading")
 
+        pd.setCancelable(false)
+        if (!pd.isShowing) {
+            pd.show()
+        }
         viewModel.categories.observe(this, Observer {
 
-
+            if (pd.isShowing) {
+                pd.dismiss()
+            }
             when (val result = it) {
                 is ResultState.Success<NotificationModel> -> {
 
@@ -53,8 +62,8 @@ class NotificationActivity : BaseActivity() {
         val adapter = NotificationAdapter(data?.data)
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
-        binding.rec.layoutManager=linearLayoutManager
-        binding.rec.adapter=adapter
+        binding.rec.layoutManager = linearLayoutManager
+        binding.rec.adapter = adapter
 
     }
 

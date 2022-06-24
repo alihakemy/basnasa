@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.market.data.models.get.homeusers.HomeUser
+import com.market.data.models.get.links.SocialLinks
 import com.market.data.repo.UserRepoImp
 import com.market.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,6 +31,17 @@ class HomeViewModel @Inject constructor(private val userRepoImp: UserRepoImp) : 
 
         }
     }
+
+    fun getLinks(): MutableLiveData<ResultState<SocialLinks>> {
+        val data =MutableLiveData<ResultState<SocialLinks>>()
+        viewModelScope.launch {
+
+            data.postValue( userRepoImp.getLinksSocial())
+
+        }
+        return data
+    }
+
 
 
 }

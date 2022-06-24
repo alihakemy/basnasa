@@ -103,5 +103,7 @@
     <string name="confirm">تاكيد</string>
     <string name="back">عوده</string>
     <string name="EditeProduct">تعديل النتج</string>
+    <string name="hide">اخفاء</string>
+    <string name="ShowsALL">عرض الكل</string>
 
 </resources>

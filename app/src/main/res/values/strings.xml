@@ -114,4 +114,6 @@
     <string name="confirm">Confirm</string>
     <string name="back">back</string>
     <string name="EditeProduct">ُEdit Product</string>
+    <string name="hide">Hide</string>
+    <string name="ShowsALL">Show ALL</string>
 </resources>
