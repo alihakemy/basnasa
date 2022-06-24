@@ -110,4 +110,8 @@
     <string name="MorePicture">More Picture</string>
     <string name="price">Price</string>
     <string name="discount">Discount</string>
+    <string name="deletConfirm">Delete Confirm</string>
+    <string name="confirm">Confirm</string>
+    <string name="back">back</string>
+    <string name="EditeProduct">ُEdit Product</string>
 </resources>

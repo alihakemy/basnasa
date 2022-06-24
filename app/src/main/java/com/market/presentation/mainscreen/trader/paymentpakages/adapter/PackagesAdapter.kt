@@ -23,11 +23,8 @@ open class PackagesAdapter(
             binding.textView75.text = packageSelected?.text2.toString()
             binding.textView76.text = packageSelected?.text3.toString()
 
-            val userDob: Date = SimpleDateFormat("yyyy-MM-dd").parse(packageSelected?.startDate)
-            val end: Date = SimpleDateFormat("yyyy-MM-dd").parse(packageSelected?.endDate)
 
-            val diff: Long = userDob.time - end.time
-            val numOfDays = (diff / (1000 * 60 * 60 * 24)).toInt()
+            val numOfDays =packageSelected?.ActivateCount
 
             binding.textView79.text = "ساريه لمده$numOfDays يوم "
             if (packageSelected?.selected == true) {

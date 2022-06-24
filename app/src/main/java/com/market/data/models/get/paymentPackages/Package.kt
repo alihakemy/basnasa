@@ -9,8 +9,7 @@ import kotlinx.android.parcel.Parcelize
 @Keep
 @Parcelize
 data class Package(
-    @SerializedName("end_date")
-    val endDate: String?,
+
     @SerializedName("id")
     val id: Int?,
     @SerializedName("name")
@@ -20,7 +19,7 @@ data class Package(
     @SerializedName("product_num")
     val productNum: Int?,
     @SerializedName("start_date")
-    val startDate: String?,
+    val ActivateCount: String?,
     @SerializedName("text1")
     val text1: String?,
     @SerializedName("text2")

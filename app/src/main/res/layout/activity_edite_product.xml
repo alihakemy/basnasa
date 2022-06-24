@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/text_medium"
-                        android:text="@string/AddProducts"
+                        android:text="@string/EditeProduct"
                         android:textColor="@color/black"
                         android:textSize="17sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -273,7 +273,7 @@
                 android:id="@+id/frameLayout3"
                 android:layout_width="0dp"
 
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 app:layout_constraintEnd_toEndOf="@+id/sp"
@@ -289,10 +289,12 @@
                 <EditText
                     android:id="@+id/productName"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:inputType="textMultiLine"
                     android:background="@null"
+                    android:scrollbars="vertical"
                     android:gravity="start|center_vertical"
                     android:hint="@string/product_name"
                     android:paddingStart="@dimen/dimen_8" />
@@ -353,7 +355,7 @@
             android:background="@drawable/round_rectangle_color"
             android:fontFamily="@font/two_light"
             android:gravity="center"
-            android:text="@string/next"
+            android:text="@string/edite"
             android:textColor="@color/white"
             android:textSize="22sp" />
 

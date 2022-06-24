@@ -99,5 +99,9 @@
     <string name="MorePicture">إضافة المزيد</string>
     <string name="price">السعر</string>
     <string name="discount">الخصم</string>
+    <string name="deletConfirm">هل أنت متأكد من حذف المنتج</string>
+    <string name="confirm">تاكيد</string>
+    <string name="back">عوده</string>
+    <string name="EditeProduct">تعديل النتج</string>
 
 </resources>

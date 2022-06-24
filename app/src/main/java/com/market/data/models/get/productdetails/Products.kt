@@ -1,8 +1,13 @@
 package com.market.data.models.get.productdetails
 
 
+import android.os.Parcelable
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Keep
+@Parcelize
 data class Products(
     @SerializedName("content")
     val content: String?,
@@ -36,4 +41,4 @@ data class Products(
     val tagerImage: String?,
     @SerializedName("tager_phone")
     val tagerPhone: String?
-)
+):Parcelable

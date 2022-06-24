@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.market.data.models.get.tagerdetails.Product
 import com.market.databinding.TagerItemBinding
-import com.market.presentation.mainscreen.user.displayproduct.DisplayProduct.Companion.startDisplayProduct
-import com.market.presentation.mainscreen.user.displaytrader.tageradapter.ProductAdapter
+import com.market.presentation.mainscreen.trader.showProductDetails.ShowProductDetailsTager
 
- class ProductAdapterTager(val product: List<com.market.data.models.get.tagerprofile.ProductItem>?) :
+class ProductAdapterTager(val product: List<com.market.data.models.get.tagerprofile.ProductItem>?) :
     RecyclerView.Adapter<ProductAdapterTager.ProductViewHolder>() {
     inner class ProductViewHolder(val binding: TagerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -28,7 +26,7 @@ import com.market.presentation.mainscreen.user.displaytrader.tageradapter.Produc
             binding.ratingBar.rating = product?.rate?.toString()?.toFloat()?: 0f
 
             binding.root.setOnClickListener {
-               // startDisplayProduct(product?.id.toString(), it.context)
+                ShowProductDetailsTager.startDisplayProduct(product?.id.toString(), it.context)
             }
 
 

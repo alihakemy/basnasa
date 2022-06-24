@@ -1,7 +1,10 @@
-package com.market.presentation.mainscreen.trader.addproduct
+package com.market.presentation.mainscreen.trader.showProductDetails.editeProduct
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -9,33 +12,34 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
+import com.market.R
 import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.categories.Category
+import com.market.data.models.get.productdetails.Products
 import com.market.databinding.ActivityAddProductBinding
+import com.market.databinding.ActivityEditeProductBinding
+import com.market.presentation.mainscreen.trader.addproduct.AddProductViewModel
 import com.market.presentation.mainscreen.trader.addproduct.adapter.ImageAdapter
 import com.market.utils.ResultState
 import com.market.utils.prepareFilePart
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MultipartBody
 
-
 @AndroidEntryPoint
-class AddProduct : AppCompatActivity() {
-    lateinit var binding: ActivityAddProductBinding
-    val viewModel: AddProductViewModel by viewModels()
+class EditeProduct : AppCompatActivity() {
+    lateinit var binding: ActivityEditeProductBinding
+    val viewModel: EditProductViewModel by viewModels()
     private var img: ArrayList<String> = arrayListOf()
 
     val imagesList = ArrayList<MultipartBody.Part>()
     var imageMain: MultipartBody.Part? = null
     var listCat: ArrayList<Category> = ArrayList()
-
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -91,15 +95,35 @@ class AddProduct : AppCompatActivity() {
             }
         }
 
+
+    companion object {
+
+        fun startEditProduct(Product: Products, context: Context) {
+            val intent = Intent(context, EditeProduct::class.java)
+            intent.putExtra("product", Product)
+            context.startActivity(intent)
+        }
+
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddProductBinding.inflate(layoutInflater)
+        binding = ActivityEditeProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val pd = ProgressDialog(this)
         pd.setMessage("loading")
 
         pd.setCancelable(false)
+
+        val product = intent.getParcelableExtra<Products>("product")
+
+        binding.productName.setText(product?.name.toString())
+        binding.textView91.setText(product?.mainprice.toString())
+        binding.discount.setText(product?.discount.toString())
+        binding.details.setText(product?.content.toString())
+        categoriesId
 
 
         binding.imageView69.setOnClickListener {
@@ -128,7 +152,6 @@ class AddProduct : AppCompatActivity() {
 
 
         }
-
 
         viewModel.categories.observe(this, Observer {
 
@@ -159,6 +182,7 @@ class AddProduct : AppCompatActivity() {
             }
 
         })
+
         binding.textView92.setOnClickListener {
 
             if (imageMain != null) {
@@ -181,7 +205,7 @@ class AddProduct : AppCompatActivity() {
 
                     }
                     imageMain?.let { it1 ->
-                        viewModel.addProduct(
+                        viewModel.editeProduct(
                             list = imagesList,
                             it1,
                             category_id = categoriesId.toString(),
@@ -190,7 +214,8 @@ class AddProduct : AppCompatActivity() {
                             stoke = binding.textView91.text.toString(),
                             about = binding.details.text.toString(),
                             name = binding.productName.text.toString(),
-                            currecny = binding.currency.text.toString()
+                            currecny = binding.currency.text.toString(),
+                            productId = product?.id.toString()
                         )
                     }
                     if (!pd.isShowing) {
@@ -231,6 +256,7 @@ class AddProduct : AppCompatActivity() {
 
     }
 
+
     private fun renderImagesList(arrayList: ArrayList<String>?) {
 
 
@@ -259,5 +285,6 @@ class AddProduct : AppCompatActivity() {
         }
 
     }
+
 
 }

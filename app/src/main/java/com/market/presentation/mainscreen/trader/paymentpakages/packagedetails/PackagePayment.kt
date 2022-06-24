@@ -76,11 +76,8 @@ class PackagePayment : BaseActivity() {
         binding.textView75.text = intentData?.text2.toString()
         binding.textView76.text = intentData?.text3.toString()
 
-        val userDob: Date = SimpleDateFormat("yyyy-MM-dd").parse(intentData?.startDate)
-        val end: Date = SimpleDateFormat("yyyy-MM-dd").parse(intentData?.endDate)
 
-        val diff: Long = userDob.time - end.time
-        val numOfDays = (diff / (1000 * 60 * 60 * 24)).toInt()
+        val numOfDays =intentData?.ActivateCount
 
         binding.textView79.text = "ساريه لمده$numOfDays يوم "
 

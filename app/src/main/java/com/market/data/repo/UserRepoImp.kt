@@ -378,4 +378,71 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
     }
 
 
+
+
+    suspend fun editProduct(
+        productId: String,
+        list: ArrayList<MultipartBody.Part>, image: MultipartBody.Part,
+        category_id: String,
+        mainprice: String,
+        discount: String,
+        stoke: String,
+        name: String,
+        currecny: String,
+        about: String
+    ): ResultState<DefaultResponse> {
+        return try {
+            ResultState.Success(  userService.editProduct(productId,
+                category_id = category_id.toRequestBody(), mainprice = mainprice.toRequestBody(),
+                discount = discount.toRequestBody(),
+                stoke = stoke.toRequestBody(), image, name = name.toRequestBody(),
+                list,
+                currecny.toRequestBody(), about.toRequestBody()
+            ))
+        } catch (e: Exception) {
+            Log.e("ErroePayment", e.localizedMessage.toString())
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    suspend fun removeProduct(
+        productId: String
+    ): ResultState<DefaultResponse> {
+
+        return try {
+            val result = userService.removeProduct(productId)
+            ResultState.Success(result)
+        } catch (e: Exception) {
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+
 }
