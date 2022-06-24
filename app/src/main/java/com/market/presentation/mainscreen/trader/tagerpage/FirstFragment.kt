@@ -23,6 +23,7 @@ import com.market.databinding.FragmentFirstBinding
 import com.market.presentation.mainscreen.trader.addproduct.AddProduct
 import com.market.presentation.mainscreen.trader.addproduct.AddProductViewModel
 import com.market.presentation.mainscreen.trader.paymentpakages.PaymentPackagesActivity
+import com.market.presentation.mainscreen.trader.showMyProfile.ShowMyTagerProfile
 import com.market.presentation.mainscreen.trader.tagerpage.adapter.ProductAdapterTager
 import com.market.presentation.mainscreen.user.displaytrader.tageradapter.ProductAdapter
 import com.market.utils.ResultState
@@ -90,6 +91,14 @@ class FirstFragment : Fragment() {
         binding.textView68.text = data?.data?.merchant?.name
 
         binding.count.text = data?.data?.merchant?.allProducts.toString()
+
+
+        binding.profileImage.setOnClickListener {
+            ShowMyTagerProfile.startTagerProfile(
+                data?.data?.merchant?.userId.toString(),
+                requireContext()
+            )
+        }
 
         binding.imageView56.setOnClickListener {
 //            if (!BuildConfig.DEBUG) {

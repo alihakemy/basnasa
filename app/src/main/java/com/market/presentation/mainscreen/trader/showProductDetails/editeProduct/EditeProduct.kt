@@ -123,7 +123,7 @@ class EditeProduct : AppCompatActivity() {
         binding.textView91.setText(product?.mainprice.toString())
         binding.discount.setText(product?.discount.toString())
         binding.details.setText(product?.content.toString())
-        categoriesId
+
 
 
         binding.imageView69.setOnClickListener {

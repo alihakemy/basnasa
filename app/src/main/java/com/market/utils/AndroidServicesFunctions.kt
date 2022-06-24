@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.telephony.TelephonyManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.LifecycleOwner
@@ -22,8 +23,15 @@ fun isAtLeastVersion(version: Int): Boolean {
 }
 
 fun startLink(link: String, context: Context) {
-    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-    context.startActivity(browserIntent)
+
+    try {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+        context.startActivity(browserIntent)
+
+    }catch (E:Exception){
+
+        Toast.makeText(context,"Link Error",Toast.LENGTH_LONG).show()
+    }
 }
 
 fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
