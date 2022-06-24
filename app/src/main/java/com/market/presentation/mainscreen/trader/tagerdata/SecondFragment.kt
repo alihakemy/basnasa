@@ -55,14 +55,16 @@ class SecondFragment : Fragment() {
             context?.startActivity(intent)
 
         }
+        viewModel.getTagerProfile()
+
         viewModel.results.observe(viewLifecycleOwner, Observer {
             when (val results = it) {
                 is ResultState.Success<TagerProfile> -> {
 
-                    Log.e("TagerProfile", results.data.toString())
                     renderTagerData(results.data)
                 }
                 else -> {
+                    Toast.makeText(requireContext(), results.message.toString() , Toast.LENGTH_LONG).show()
 
                 }
 
@@ -73,6 +75,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun renderTagerData(data: TagerProfile?) {
+        Log.e("TagerProfileREnder", data.toString())
 
         Glide.with(requireContext()).load(data?.data?.merchant?.imagePath.toString())
             .into(binding.profileImage)

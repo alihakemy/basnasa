@@ -30,6 +30,7 @@ import com.market.presentation.mainscreen.user.ui.offers.OfferViewModel
 import com.market.presentation.mainscreen.user.ui.offers.OffersActivity
 import com.market.utils.ResultState
 import com.market.utils.startLink
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,6 +43,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [UserMoreFragments.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class UserMoreFragments : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
