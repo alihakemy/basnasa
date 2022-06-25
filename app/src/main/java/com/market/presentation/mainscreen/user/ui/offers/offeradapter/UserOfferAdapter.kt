@@ -30,11 +30,6 @@ class UserOfferAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean
             binding.ratingBar.numStars =4
             binding.starButton.isLiked= get?.favaurite == true
 
-            if(BuildConfig.DEBUG){
-
-                binding.ratingBar.rating=2f
-
-            }
 
             binding.textView20.text ="("+ get?.rateCount+")"
 

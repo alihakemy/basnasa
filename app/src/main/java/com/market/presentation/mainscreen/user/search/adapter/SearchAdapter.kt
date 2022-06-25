@@ -31,11 +31,6 @@ class SearchAdapter(private  val searchResults:SearchResults,inline val likeds:(
             binding.ratingBar.numStars =4
             binding.starButton.isLiked=get?.favaurite
 
-            if(BuildConfig.DEBUG){
-
-                    binding.ratingBar.rating=2f
-
-            }
 
             binding.textView20.text ="("+ get?.rate_count +")"
 

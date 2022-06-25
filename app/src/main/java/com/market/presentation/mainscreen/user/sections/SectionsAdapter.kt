@@ -30,11 +30,7 @@ class SectionsAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean:
             binding.ratingBar.numStars =4
             binding.starButton.isLiked= merchants?.favaurite == true
 
-            if(BuildConfig.DEBUG){
 
-                binding.ratingBar.rating=2f
-
-            }
             binding.textView26.text=merchants?.distance
 
             binding.starButton.setOnLikeListener(object : OnLikeListener {

@@ -95,7 +95,7 @@ class MoreTagerActivity : BaseActivity() {
             data?.merchant?.whatsappLink?.let { it1 -> startLink(it1,this) }
         }
         binding.starButton.isLiked = data?.merchant?.favaurite == true
-        Glide.with(this).load(data?.merchant?.bannerPath.toString()).into(binding.banner)
+        Glide.with(this).load(data?.merchant?.imagePath.toString()).into(binding.banner)
         binding.back.setOnClickListener {
             onBackPressed()
         }

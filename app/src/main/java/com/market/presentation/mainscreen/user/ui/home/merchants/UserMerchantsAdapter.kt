@@ -27,11 +27,7 @@ class UserMerchantsAdapter(private val merchants: List<Merchant>?) :
 
             binding.ratingBar.numStars = 4
 
-            if (BuildConfig.DEBUG) {
 
-                binding.ratingBar.rating = 2f
-
-            }
 
             binding.textView20.text = "(" + get?.rate_count + ")"
 

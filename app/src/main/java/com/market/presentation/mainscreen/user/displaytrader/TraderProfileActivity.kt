@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -53,12 +54,16 @@ class TraderProfileActivity : BaseActivity() {
         pd.setCancelable(false)
         pd.show()
 
-       lifecycleScope.launch {
+        lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 kotlin.runCatching {
                     pd.show()
                 }
-                viewModel.getProductDetails(intent.getStringExtra("tagerId").toString(), getLatLong().first, getLatLong().second)
+                viewModel.getProductDetails(
+                    intent.getStringExtra("tagerId").toString(),
+                    getLatLong().first,
+                    getLatLong().second
+                )
 
             }
         }
@@ -86,27 +91,31 @@ class TraderProfileActivity : BaseActivity() {
     private fun renderData(data: Data?) {
 
         binding.textView60.setOnClickListener {
-            val intent =Intent(this,MoreTagerActivity::class.java)
-            intent.putExtra("tagerId",data?.merchant?.userId.toString())
+            val intent = Intent(this, MoreTagerActivity::class.java)
+            intent.putExtra("tagerId", data?.merchant?.userId.toString())
             startActivity(intent)
 
         }
         binding.imageView38.setOnClickListener {
-            data?.merchant?.snapchatLink?.let { it1 -> startLink(it1,this) }
+            data?.merchant?.snapchatLink?.let { it1 -> startLink(it1, this) }
         }
 
         binding.imageView40.setOnClickListener {
-            data?.merchant?.facebookLink?.let { it1 -> startLink(it1,this) }
+            data?.merchant?.facebookLink?.let { it1 -> startLink(it1, this) }
         }
         binding.imageView41.setOnClickListener {
-            data?.merchant?.instagramLink?.let { it1 -> startLink(it1,this) }
+            data?.merchant?.instagramLink?.let { it1 -> startLink(it1, this) }
         }
         binding.imageView38.setOnClickListener {
-            data?.merchant?.whatsappLink?.let { it1 -> startLink(it1,this) }
+            data?.merchant?.whatsappLink?.let { it1 -> startLink(it1, this) }
         }
 
         binding.imageView44.setOnClickListener {
-            data?.merchant?.whatsappLink?.let { it1 -> startLink(it1,this) }
+
+            startLink(
+                "https://play.google.com/store/apps/details?id=" + "com.market",
+                this
+            )
 
         }
 
@@ -127,11 +136,6 @@ class TraderProfileActivity : BaseActivity() {
         })
 
 
-
-
-
-
-
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = RecyclerView.HORIZONTAL
         val cat = data?.categories
@@ -144,17 +148,16 @@ class TraderProfileActivity : BaseActivity() {
 //        cat?.add(Category("","",10,"","","sa","",false))
 
 
-        binding.RecCat.adapter = CategoriesAdapter(cat){
+        binding.RecCat.adapter = CategoriesAdapter(cat) {
             callDependOnCat(it)
 
         }
         binding.RecCat.layoutManager = linearLayoutManager
 
 
-
-        val linearLayoutManagerProduct = GridLayoutManager(this,2)
+        val linearLayoutManagerProduct = GridLayoutManager(this, 2)
         binding.rec.adapter = ProductAdapter(data?.products)
-        binding.rec.layoutManager =   linearLayoutManagerProduct
+        binding.rec.layoutManager = linearLayoutManagerProduct
 
 
 
@@ -266,10 +269,12 @@ class TraderProfileActivity : BaseActivity() {
 
     }
 
-    private fun callDependOnCat(cat_id: Category?){
+    private fun callDependOnCat(cat_id: Category?) {
 
-        viewModel.getProductDetails(cat_id?.id.toString(),
-            intent.getStringExtra("tagerId").toString(), getLatLong().first, getLatLong().second)
+        viewModel.getProductDetails(
+            cat_id?.id.toString(),
+            intent.getStringExtra("tagerId").toString(), getLatLong().first, getLatLong().second
+        )
 
 
     }
