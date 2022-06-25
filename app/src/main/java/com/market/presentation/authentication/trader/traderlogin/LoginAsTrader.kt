@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.google.firebase.messaging.FirebaseMessaging
 import com.market.data.models.SendLogin
 import com.market.data.models.get.login.LoginResponse
 import com.market.databinding.ActivityLoginAsTraderBinding
@@ -49,7 +50,13 @@ class LoginAsTrader : BaseActivity() {
             TermsAndConditions.startTerms("1",this)
 
         }
-
+        var token =""
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { result ->
+            if(result != null){
+                token = result
+                // DO your thing with your firebase token
+            }
+        }
         binding.imageView3.setOnClickListener {
             onBackPressed()
         }
@@ -65,8 +72,8 @@ class LoginAsTrader : BaseActivity() {
                 viewModel.loginTrader(
                     SendLogin(
                         binding.phoneTextTextPersonName.text.toString(),
-                        binding.passwordText.text.toString()
-                    )
+                        binding.passwordText.text.toString(),
+                  token  )
                 )
 
             } else {

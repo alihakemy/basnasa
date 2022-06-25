@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.market.data.models.SendLogin
 import com.market.data.models.get.login.LoginResponse
 import com.market.databinding.LoginUserActivityBinding
+import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
 import com.market.presentation.authentication.user.create.CreateUserAccountActivity
 import com.market.presentation.bases.BaseActivity
-import com.market.utils.ResultState
-import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
-import com.market.utils.isValidEmail
+import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -57,6 +58,13 @@ class LoginUser : BaseActivity() {
         }
 
 
+        var token =""
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { result ->
+            if(result != null){
+                token = result
+                // DO your thing with your firebase token
+            }
+        }
 
 
 
@@ -68,7 +76,7 @@ class LoginUser : BaseActivity() {
                     viewModel.loginUser(
                         SendLogin(
                             binding.phoneTextTextPersonName.text.toString(),
-                            binding.passwordText.text.toString()
+                            binding.passwordText.text.toString(),token
                         )
                     )
 

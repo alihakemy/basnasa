@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
 
 
-data class SendLogin(val email: String, val password: String)
+data class SendLogin(val email: String, val password: String,val device_token:String)
 
 
 data class SendRegister(

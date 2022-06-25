@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.google.firebase.messaging.FirebaseMessaging
 import com.market.data.models.ResendCode
 import com.market.data.models.SendLogin
 import com.market.utils.ResultState
@@ -78,7 +79,13 @@ class VerificationCode : Fragment() {
                 // it.onBackPressed()
             }
         }
-
+        var token =""
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { result ->
+            if(result != null){
+                token = result
+                // DO your thing with your firebase token
+            }
+        }
 
         val phone = arguments?.getString("phone")
 
@@ -101,7 +108,7 @@ class VerificationCode : Fragment() {
                         viewModel.loginUser(
                             SendLogin(
                                 phone.toString(),
-                                arguments?.getString("password").toString()
+                                arguments?.getString("password").toString(),token
                             )
                         )
 
