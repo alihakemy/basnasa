@@ -1,47 +1,42 @@
-package com.market.presentation.authentication.trader.create.tagercompletedata
+package com.market.presentation.mainscreen.trader.editeProfile
 
-import android.R
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.FileUtils
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide.with
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
-import com.google.android.material.navigation.NavigationBarView
+import com.market.R
 import com.market.data.models.SendCompleteJoin
 import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.categories.Category
-import com.market.databinding.ActivityCompleteTagerDataBinding
+import com.market.data.models.get.tagerprofile.Merchant
+import com.market.databinding.ActivityEditeProductBinding
+import com.market.databinding.ActivityEditeTagerProfilesBinding
+import com.market.presentation.authentication.trader.create.tagercompletedata.TagerCompleteViewModel
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.trader.showMyProfile.ShowMyTagerProfile
 import com.market.utils.ResultState
-import com.market.utils.mFileUtils
 import com.market.utils.prepareFilePart
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.EarlyEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import java.io.File
-import java.net.URI
 
 @AndroidEntryPoint
-class CompleteTagerDataActivity : BaseActivity() {
+class EditeTagerProfiles : BaseActivity() {
 
 
-    private lateinit var binding: ActivityCompleteTagerDataBinding
+    lateinit var binding: ActivityEditeTagerProfilesBinding
 
     val viewModel: TagerCompleteViewModel by viewModels()
     lateinit var listCat: ArrayList<Category>
@@ -68,16 +63,18 @@ class CompleteTagerDataActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCompleteTagerDataBinding.inflate(layoutInflater)
+        binding = ActivityEditeTagerProfilesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val pd = ProgressDialog(this)
         pd.setMessage("loading")
         pd.setCancelable(false)
+
+        val merchant=intent.getParcelableExtra<Merchant>("Merchant")
+
+
         binding.imageView3.setOnClickListener {
             onBackPressed()
         }
-
-
         binding.imageView7.setOnClickListener {
             ImagePicker.with(this)
                 .compress(1024)         //Final image size will be less than 1 MB(Optional)
@@ -103,7 +100,7 @@ class CompleteTagerDataActivity : BaseActivity() {
 
                     val adapter = ArrayAdapter(
                         this,
-                        R.layout.simple_list_item_1,
+                        android.R.layout.simple_list_item_1,
                         list
                     )
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -166,34 +163,26 @@ class CompleteTagerDataActivity : BaseActivity() {
                     Toast.makeText(this, "اكمل بيانتاتك ", Toast.LENGTH_LONG).show()
 
                 } else {
-                    if((!binding.arrivalTime.text.toString().isBlank())&&
-                        (!binding.description.text.toString().isBlank())
-                        ){
-                        pd.show()
-                        viewModel.uploadStore(
-                            SendCompleteJoin(
-                                categoriesId.toString(),
-                                arrivaltime = binding.arrivalTime.text.toString(),
-                                binding.instaLink.text.toString(),
-                                binding.faceLink.text.toString(),
-                                binding.whatLink.text.toString(),
-                                binding.snapLink.text.toString(),
-                                getLatLong().first,
-                                getLatLong().second,
-                                binding.description.text.toString(),
-                                binding.phone.text.toString()
-                            ),
-                            intent.getStringExtra("token").toString(),
-                            prepareFilePart(
-                                "image", FileUriUtils.getRealPath(this, imageUrl.toString().toUri()).toString(),
-                            )
+                    pd.show()
+                    viewModel.uploadStore(
+                        SendCompleteJoin(
+                            categoriesId.toString(),
+                            arrivaltime = binding.arrivalTime.text.toString(),
+                            binding.instaLink.text.toString(),
+                            binding.faceLink.text.toString(),
+                            binding.whatLink.text.toString(),
+                            binding.snapLink.text.toString(),
+                            getLatLong().first,
+                            getLatLong().second,
+                            binding.description.text.toString(),
+                            binding.phone.text.toString()
+                        ),
+                        intent.getStringExtra("token").toString(),
+                        prepareFilePart(
+                            "image",
+                            FileUriUtils.getRealPath(this, imageUrl.toString().toUri()).toString(),
                         )
-                    }else
-                    {
-                        Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
-
-                    }
-
+                    )
                 }
 
             } ?: let {
@@ -204,5 +193,12 @@ class CompleteTagerDataActivity : BaseActivity() {
         }
 
 
+    }
+    companion object{
+        fun startTagerProfile(productId: Merchant?, context: Context) {
+            val intent = Intent(context,EditeTagerProfiles::class.java)
+            intent.putExtra("Merchant", productId)
+            context.startActivity(intent)
+        }
     }
 }

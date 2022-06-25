@@ -13,12 +13,11 @@ import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.data.models.get.tagerprofile.TagerProfile
+import com.market.data.models.get.terms.TermsCondtionModel
 import com.market.data.services.apis
 import com.market.utils.ResultState
 import com.market.utils.toRequestBody
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.http.Part
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(private val userService: apis) {
@@ -398,7 +397,7 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
                 discount = discount.toRequestBody(),
                 stoke = stoke.toRequestBody(), image, name = name.toRequestBody(),
                 list,
-                currecny.toRequestBody(), about.toRequestBody()
+                currecny.toRequestBody(), about.toRequestBody(),"put".toRequestBody()
             ))
         } catch (e: Exception) {
             Log.e("ErroePayment", e.localizedMessage.toString())
@@ -451,6 +450,21 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
 
         return try {
             val result = userService.getLinks()
+            ResultState.Success(result)
+        } catch (e: Exception) {
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
+
+
+    suspend fun getTerms(type:String
+
+    ): ResultState<TermsCondtionModel> {
+
+        return try {
+            val result = userService.getPage(type)
             ResultState.Success(result)
         } catch (e: Exception) {
             ResultState.Error(e.localizedMessage.toString())

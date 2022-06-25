@@ -23,6 +23,9 @@ class TagerPageViewModel @Inject constructor(
         MutableLiveData<ResultState<TagerProfile>>()
 
 
+    fun logOut(){
+        sharedPreferences.edit().putString("loginData", "").commit()
+    }
 
 
 
@@ -36,7 +39,7 @@ class TagerPageViewModel @Inject constructor(
             results.postValue(
                 repoImp.getTagerProfiles(
                     sharedPreferences.getString("latitude", "29").toString(),
-                    sharedPreferences.getString("latitude", "48").toString()
+                    sharedPreferences.getString("longitude", "48").toString()
                 )
             )
 

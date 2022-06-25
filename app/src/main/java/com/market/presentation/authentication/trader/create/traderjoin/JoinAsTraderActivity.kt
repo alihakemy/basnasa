@@ -15,6 +15,7 @@ import com.market.data.models.get.register.RegisterResponse
 import com.market.databinding.JoinAsTraderActivityBinding
 import com.market.presentation.authentication.trader.create.tagercodeverify.TagerCodeVerificationActivity
 import com.market.presentation.authentication.user.create.CreateAccountViewModel
+import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +34,10 @@ class JoinAsTraderActivity : AppCompatActivity() {
 
         pd.setCancelable(false)
 
+        binding?.textView6?.setOnClickListener {
+            TermsAndConditions.startTerms("1",this)
 
+        }
 
         binding?.imageView3?.setOnClickListener {
            onBackPressed()

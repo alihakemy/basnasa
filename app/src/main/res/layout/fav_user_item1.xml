@@ -44,7 +44,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/text_medium"
                 android:textSize="17sp"
-                android:text="TextView"
+                android:text="@string/lorem_ipsum"
+
+                android:maxLines="1"
+
+                android:maxWidth="100dp"
+                android:gravity="center"
                  />
 
             <TextView
@@ -54,8 +59,13 @@
                 android:fontFamily="@font/two_light"
                 android:layout_gravity="center"
                 android:textSize="14sp"
+                android:text="@string/lorem_ipsum"
 
-                android:text="TextView" />
+                android:maxLines="1"
+
+                android:maxWidth="100dp"
+                android:gravity="center"
+                />
         </LinearLayout>
 
         <LinearLayout

@@ -51,7 +51,7 @@ class ForgetPasswordStep3 : AppCompatActivity() {
                             }
                             Toast.makeText(
                                 this,
-                                it.toString(),
+                                it.message.toString(),
                                 Toast.LENGTH_LONG
                             ).show()
 

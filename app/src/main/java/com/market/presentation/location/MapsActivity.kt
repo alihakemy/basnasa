@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.common.api.Status
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.market.R
 import com.market.databinding.ActivityMapsBinding
 import com.market.presentation.MainActivity
@@ -35,6 +37,7 @@ import com.market.utils.LocationHelper
 import com.market.utils.PermissionProvider
 import com.market.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -50,6 +53,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var coder = Geocoder(this)
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        FirebaseMessaging.getInstance().subscribeToTopic("basnas")
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -130,7 +135,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 viewModel.storeLocation(it.latitude.toString(), it.longitude.toString())
 
                 if (intent.getStringExtra("role")?.toLowerCase().equals("tager")) {
-                    val intent = Intent(baseContext, TaderMainActivity::class.java)
+//                    val intent = Intent(baseContext, TaderMainActivity::class.java)
+//                    intent.flags =
+//                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+//                    startActivity(intent)
+//                    ActivityCompat.finishAffinity(this)
+
+
+                    val intent = Intent(baseContext, MainActivity::class.java)
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
@@ -188,11 +200,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        kotlin.runCatching {
+            mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+            // Add a marker in Sydney and move the camera
+            val sydney = LatLng(29.0, 48.0)
+            mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Kuweit"))
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        }
+
     }
 }

@@ -12,6 +12,7 @@ import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.data.models.get.tagerprofile.TagerProfile
 import com.market.data.models.get.tagetcomplet.TagetCompleteData
+import com.market.data.models.get.terms.TermsCondtionModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -173,7 +174,7 @@ interface apis {
 
 
     @Multipart
-    @PUT("/api/edit_product/{productId}")
+    @POST("/api/edit_product/{productId}")
     suspend fun editProduct(
         @Path("productId") productId: String,
         @Part("category_id") category_id: RequestBody,
@@ -185,6 +186,7 @@ interface apis {
         @Part files: List<MultipartBody.Part>,
         @Part("currecny") long: RequestBody,
         @Part("about") about: RequestBody,
+        @Part("_method") toRequestBody: RequestBody,
 
 
         ): DefaultResponse
@@ -193,10 +195,18 @@ interface apis {
     suspend fun removeProduct(
         @Path("productId") productId: String,
 
-    ): DefaultResponse
+        ): DefaultResponse
 
 
     @GET("/api/social")
     suspend fun getLinks(): SocialLinks
+
+
+
+    @GET("/api/getpage")
+    suspend fun getPage(
+        @Query("id") id: String,
+    ): TermsCondtionModel
+
 
 }

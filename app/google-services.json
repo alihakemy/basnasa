@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "187323076972",
+    "project_id": "basnas-59f89",
+    "storage_bucket": "basnas-59f89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187323076972:android:b8c1c4e8b94da97e5a6349",
+        "android_client_info": {
+          "package_name": "com.market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187323076972-adk5fmvlpcigqamuqq414lbpg9ovog6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6G-tRDnqsmJ4ih6otDWiGgofJS5hpvio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187323076972-adk5fmvlpcigqamuqq414lbpg9ovog6a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,6 +14,7 @@ import com.market.R
 import com.market.data.models.SendRegister
 import com.market.data.models.get.register.RegisterResponse
 import com.market.databinding.GetUserDataFragmentBinding
+import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,6 +68,10 @@ class GetUserData : Fragment() {
         pd.setCancelable(false)
 
 
+        binding?.textView6?.setOnClickListener {
+            TermsAndConditions.startTerms("1",requireContext())
+
+        }
 
         binding?.imageView3?.setOnClickListener {
             activity?.onBackPressed()

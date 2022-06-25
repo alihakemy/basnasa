@@ -3,14 +3,17 @@ package com.market.presentation.authentication.user.create
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.market.data.models.ResendCode
 import com.market.data.models.SendLogin
 import com.market.utils.ResultState
 import com.market.data.models.SendVerificationPhone
@@ -36,6 +39,7 @@ class VerificationCode : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var binding: VerificationCodeFragmentBinding? = null
+    var timers: CountDownTimer? = null
 
     val viewModel: CreateAccountViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +72,7 @@ class VerificationCode : Fragment() {
         val pd = ProgressDialog(context)
         pd.setMessage("loading")
         pd.setCancelable(false)
+
         binding?.textView11?.setOnClickListener {
             activity?.let {
                 // it.onBackPressed()
@@ -149,10 +154,45 @@ class VerificationCode : Fragment() {
 
 
         })
+        startTimer()
+        binding?.textView13?.isVisible = false
+
+        binding?.textView13?.setOnClickListener {
+            binding?.textView13?.isVisible = false
+
+            viewModel.resendCode(ResendCode( phone.toString(), "phone"))
+            startTimer()
+        }
 
 
     }
 
+    fun startTimer() {
+        timers = object : CountDownTimer(60000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                kotlin.runCatching {
+
+                    binding?.textView12?.text =
+                        "أعادة إرسال الرمز خلال" + (millisUntilFinished / 1000).toString()
+                    //here you can have your logic to set text to edittext
+                }
+            }
+
+            override fun onFinish() {
+                kotlin.runCatching {
+                    binding?.textView12?.text = "0"
+                    binding?.textView13?.isVisible = true
+                }
+
+            }
+        }.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timers?.cancel()
+    }
 
     companion object {
         /**

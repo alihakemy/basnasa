@@ -15,6 +15,7 @@ import com.market.presentation.bases.BaseActivity
 import com.market.utils.ResultState
 import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.utils.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -80,6 +81,10 @@ class LoginUser : BaseActivity() {
 
         }
 
+        binding.textView6.setOnClickListener {
+            TermsAndConditions.startTerms("1",this)
+
+        }
         viewModel.loginResults.observe(this, Observer {
 
             when (val result = it) {

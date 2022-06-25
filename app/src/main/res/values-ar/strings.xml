@@ -105,5 +105,6 @@
     <string name="EditeProduct">تعديل النتج</string>
     <string name="hide">اخفاء</string>
     <string name="ShowsALL">عرض الكل</string>
+    <string name="EditStore">تعديل بيانات المتجر</string>
 
 </resources>

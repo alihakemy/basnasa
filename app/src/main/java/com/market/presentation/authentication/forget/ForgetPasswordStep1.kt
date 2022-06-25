@@ -53,6 +53,12 @@ class ForgetPasswordStep1 : AppCompatActivity() {
                                 if (pd.isShowing) {
                                     pd.dismiss()
                                 }
+
+                                Toast.makeText(
+                                    this,
+                                    "The الهاتف format is invalid",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         }
 

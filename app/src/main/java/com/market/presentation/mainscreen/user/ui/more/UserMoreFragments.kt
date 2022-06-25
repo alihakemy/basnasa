@@ -24,6 +24,8 @@ import com.market.presentation.authentication.trader.create.tagercompletedata.Co
 import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
 import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.notification.NotificationActivity.Companion.startNotification
+import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.ui.offers.OfferViewModel
@@ -99,6 +101,9 @@ class UserMoreFragments : Fragment() {
 
         }
 
+        binding.notification.setOnClickListener {
+            startNotification(requireContext())
+        }
 
 
         binding.textView36.setOnClickListener {
@@ -185,7 +190,14 @@ class UserMoreFragments : Fragment() {
 
 
         })
+        binding.about.setOnClickListener {
+            TermsAndConditions.startTerms("2",requireContext())
 
+        }
+        binding.terms.setOnClickListener {
+            TermsAndConditions.startTerms("1",requireContext())
+
+        }
 
         return binding?.root
     }

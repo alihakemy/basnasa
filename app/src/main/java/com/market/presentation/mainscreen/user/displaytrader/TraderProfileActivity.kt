@@ -173,7 +173,7 @@ class TraderProfileActivity : BaseActivity() {
         binding.starButton.isLiked = data?.merchant?.favaurite == true
         binding.textView57.text = data?.merchant?.discountText
 
-        Glide.with(this).load(data?.merchant?.bannerPath.toString()).into(binding.banner)
+        Glide.with(this).load(data?.merchant?.imagePath.toString()).into(binding.banner)
 
 
         binding.back.setOnClickListener {

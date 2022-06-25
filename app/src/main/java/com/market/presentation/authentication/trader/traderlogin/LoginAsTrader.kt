@@ -16,6 +16,7 @@ import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.authentication.trader.create.tagercodeverify.TagerCodeVerificationActivity
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.utils.ResultState
 import com.market.utils.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,10 @@ class LoginAsTrader : BaseActivity() {
             val intent = Intent(this, ForgetPasswordStep1::class.java)
             startActivity(intent)
         }
+        binding?.textView6?.setOnClickListener {
+            TermsAndConditions.startTerms("1",this)
+
+        }
 
         binding.imageView3.setOnClickListener {
             onBackPressed()
@@ -54,7 +59,7 @@ class LoginAsTrader : BaseActivity() {
 
             if (!binding.passwordText.text.toString().isNullOrEmpty()) {
                 if(!pd.isShowing){
-                    pd?.show()
+                    pd.show()
                 }
 
                 viewModel.loginTrader(
@@ -73,7 +78,9 @@ class LoginAsTrader : BaseActivity() {
         }
 
         viewModel.loginResults.observe(this, Observer {
-
+            if (pd.isShowing) {
+                pd.dismiss()
+            }
             when (val result = it) {
                 is ResultState.Success<LoginResponse> -> {
                     result.data?.let { it1 -> storeLoginData(it1) }
@@ -87,9 +94,7 @@ class LoginAsTrader : BaseActivity() {
 
                 }
                 else -> {
-                    if (pd.isShowing) {
-                        pd.dismiss()
-                    }
+
                     Log.e("MessageALI", result.message.toString())
                     if (result.message.equals("Sorry This account is not activated")) {
                         val intent = Intent(this, TagerCodeVerificationActivity::class.java)

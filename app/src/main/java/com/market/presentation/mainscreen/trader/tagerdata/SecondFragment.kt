@@ -9,20 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
-import com.market.BuildConfig
-import com.market.R
 import com.market.data.models.get.tagerprofile.TagerProfile
 import com.market.databinding.FragmentSecondBinding
-import com.market.presentation.mainscreen.trader.addproduct.AddProduct
+import com.market.presentation.MainActivity
+import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
+import com.market.presentation.mainscreen.trader.editeProfile.EditeTagerProfiles
 import com.market.presentation.mainscreen.trader.paymentpakages.PaymentPackagesActivity
 import com.market.presentation.mainscreen.trader.tagerpage.TagerPageViewModel
-import com.market.presentation.mainscreen.trader.tagerpage.adapter.ProductAdapterTager
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -55,7 +56,12 @@ class SecondFragment : Fragment() {
             context?.startActivity(intent)
 
         }
-        viewModel.getTagerProfile()
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getTagerProfile()
+
+            }
+        }
 
         viewModel.results.observe(viewLifecycleOwner, Observer {
             when (val results = it) {
@@ -64,13 +70,25 @@ class SecondFragment : Fragment() {
                     renderTagerData(results.data)
                 }
                 else -> {
-                    Toast.makeText(requireContext(), results.message.toString() , Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), results.message.toString(), Toast.LENGTH_LONG)
+                        .show()
 
                 }
 
             }
 
         })
+        binding.textView78.setOnClickListener {
+            TermsAndConditions.startTerms("1", requireContext())
+        }
+
+        binding.textView72.setOnClickListener {
+
+            viewModel.logOut()
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            activity?.startActivity(intent)
+            activity?.finishAffinity()
+        }
 
     }
 
@@ -82,6 +100,12 @@ class SecondFragment : Fragment() {
 
         binding.textView68.text = data?.data?.merchant?.name
 
+        binding.textView71.setOnClickListener {
+            EditeTagerProfiles.startTagerProfile(
+                data?.data?.merchant,
+                requireContext()
+            )
+        }
 
     }
 

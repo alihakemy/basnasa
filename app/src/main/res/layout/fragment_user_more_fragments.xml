@@ -214,6 +214,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/notification"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -250,6 +251,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/about"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -325,6 +327,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/terms"
                 android:layout_height="wrap_content">
 
                 <ImageView

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -71,7 +72,7 @@ class ShowProductDetailsTager : BaseActivity() {
 
                 }
                 else -> {
-
+                    Toast.makeText(this, results.message.toString(), Toast.LENGTH_LONG).show()
                 }
             }
 

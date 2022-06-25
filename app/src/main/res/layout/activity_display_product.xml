@@ -79,11 +79,13 @@
                         android:id="@+id/textView44"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/text_medium"
+
                         android:gravity="center"
                         android:text="TextView"
-
                         android:textColor="@color/black"
                         android:textSize="10sp" />
 

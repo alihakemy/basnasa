@@ -49,6 +49,7 @@
                 android:fontFamily="@font/text_medium"
                 android:text="TextView"
                 android:textSize="17sp"
+
                 android:textStyle="bold" />
 
             <TextView

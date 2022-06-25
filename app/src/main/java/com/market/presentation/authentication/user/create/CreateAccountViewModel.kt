@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.market.data.models.ResendCode
 import com.market.data.models.SendLogin
 import com.market.data.models.SendRegister
 import com.market.data.models.get.register.RegisterResponse
@@ -27,7 +28,16 @@ class CreateAccountViewModel @Inject constructor(
     private val authenticationRepository: AuthenticationRepository,
     private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
+    fun resendCode(resendCode: ResendCode) {
 
+        viewModelScope.launch {
+            authenticationRepository.resendCode(resendCode)
+
+        }
+
+
+
+    }
 
     fun registerUser(register: SendRegister): LiveData<ResultState<RegisterResponse>> {
         val registerResults: MutableLiveData<ResultState<RegisterResponse>> = MutableLiveData()
