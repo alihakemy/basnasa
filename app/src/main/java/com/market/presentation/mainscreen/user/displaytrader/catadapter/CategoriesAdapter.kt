@@ -16,11 +16,15 @@ open class CategoriesAdapter(val categories: List<Category>? , val clicked:(cat:
     inner class CatViewHolder(val binding: CatTagetItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Category?) {
-            binding.line.isVisible = false
+            binding.line.isVisible = cat?.selected == true
 
             binding.textView65.text = cat?.name.toString()
             binding.root.setOnClickListener {
+                categories?.forEach {
+                    it.selected=false
+                }
                 clicked(cat)
+                cat?.selected=true
 
                 notifyDataSetChanged()
 

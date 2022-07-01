@@ -18,7 +18,7 @@ data class Package(
     val price: Double?,
     @SerializedName("product_num")
     val productNum: Int?,
-    @SerializedName("start_date")
+    @SerializedName("ActivateCount")
     val ActivateCount: String?,
     @SerializedName("text1")
     val text1: String?,

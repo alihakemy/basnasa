@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
+            android:text="الكويت"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout12"
             app:layout_constraintStart_toStartOf="@+id/linearLayout12"

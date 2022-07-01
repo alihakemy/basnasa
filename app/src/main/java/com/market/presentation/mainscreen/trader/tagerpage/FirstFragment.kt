@@ -67,6 +67,8 @@ class FirstFragment : Fragment() {
                             renderTagerData(results.data)
                         }
                         else -> {
+                            Toast.makeText(requireContext(), results.message.toString(), Toast.LENGTH_LONG)
+                                .show()
 
                         }
 

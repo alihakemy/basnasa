@@ -110,14 +110,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     loc.longitude = it.longitude
                     showLocation(loc)
                 } ?: let {
-                    val addressList: List<Address> = coder.getFromLocationName(place.name, 5)
-                    if (!addressList.isNullOrEmpty()) {
-                        val location: Address = addressList[0]
-                        loc.latitude = location.latitude
-                        loc.longitude = location.longitude
-                        showLocation(loc)
+                    try {
+                        val addressList: List<Address> = coder.getFromLocationName(place.name, 5)
+                        if (!addressList.isNullOrEmpty()) {
+                            val location: Address = addressList[0]
+                            loc.latitude = location.latitude
+                            loc.longitude = location.longitude
+                            showLocation(loc)
+
+                        }
+                    }catch (e:Exception){
 
                     }
+
                 }
 
 

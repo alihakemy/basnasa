@@ -3,11 +3,12 @@ package com.market.presentation.mainscreen.user.displaytrader
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.dynamiclinks.DynamicLink
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.like.LikeButton
 import com.like.OnLikeListener
 import com.market.data.models.get.productdetails.Rate
@@ -22,8 +25,8 @@ import com.market.data.models.get.tagerdetails.Category
 import com.market.data.models.get.tagerdetails.Data
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.databinding.ActivityTraderProfileBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
-import com.market.presentation.mainscreen.user.displayproduct.DisplayProduct
 import com.market.presentation.mainscreen.user.displayproduct.comments.CommentsAdapter
 import com.market.presentation.mainscreen.user.displaytrader.catadapter.CategoriesAdapter
 import com.market.presentation.mainscreen.user.displaytrader.moretager.MoreTagerActivity
@@ -45,6 +48,53 @@ class TraderProfileActivity : BaseActivity() {
     var showAll = false
     lateinit var pd: ProgressDialog
 
+    fun SharePostLink(id: String)
+    {
+
+        val builder = Uri.Builder()
+        builder.scheme("https")
+            .authority("bsnas.page.link")
+            .appendQueryParameter("screenname", "tager")
+            .appendQueryParameter("tagerId", id)
+
+        val myUrl = builder.build().toString()
+
+
+       FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLink(Uri.parse(myUrl))
+            .setDomainUriPrefix("https://bsnas.page.link/") // Open links with this app on Android
+            .setAndroidParameters(
+                DynamicLink.AndroidParameters.Builder("com.market")
+                .build())
+
+            .buildShortDynamicLink().addOnSuccessListener {
+
+                try {
+
+                    val appPackageName = applicationContext.packageName
+                    val sendIntent = Intent()
+                    sendIntent.action = Intent.ACTION_SEND
+                    sendIntent.putExtra(
+                        Intent.EXTRA_TEXT, it.shortLink.toString()
+                    )
+
+                    sendIntent.type = "text/plain"
+                    sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    applicationContext.startActivity(sendIntent)
+
+                }catch (e:Exception)
+                {
+
+                    e.stackTrace
+                }
+
+
+            }
+
+
+
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTraderProfileBinding.inflate(layoutInflater)
@@ -54,13 +104,15 @@ class TraderProfileActivity : BaseActivity() {
         pd.setCancelable(false)
         pd.show()
 
+
+        Log.e("TagerIDDD",intent.extras?.getString("tagerId").toString())
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 kotlin.runCatching {
                     pd.show()
                 }
                 viewModel.getProductDetails(
-                    intent.getStringExtra("tagerId").toString(),
+                    intent.extras?.getString("tagerId").toString(),
                     getLatLong().first,
                     getLatLong().second
                 )
@@ -80,6 +132,7 @@ class TraderProfileActivity : BaseActivity() {
                 }
                 else -> {
 
+                    Toast.makeText(this,results.message,Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -111,11 +164,8 @@ class TraderProfileActivity : BaseActivity() {
         }
 
         binding.imageView44.setOnClickListener {
+            SharePostLink(data?.merchant?.userId.toString())
 
-            startLink(
-                "https://play.google.com/store/apps/details?id=" + "com.market",
-                this
-            )
 
         }
 
@@ -124,7 +174,15 @@ class TraderProfileActivity : BaseActivity() {
         binding.starButton.setOnLikeListener(object : OnLikeListener {
             override fun liked(likeButton: LikeButton?) {
 
-                likeButton?.isLiked?.let { viewModel.perFormLike(data?.merchant?.userId.toString()) }
+                if (checkIsLogin()) {
+                    likeButton?.isLiked?.let { viewModel.perFormLike(data?.merchant?.userId.toString()) }
+
+                } else {
+                    likeButton?.isLiked=false
+                    val intent = Intent(this@TraderProfileActivity, LoginUser::class.java)
+                    startActivity(intent)
+
+                }
             }
 
             override fun unLiked(likeButton: LikeButton?) {
@@ -183,49 +241,53 @@ class TraderProfileActivity : BaseActivity() {
             onBackPressed()
         }
         binding.button.setOnClickListener {
+            if (checkIsLogin()) {
+                if (!edit) {
 
-            if (!edit) {
 
+                    if (!binding.CommentText.text.toString().isNullOrEmpty()) {
+                        pd.show()
+                        viewModel.addComment(
+                            getLoginData().data.token,
+                            data?.merchant?.userId.toString(),
+                            binding.ratingBar2.rating,
+                            binding.CommentText.text.toString(),
+                            getLatLong().first,
+                            getLatLong().second
+                        )
+                        binding.CommentText.setText("")
+                        binding.ratingBar2.rating = 0.0f
 
-                if (!binding.CommentText.text.toString().isNullOrEmpty()) {
-                    pd.show()
-                    viewModel.addComment(
-                        getLoginData().data.token,
-                        data?.merchant?.userId.toString(),
-                        binding.ratingBar2.rating,
-                        binding.CommentText.text.toString(),
-                        getLatLong().first,
-                        getLatLong().second
-                    )
-                    binding.CommentText.setText("")
-                    binding.ratingBar2.rating = 0.0f
-
+                    } else {
+                        Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
+                    }
                 } else {
-                    Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
-                }
-            } else {
-                edit = false
-                if (!binding.CommentText.text.toString().isNullOrEmpty()) {
-                    binding.textView50.visibility = View.GONE
+                    edit = false
+                    if (!binding.CommentText.text.toString().isNullOrEmpty()) {
+                        binding.textView50.visibility = View.GONE
 
-                    pd.show()
-                    viewModel.editeComment(
-                        getLoginData().data.token,
-                        data?.merchant?.userId.toString(),
-                        binding.ratingBar2.rating,
-                        binding.CommentText.text.toString(),
-                        CommentId,
-                        getLatLong().first,
-                        getLatLong().second
-                    )
-                    binding.CommentText.setText("")
-                    binding.ratingBar2.rating = 0.0f
+                        pd.show()
+                        viewModel.editeComment(
+                            getLoginData().data.token,
+                            data?.merchant?.userId.toString(),
+                            binding.ratingBar2.rating,
+                            binding.CommentText.text.toString(),
+                            CommentId,
+                            getLatLong().first,
+                            getLatLong().second
+                        )
+                        binding.CommentText.setText("")
+                        binding.ratingBar2.rating = 0.0f
 
-                } else {
-                    Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
+                    }
                 }
+            }else
+            {
+                val intent = Intent(this@TraderProfileActivity, LoginUser::class.java)
+                startActivity(intent)
             }
-
 
         }
 

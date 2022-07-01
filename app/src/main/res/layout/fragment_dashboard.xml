@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="الكويت"
                         android:textSize="16sp"
                         app:drawableRightCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
                         app:drawableTint="@android:color/holo_red_dark"

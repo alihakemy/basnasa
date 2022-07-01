@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -77,15 +78,21 @@ class UserMoreFragments : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                val addressList: List<Address> = coder.getFromLocation(
-                    activitys.getLatLong().first.toDouble(),
-                    activitys.getLatLong().second.toDouble(),
-                    1
-                )
-                if (!addressList.isNullOrEmpty()) {
-                    val location: Address = addressList[0]
-                    binding.textView39.text = location.countryName.toString()
+                try {
+                    val addressList: List<Address> = coder.getFromLocation(
+                        activitys.getLatLong().first.toDouble(),
+                        activitys.getLatLong().second.toDouble(),
+                        1
+                    )
+                    if (!addressList.isNullOrEmpty()) {
+                        val location: Address = addressList[0]
+                        binding.textView39.text = location.countryName.toString()
+                    }
+
+                } catch (e: Exception) {
+
                 }
+
             }
 
         }
@@ -101,8 +108,21 @@ class UserMoreFragments : Fragment() {
 
         }
 
+        if (!activitys.getLoginData().data.user.Roles.toString().toLowerCase().equals("tager")&&
+                activitys.checkIsLogin()) {
+            binding.textView36.isVisible = false
+        }
+
+
         binding.notification.setOnClickListener {
-            startNotification(requireContext())
+            if (activitys.checkIsLogin()) {
+                startNotification(requireContext())
+            } else {
+                val intent = Intent(requireContext(), LoginUser::class.java)
+                startActivity(intent)
+
+            }
+
         }
 
 
@@ -135,9 +155,15 @@ class UserMoreFragments : Fragment() {
 
         }
         binding.offers.setOnClickListener {
-            val intent = Intent(requireContext(), OffersActivity::class.java)
+            if (activitys.checkIsLogin()) {
+                val intent = Intent(requireContext(), OffersActivity::class.java)
 
-            startActivity(intent)
+                startActivity(intent)
+            } else {
+                val intent = Intent(requireContext(), LoginUser::class.java)
+                startActivity(intent)
+
+            }
 
         }
 
@@ -191,11 +217,11 @@ class UserMoreFragments : Fragment() {
 
         })
         binding.about.setOnClickListener {
-            TermsAndConditions.startTerms("2",requireContext())
+            TermsAndConditions.startTerms("2", requireContext())
 
         }
         binding.terms.setOnClickListener {
-            TermsAndConditions.startTerms("1",requireContext())
+            TermsAndConditions.startTerms("1", requireContext())
 
         }
 

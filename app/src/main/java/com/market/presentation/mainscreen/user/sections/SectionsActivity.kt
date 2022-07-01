@@ -18,6 +18,7 @@ import com.market.data.models.get.setions.Merchant
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.setions.SubCategory
 import com.market.databinding.SectionsActivityBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity
@@ -40,17 +41,21 @@ class SectionsActivity : BaseActivity() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+try {
+    val addressList: List<Address> = coder.getFromLocation(
+        getLatLong().first.toDouble(),
+        getLatLong().second.toDouble(),
+        1
+    )
+    if (!addressList.isNullOrEmpty()) {
+        val location: Address = addressList[0]
+        binding.textView39.text = location.countryName.toString()
 
-                val addressList: List<Address> = coder.getFromLocation(
-                    getLatLong().first.toDouble(),
-                    getLatLong().second.toDouble(),
-                    1
-                )
-                if (!addressList.isNullOrEmpty()) {
-                    val location: Address = addressList[0]
-                    binding.textView39.text = location.countryName.toString()
+    }
+}catch (e:Exception){
 
-                }
+}
+
             }
 
         }
@@ -119,12 +124,20 @@ class SectionsActivity : BaseActivity() {
     private fun initAdapter(merchants: List<Merchant>?) {
 
         binding.rec.layoutManager = GridLayoutManager(this, 2)
-        binding.rec.adapter = SectionsAdapter(merchants){boolean, id ->
+        binding.rec.adapter = SectionsAdapter(merchants,checkIsLogin()){boolean, id ->
 
 
 
             if (boolean) {
-                viewModels.perFormLike(id)
+                if (checkIsLogin()) {
+                    viewModels.perFormLike(id)
+                } else {
+
+                    val intent = Intent(this@SectionsActivity, LoginUser::class.java)
+                    startActivity(intent)
+
+                }
+
             } else {
                 viewModels.perFormUnLike(id)
 

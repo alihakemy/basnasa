@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.market.data.models.get.notification.Data
 import com.market.data.models.get.notification.NotificationModel
 import com.market.databinding.ActivityNotificationBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.notification.adapter.NotificationAdapter
 import com.market.utils.ResultState
@@ -68,10 +70,21 @@ class NotificationActivity : BaseActivity() {
     }
 
     companion object {
+        fun checkIsLogin(context: Context):Boolean{
+            return  ! PreferenceManager.getDefaultSharedPreferences(context).getString("loginData", "").toString()
+                .isNullOrEmpty()
+        }
         fun startNotification(context: Context) {
+            if (checkIsLogin(context)) {
+                val intent = Intent(context, NotificationActivity::class.java)
+                context.startActivity(intent)
 
-            val intent = Intent(context, NotificationActivity::class.java)
-            context.startActivity(intent)
+            }else {
+
+                val intent = Intent(context, LoginUser::class.java)
+                context.startActivity(intent)
+
+            }
 
 
         }

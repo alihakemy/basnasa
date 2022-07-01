@@ -87,6 +87,8 @@ class LocationHelper(val activity: Activity) : LocationListener {
         val isGPSEnabled = locationManager
             .isProviderEnabled(LocationManager.GPS_PROVIDER)
 
+        val isNETWORK_PROVIDER = locationManager
+            .isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
         if (ActivityCompat.checkSelfPermission(
                 activity,
@@ -107,20 +109,24 @@ class LocationHelper(val activity: Activity) : LocationListener {
         }
         val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
-        locationManager.requestLocationUpdates(
-            LocationManager.NETWORK_PROVIDER,
-            0L,
-            0f,
-            this
-        )
+
         location?.let {
             locatioLiveData.postValue(location)
         } ?: let {
 
             if (isGPSEnabled) {
+                if(isNETWORK_PROVIDER){
+                    locationManager.requestLocationUpdates(
+                        LocationManager.NETWORK_PROVIDER,
+                        0L,
+                        0f,
+                        this
+                    )
+                }
+
                 locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
-                    0L,
+                    0,
                     0f,
                     this
                 )

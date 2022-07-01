@@ -110,7 +110,7 @@
                 android:inputType="text"
                 android:padding="10dp" />
 
-            <Spinner
+            <com.zeeshan.material.multiselectionspinner.MultiSelectionSpinner
                 style="@style/editext"
 
                 android:id="@+id/cat"

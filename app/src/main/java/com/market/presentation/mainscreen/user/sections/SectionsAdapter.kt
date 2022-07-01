@@ -12,7 +12,7 @@ import com.market.databinding.SearchItemUserBinding
 import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity
 import com.market.presentation.mainscreen.user.search.adapter.SearchAdapter
 
-class SectionsAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean:Boolean,id:String)->Unit) :
+class SectionsAdapter(val merchants: List<Merchant>?,val logined:Boolean,inline val likeds:(boolean:Boolean,id:String)->Unit) :
     RecyclerView.Adapter<SectionsAdapter. SectionsViewHolder>() {
 
 
@@ -35,12 +35,17 @@ class SectionsAdapter(val merchants: List<Merchant>?,inline val likeds:(boolean:
 
             binding.starButton.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton?) {
-                    merchants?.favaurite= likeButton?.isLiked == true
+                    if(logined){
+                        merchants?.favaurite= likeButton?.isLiked == true
+
+                    }else{
+                        merchants?.favaurite= likeButton?.isLiked == false
+                    }
                     likeButton?.isLiked?.let { likeds(it,merchants?.id.toString()) }
                 }
 
                 override fun unLiked(likeButton: LikeButton?) {
-                    merchants?.favaurite= likeButton?.isLiked == true
+                    merchants?.favaurite= false
 
                     likeButton?.isLiked?.let { likeds(it,merchants?.id.toString()) }
 

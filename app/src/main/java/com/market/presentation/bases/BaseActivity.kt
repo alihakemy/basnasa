@@ -22,6 +22,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
+    fun checkOnboard(): Boolean {
+        return viewModel.checkOnboard()
+    }
 
     fun checkIsLogin(): Boolean {
         return viewModel.checkIsLogin()

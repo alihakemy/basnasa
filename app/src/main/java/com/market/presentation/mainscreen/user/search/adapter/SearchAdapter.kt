@@ -13,7 +13,7 @@ import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivi
 import java.util.*
 
 
-class SearchAdapter(private  val searchResults:SearchResults,inline val likeds:(boolean:Boolean,id:String)->Unit) :
+class SearchAdapter(private  val searchResults:SearchResults,val logined:Boolean,inline val likeds:(boolean:Boolean,id:String)->Unit) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
 
@@ -36,12 +36,18 @@ class SearchAdapter(private  val searchResults:SearchResults,inline val likeds:(
 
             binding.starButton.setOnLikeListener(object :OnLikeListener{
                 override fun liked(likeButton: LikeButton?) {
-                    get.favaurite= likeButton?.isLiked == true
+                    if(logined){
+                        get.favaurite= likeButton?.isLiked == true
+
+                    }else
+                    {
+                        get.favaurite= likeButton?.isLiked == false
+                    }
                     likeButton?.isLiked?.let { likeds(it,get?.id.toString()) }
                 }
 
                 override fun unLiked(likeButton: LikeButton?) {
-                    get.favaurite= likeButton?.isLiked == true
+                    get.favaurite= false
 
                     likeButton?.isLiked?.let { likeds(it,get?.id.toString()) }
 

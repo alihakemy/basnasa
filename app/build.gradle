@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.market"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 2
         versionName "2.0"
@@ -145,6 +145,17 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.6.21"
     implementation  'io.ak1.pix:piximagepicker:1.6.3'
     implementation 'com.myfatoorah:myfatoorah:2.2.7'
+
+
+    implementation 'com.github.pratikbutani:MultiSelectSpinner:1.0.1'
+    implementation 'com.github.zeeshan5422:Material-MultiSelection-Spinner:1.0'
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:30.1.0')
+
+    // Declare the dependencies for the Dynamic Links and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-dynamic-links'
+    implementation 'com.google.firebase:firebase-analytics'
 
 
 }

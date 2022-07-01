@@ -26,7 +26,7 @@ open class PackagesAdapter(
 
             val numOfDays =packageSelected?.ActivateCount
 
-            binding.textView79.text = "ساريه لمده$numOfDays يوم "
+            binding.textView79.text = " ساريه لمده $numOfDays يوم "
             if (packageSelected?.selected == true) {
                 binding.imageView61.setImageResource(R.drawable.selected_icons)
 

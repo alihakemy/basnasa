@@ -33,6 +33,7 @@ import com.market.presentation.mainscreen.user.ui.home.categories.UserCategories
 import com.market.presentation.mainscreen.user.ui.home.merchants.UserMerchantsAdapter
 import com.market.presentation.mainscreen.user.ui.home.product.UserProductsAdapter
 import com.market.presentation.mainscreen.user.ui.home.sliderFragment.UserSliderFragment
+import com.market.presentation.mainscreen.user.ui.offers.SliderFragment
 import com.market.utils.ResultState
 import com.market.utils.startLink
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,6 +70,33 @@ class HomeFragment : Fragment() {
                     latitude = activity.getLatLong().first,
                     longitude = activity.getLatLong().second
                 )
+                try {
+
+                    val addressList: List<Address> = coder.getFromLocation(
+                        activity.getLatLong().first.toDouble(),
+                        activity.getLatLong().second.toDouble(),
+                        1
+                    )
+                    if (!addressList.isNullOrEmpty()) {
+                        val location: Address = addressList[0]
+                        binding.textView39.text = location.countryName.toString()
+
+                    }
+                }catch (e:Exception){
+
+                }
+
+            }
+        }
+
+
+        binding.refresh.setOnRefreshListener {
+            homeViewModel.getHomeScreen(
+                latitude = activity.getLatLong().first,
+                longitude = activity.getLatLong().second
+            )
+            try {
+
                 val addressList: List<Address> = coder.getFromLocation(
                     activity.getLatLong().first.toDouble(),
                     activity.getLatLong().second.toDouble(),
@@ -79,10 +107,10 @@ class HomeFragment : Fragment() {
                     binding.textView39.text = location.countryName.toString()
 
                 }
+            }catch (e:Exception){
+
             }
         }
-
-
 
         binding.searchText.setOnClickListener {
             val intent = Intent(requireContext(), SearchActivity::class.java)
@@ -105,7 +133,7 @@ class HomeFragment : Fragment() {
 
             when (val results = it) {
                 is ResultState.Success<HomeUser> -> {
-
+                    binding.refresh.isRefreshing=false
 
                     results.data?.data?.slider?.let { it1 -> initSlider(it1) }
 
@@ -175,11 +203,21 @@ class HomeFragment : Fragment() {
 
     private fun initBanner(banner: List<Banner>) {
         activity?.let {
-            binding.banner.adapter = ScreenSliderPagerAdapter(it, banner)
+            binding.banner.adapter = ScreenSlidePagerAdapters(it, banner)
 
             TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
             }.attach()
         }
+    }
+
+    private inner class ScreenSlidePagerAdapters(fa: FragmentActivity, val banner: List<Banner>) :
+        FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = banner?.size ?: 0
+        override fun createFragment(position: Int): Fragment =
+            SliderFragment.newInstance(
+                banner?.get(position)?.imagePath.toString(),
+                banner?.get(position)?.id.toString()
+            )
     }
 
     private fun initMerchants(merchants: List<Merchant>?) {

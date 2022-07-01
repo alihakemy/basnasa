@@ -1,9 +1,11 @@
 package com.market.presentation.mainscreen.user.ui.offers
 
+import android.content.Context
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,7 @@ import com.market.data.models.get.offers.Merchant
 import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.offers.SubCategory
 import com.market.databinding.FragmentDashboardBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
@@ -69,15 +72,20 @@ class OffersFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                val addressList: List<Address> = coder.getFromLocation(
-                    activitys.getLatLong().first.toDouble(),
-                    activitys.getLatLong().second.toDouble(),
-                    1
-                )
-                if (!addressList.isNullOrEmpty()) {
-                    val location: Address = addressList[0]
-                    binding.textView39.text = location.countryName.toString()
+                try {
+                    val addressList: List<Address> = coder.getFromLocation(
+                        activitys.getLatLong().first.toDouble(),
+                        activitys.getLatLong().second.toDouble(),
+                        1
+                    )
+                    if (!addressList.isNullOrEmpty()) {
+                        val location: Address = addressList[0]
+                        binding.textView39.text = location.countryName.toString()
+                    }
+                }catch (e:Exception){
+
                 }
+
             }
 
         }
@@ -163,12 +171,21 @@ class OffersFragment : Fragment() {
             }
         }
     }
-
+    fun checkIsLogin(context: Context):Boolean{
+        return  ! PreferenceManager.getDefaultSharedPreferences(context).getString("loginData", "").toString()
+            .isNullOrEmpty()
+    }
     private fun initMercant(merchants: List<Merchant>?) {
-        val adapter = UserOfferAdapter(merchants) { boolean, id ->
+        val adapter = UserOfferAdapter(merchants,checkIsLogin(requireContext())) { boolean, id ->
 
             if (boolean) {
-                viewModel?.perFormLike(id)
+                if (checkIsLogin(requireContext())) {
+                    viewModel?.perFormLike(id)
+                }else{
+                    val intent = Intent(requireContext(), LoginUser::class.java)
+                    startActivity(intent)
+
+                }
             } else {
                 viewModel?.perFormUnLike(id)
 

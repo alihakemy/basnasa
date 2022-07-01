@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="TextView"
+                        android:text="الكويت"
                         android:textSize="16sp"
                         app:drawableRightCompat="@drawable/ic_baseline_keyboard_arrow_down_24"
                         app:drawableTint="@android:color/holo_red_dark"
@@ -170,14 +170,32 @@
         android:id="@+id/merchants"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:nestedScrollingEnabled="false"
         android:padding="8dp"
-        tools:itemCount="5"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 
-        android:nestedScrollingEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+        tools:itemCount="5" />
+
+    <FrameLayout
+        android:id="@+id/textView99"
+
+        android:layout_width="match_parent"
+        android:background="#C3232121"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/two_bold"
+            android:text="سجل دخول اولا"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:visibility="visible" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

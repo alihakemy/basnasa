@@ -11,7 +11,10 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
@@ -28,6 +31,7 @@ import com.market.presentation.mainscreen.user.displayproduct.comments.CommentsA
 import com.market.presentation.mainscreen.user.displayproduct.pagers.ProductImageFragment
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ShowProductDetailsTager : BaseActivity() {
@@ -54,12 +58,20 @@ class ShowProductDetailsTager : BaseActivity() {
         }
         pd.show()
         val productId: String = intent.getStringExtra("productId").toString()
-        intent.getStringExtra("productId")?.let {
-            viewModel.getProductDetails(
-                it,
-                getLatLong().first, getLatLong().second
-            )
+
+       lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                intent.getStringExtra("productId")?.let {
+                    viewModel.getProductDetails(
+                        it,
+                        getLatLong().first, getLatLong().second
+                    )
+                }
+
+            }
         }
+
         viewModel.results.observe(this, Observer {
             if (pd.isShowing) {
                 pd.dismiss()
@@ -207,13 +219,15 @@ class ShowProductDetailsTager : BaseActivity() {
 
     private fun renderComments(rates: List<Rate>, i: Boolean) {
         binding.CommentsRec.layoutManager = LinearLayoutManager(this)
-        binding.CommentsRec.adapter = CommentsAdapter(rates as ArrayList<Rate>,
-            getLoginData().data.user.id, i, {
+        binding.CommentsRec.adapter = getLoginData()?.data?.user?.id?.let {
+            CommentsAdapter(rates as ArrayList<Rate>,
+                it, i, {
 
 
-            }) {
+                }) {
 
 
+            }
         }
 
 

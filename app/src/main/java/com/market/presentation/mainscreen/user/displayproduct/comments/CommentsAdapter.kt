@@ -31,8 +31,7 @@ class CommentsAdapter(
                 // delete
                 binding.imageView29.setOnClickListener {
 
-                    Log.e("PostionALI", position.toString())
-                    Log.e("PostionALI2", rates.size.toString())
+
                     deleteComment(get)
                     rates.removeAt(position)
                     notifyItemRemoved(position)

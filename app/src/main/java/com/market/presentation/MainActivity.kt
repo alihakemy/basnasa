@@ -1,13 +1,17 @@
 package com.market.presentation
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.WindowCompat
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.market.databinding.ActivityMainBinding
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
+import com.market.presentation.mainscreen.user.displaytrader.TraderProfileActivity
 import com.market.presentation.onboarding.OnBoarding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,35 +28,87 @@ class MainActivity() : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (checkIsLogin()) {
+        if (checkOnboard()) {
+            if (getIntent().getData() != null) {
 
 
-            if (getLoginData().data.user.Roles.toString().toLowerCase().equals("tager")) {
-                if (getLocation()) {
-                    val intent = Intent(this, MainActivityUser::class.java)
-                    startActivity(intent)
-                    finish()
+                FirebaseDynamicLinks.getInstance()
+                    .getDynamicLink(intent)
+
+                    .addOnSuccessListener(this) { pendingDynamicLinkData ->
+                        // Get deep link from result (may be null if no link is found)
+                        var deepLink: Uri? = null
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.link
+                            Log.e("linkalisami", deepLink.toString())
+
+                            when (deepLink?.getQueryParameter("screenname")) {
+
+                                "tager" -> {
+                                    TraderProfileActivity.startTagerProfile( deepLink.getQueryParameter("tagerId").toString(), this)
+
+                                    finishAffinity()
+                                }
+                            }
+                        }
+
+                        // Handle the deep link. For example, open the linked
+                        // content, or apply promotional credit to the user's
+                        // account.
+
+                    }
+                    .addOnCanceledListener {
+
+                    }
+
+                    .addOnFailureListener {
+
+                    }
 
 
-
-                } else {
-                    val intent = Intent(this, MapsActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-
-            } else {
-                if (getLocation()) {
-                    val intent = Intent(this, MainActivityUser::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    val intent = Intent(this, MapsActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
 
             }
+            else
+            {
+                if (getLocation()) {
+                    val intent = Intent(this, MainActivityUser::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+
+
+//            if (getLoginData().data.user.Roles.toString().toLowerCase().equals("tager")) {
+//                if (getLocation()) {
+//                    val intent = Intent(this, MainActivityUser::class.java)
+//                    startActivity(intent)
+//                    finish()
+//
+//
+//
+//                } else {
+//                    val intent = Intent(this, MapsActivity::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                }
+//
+//            } else {
+//                if (getLocation()) {
+//                    val intent = Intent(this, MainActivityUser::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                } else {
+//                    val intent = Intent(this, MapsActivity::class.java)
+//                    startActivity(intent)
+//                    finish()
+//                }
+//
+//            }
 
 
         } else {

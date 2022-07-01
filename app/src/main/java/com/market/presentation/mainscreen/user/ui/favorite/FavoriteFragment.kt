@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
@@ -18,6 +19,7 @@ import com.market.R
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.fav.Merchant
 import com.market.databinding.FragmentNotificationsBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity.Companion.startNotification
 import com.market.presentation.mainscreen.user.MainActivityUser
@@ -56,6 +58,16 @@ class FavoriteFragment : Fragment() {
         var coder = Geocoder(requireContext())
 
         val activitys = (activity as MainActivityUser)
+        if (!activitys.checkIsLogin()) {
+            binding.textView99.isVisible=true
+            binding.textView99.setOnClickListener {
+                val intent = Intent(requireContext(), LoginUser::class.java)
+                startActivity(intent)
+            }
+
+        }else{
+            binding.textView99.isVisible=false
+        }
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
@@ -63,15 +75,20 @@ class FavoriteFragment : Fragment() {
                     activitys.getLoginData().data.token,
                     activitys.getLatLong().first, activitys.getLatLong().second
                 )
-                val addressList: List<Address> = coder.getFromLocation(
-                    activitys.getLatLong().first.toDouble(),
-                    activitys.getLatLong().second.toDouble(),
-                    1
-                )
-                if (!addressList.isNullOrEmpty()) {
-                    val location: Address = addressList[0]
-                    binding.textView39.text = location.countryName.toString()
+                try {
+                    val addressList: List<Address> = coder.getFromLocation(
+                        activitys.getLatLong().first.toDouble(),
+                        activitys.getLatLong().second.toDouble(),
+                        1
+                    )
+                    if (!addressList.isNullOrEmpty()) {
+                        val location: Address = addressList[0]
+                        binding.textView39.text = location.countryName.toString()
+                    }
+                }catch (e:Exception){
+
                 }
+
             }
 
         }
@@ -168,10 +185,18 @@ class FavoriteFragment : Fragment() {
 
             val activitys = (activity as MainActivityUser)
 
-            viewModel.getFav(
-                (requireActivity() as MainActivityUser).getLoginData().data.token,
-                activitys.getLatLong().first, activitys.getLatLong().second, it?.id.toString()
-            )
+            if (activitys.checkIsLogin()) {
+                viewModel.getFav(
+                    (requireActivity() as MainActivityUser).getLoginData().data.token,
+                    activitys.getLatLong().first, activitys.getLatLong().second, it?.id.toString()
+                )
+            } else {
+
+                val intent = Intent(requireContext(), LoginUser::class.java)
+                startActivity(intent)
+
+            }
+
         }
     }
 

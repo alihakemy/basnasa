@@ -6,6 +6,7 @@ import com.market.data.models.get.User
 import com.market.data.models.get.login.LoginResponse
 import com.market.presentation.bases.methods.BaseMethods
 import com.market.presentation.bases.methods.LoginData
+import com.market.presentation.onboarding.ONBOARD
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -42,5 +43,9 @@ class BaseViewModel @Inject constructor(private val sharedPreferences: SharedPre
     fun getLoginData() = getLoginData(loginData)
     fun getLatLong() = getLatLong(loginData)
     fun storeLoginData(user: LoginResponse) = storeLoginData(loginData, user)
+
+    fun checkOnboard(): Boolean {
+        return (!sharedPreferences.getString(ONBOARD,"").isNullOrEmpty())
+    }
 
 }

@@ -1,10 +1,12 @@
 package com.market.presentation.mainscreen.user.ui.offers
 
+import android.content.Context
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -27,6 +29,7 @@ import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.offers.SubCategory
 import com.market.databinding.ActivityOffersBinding
 import com.market.databinding.FragmentDashboardBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
@@ -38,8 +41,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class OffersActivity :BaseActivity() {
-    lateinit var binding:ActivityOffersBinding
+class OffersActivity : BaseActivity() {
+    lateinit var binding: ActivityOffersBinding
     // This property is only valid between onCreateView and
     // onDestroyView.
 
@@ -48,7 +51,7 @@ class OffersActivity :BaseActivity() {
     var viewModel: OfferViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityOffersBinding.inflate(layoutInflater)
+        binding = ActivityOffersBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel =
             ViewModelProvider(this)[OfferViewModel::class.java]
@@ -60,15 +63,20 @@ class OffersActivity :BaseActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel?.getOffers(getLatLong().first, getLatLong().second)
 
-                val addressList: List<Address> = coder.getFromLocation(
-                    getLatLong().first.toDouble(),
-                    getLatLong().second.toDouble(),
-                    1
-                )
-                if (!addressList.isNullOrEmpty()) {
-                    val location: Address = addressList[0]
-                    binding.textView39.text = location.countryName.toString()
+                try {
+                    val addressList: List<Address> = coder.getFromLocation(
+                        getLatLong().first.toDouble(),
+                        getLatLong().second.toDouble(),
+                        1
+                    )
+                    if (!addressList.isNullOrEmpty()) {
+                        val location: Address = addressList[0]
+                        binding.textView39.text = location.countryName.toString()
+                    }
+                }catch (e:Exception){
+
                 }
+
             }
 
         }
@@ -96,13 +104,13 @@ class OffersActivity :BaseActivity() {
 
 
 
-                        binding.banner.adapter = ScreenSlidePagerAdapter(
-                            this,
-                            result?.data?.data?.banner
-                        )
+                    binding.banner.adapter = ScreenSlidePagerAdapter(
+                        this,
+                        result?.data?.data?.banner
+                    )
 
-                        TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
-                        }.attach()
+                    TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
+                    }.attach()
 
 
                     Log.e("OFFERSALISAMI", result.data?.data?.merchants.toString())
@@ -120,6 +128,7 @@ class OffersActivity :BaseActivity() {
         })
 
     }
+
     private fun initClickChange() {
         merchant?.let {
             binding.imageView32.setOnClickListener {
@@ -143,11 +152,23 @@ class OffersActivity :BaseActivity() {
         }
     }
 
+    fun checkIsLogin(context: Context): Boolean {
+        return !PreferenceManager.getDefaultSharedPreferences(context).getString("loginData", "")
+            .toString()
+            .isNullOrEmpty()
+    }
+
     private fun initMercant(merchants: List<Merchant>?) {
-        val adapter = UserOfferAdapter(merchants){boolean, id ->
+        val adapter = UserOfferAdapter(merchants, checkIsLogin(this)) { boolean, id ->
 
             if (boolean) {
-                viewModel?.perFormLike(id)
+                if (checkIsLogin()) {
+                    viewModel?.perFormLike(id)
+                } else {
+                    val intent = Intent(this@OffersActivity, LoginUser::class.java)
+                    startActivity(intent)
+
+                }
             } else {
                 viewModel?.perFormUnLike(id)
 
@@ -182,15 +203,12 @@ class OffersActivity :BaseActivity() {
 
     private fun getDependsOnSubCat(subCategory: SubCategory?) {
 
-        viewModel?.getOffers(getLatLong().first, getLatLong().second,
+        viewModel?.getOffers(
+            getLatLong().first, getLatLong().second,
             subCategory?.id.toString()
         )
 
     }
-
-
-
-
 
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity, val banner: List<Banner>?) :

@@ -19,6 +19,7 @@ import com.market.R
 import com.market.data.models.get.tagerdetails.Data
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.databinding.ActivityMoreTagerBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.user.displaytrader.TagerDetailsViewModel
 import com.market.utils.ResultState
@@ -104,15 +105,20 @@ class MoreTagerActivity : BaseActivity() {
 
         binding.textView66.text = "(" + data?.merchant?.rateCount + ")"
 
-        val addressList: List<Address> = coder.getFromLocation(
-            data?.merchant?.lat?.toDouble()?:0.0,
-            data?.merchant?.long?.toDouble()?:0.0,
-            1
-        )
-        if (!addressList.isNullOrEmpty()) {
-            val location: Address = addressList[0]
-            binding.textView.text = location.countryName.toString()
+        try {
+            val addressList: List<Address> = coder.getFromLocation(
+                data?.merchant?.lat?.toDouble()?:0.0,
+                data?.merchant?.long?.toDouble()?:0.0,
+                1
+            )
+            if (!addressList.isNullOrEmpty()) {
+                val location: Address = addressList[0]
+                binding.textView.text = location.countryName.toString()
+            }
+        }catch (e:Exception){
+
         }
+
 
         binding.info.text= data?.merchant?.content.toString()
         kotlin.runCatching {
@@ -121,8 +127,15 @@ class MoreTagerActivity : BaseActivity() {
 
         binding.starButton.setOnLikeListener(object : OnLikeListener {
             override fun liked(likeButton: LikeButton?) {
+                if (checkIsLogin()) {
+                    likeButton?.isLiked?.let { viewModel.perFormLike(data?.merchant?.userId.toString()) }
 
-                likeButton?.isLiked?.let { viewModel.perFormLike(data?.merchant?.userId.toString()) }
+                } else {
+                    likeButton?.isLiked=false
+                    val intent = Intent(this@MoreTagerActivity, LoginUser::class.java)
+                    startActivity(intent)
+
+                }
             }
 
             override fun unLiked(likeButton: LikeButton?) {

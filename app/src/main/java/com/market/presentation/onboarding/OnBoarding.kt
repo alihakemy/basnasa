@@ -10,6 +10,8 @@ import com.market.data.models.get.OnBoardingGet
 import com.market.databinding.OnBoardingActivityBinding
 import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
+import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,6 +69,7 @@ class OnBoarding : BaseActivity() {
             binding.viewPager2.currentItem = next
             if (next < 0) {
                 startLogin()
+
             }
         }
 
@@ -108,8 +111,21 @@ class OnBoarding : BaseActivity() {
     }
 
     private fun startLogin() {
-        val intent = Intent(this, LoginUser::class.java)
-        startActivity(intent)
+
+//        val intent = Intent(this, LoginUser::class.java)
+//        startActivity(intent)
+//        finish()
+//
+        viewModel.skipOnboard()
+        if (getLocation()) {
+            val intent = Intent(this, MainActivityUser::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         finish()
     }
 }

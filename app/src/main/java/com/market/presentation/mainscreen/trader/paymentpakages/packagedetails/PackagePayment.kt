@@ -179,12 +179,12 @@ class PackagePayment : BaseActivity() {
 
         val request = MFSendPaymentRequest(
             amount,
-            getLoginData().data.user.name, MFNotificationOption.LINK
+            getLoginData()?.data?.user?.name, MFNotificationOption.LINK
         )
         request.customerEmail =
-            getLoginData().data.user.email // The email required if you choose MFNotificationOption.ALL or MFNotificationOption.EMAIL
+            getLoginData()?.data?.user?.email // The email required if you choose MFNotificationOption.ALL or MFNotificationOption.EMAIL
         request.customerMobile =
-            getLoginData().data.user.phone // The mobile required if you choose MFNotificationOption.ALL or MFNotificationOption.SMS
+            getLoginData()?.data?.user?.phone // The mobile required if you choose MFNotificationOption.ALL or MFNotificationOption.SMS
         request.mobileCountryCode = MFMobileISO.KUWAIT.code
 
         MFSDK.sendPayment(request, MFAPILanguage.AR) { result: MFResult<MFSendPaymentResponse> ->

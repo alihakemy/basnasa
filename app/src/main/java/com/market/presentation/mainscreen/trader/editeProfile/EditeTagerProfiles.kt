@@ -30,6 +30,7 @@ import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.trader.showMyProfile.ShowMyTagerProfile
 import com.market.utils.ResultState
 import com.market.utils.prepareFilePart
+import com.zeeshan.material.multiselectionspinner.MultiSelectionSpinner
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,6 +41,8 @@ class EditeTagerProfiles : BaseActivity() {
 
     val viewModel: TagerCompleteViewModel by viewModels()
     lateinit var listCat: ArrayList<Category>
+    var selected: ArrayList<Category> = ArrayList()
+
     var imageUrl: Uri? = null
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -98,14 +101,30 @@ class EditeTagerProfiles : BaseActivity() {
                         list.add(it.name)
                     }
 
-                    val adapter = ArrayAdapter(
-                        this,
-                        android.R.layout.simple_list_item_1,
-                        list
-                    )
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.cat.adapter = adapter
 
+                    val itemsNames = ArrayList<String>()
+                    listCat.forEach {
+                        itemsNames.add(it.name)
+                    }
+                    binding.cat.items = itemsNames as List<Any>?
+                    binding.cat.setOnItemSelectedListener(object :
+                        MultiSelectionSpinner.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            view: View,
+                            isSelected: Boolean,
+                            position: Int
+                        ) {
+                            if (isSelected) {
+                                selected.add(listCat.get(position))
+
+                            } else {
+                                selected.removeAt(position)
+                            }
+
+                        }
+
+                        override fun onSelectionCleared() {}
+                    })
 
                 }
                 else -> {
@@ -149,15 +168,12 @@ class EditeTagerProfiles : BaseActivity() {
         binding.button.setOnClickListener {
 
 
-            var categoriesId = 0
+            if(selected.isNullOrEmpty()){
+                Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
 
-            listCat.forEach {
-
-                if (it.name.equals(binding.cat.selectedItem.toString().toString())) {
-                    categoriesId = it.id
-                }
-
+                return@setOnClickListener
             }
+
             imageUrl?.let {
                 if (getLatLong().first.equals("0")) {
                     Toast.makeText(this, "اكمل بيانتاتك ", Toast.LENGTH_LONG).show()
@@ -166,7 +182,7 @@ class EditeTagerProfiles : BaseActivity() {
                     pd.show()
                     viewModel.uploadStore(
                         SendCompleteJoin(
-                            categoriesId.toString(),
+                            selected.toString(),
                             arrivaltime = binding.arrivalTime.text.toString(),
                             binding.instaLink.text.toString(),
                             binding.faceLink.text.toString(),

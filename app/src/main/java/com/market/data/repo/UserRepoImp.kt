@@ -254,17 +254,24 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
 
 
     suspend fun addFav(merchant_id: String) {
-        val map: HashMap<String, String> = HashMap()
-        map["merchant_id"] = merchant_id
+        try {
+            val map: HashMap<String, String> = HashMap()
+            map["merchant_id"] = merchant_id
 
-        userService.addFav(map)
+            userService.addFav(map)
+        } catch (e: Exception) {
+
+        }
+
 
     }
 
     suspend fun removeFav(merchant_id: String) {
+        try {
+            userService.deleteFav(merchant_id)
+        } catch (e: Exception) {
 
-        userService.deleteFav(merchant_id)
-
+        }
     }
 
 
@@ -362,13 +369,19 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
         about: String
     ): ResultState<DefaultResponse> {
         return try {
-            ResultState.Success(  userService.addProduct(
-                category_id = category_id.toRequestBody(), mainprice = mainprice.toRequestBody(),
-                discount = discount.toRequestBody(),
-                stoke = stoke.toRequestBody(), image, name = name.toRequestBody(),
-                list,
-                currecny.toRequestBody(), about.toRequestBody()
-            ))
+            ResultState.Success(
+                userService.addProduct(
+                    category_id = category_id.toRequestBody(),
+                    mainprice = mainprice.toRequestBody(),
+                    discount = discount.toRequestBody(),
+                    stoke = stoke.toRequestBody(),
+                    image,
+                    name = name.toRequestBody(),
+                    list,
+                    currecny.toRequestBody(),
+                    about.toRequestBody()
+                )
+            )
         } catch (e: Exception) {
             Log.e("ErroePayment", e.localizedMessage.toString())
             ResultState.Error(e.localizedMessage.toString())
@@ -376,8 +389,6 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
         }
 
     }
-
-
 
 
     suspend fun editProduct(
@@ -392,13 +403,21 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
         about: String
     ): ResultState<DefaultResponse> {
         return try {
-            ResultState.Success(  userService.editProduct(productId,
-                category_id = category_id.toRequestBody(), mainprice = mainprice.toRequestBody(),
-                discount = discount.toRequestBody(),
-                stoke = stoke.toRequestBody(), image, name = name.toRequestBody(),
-                list,
-                currecny.toRequestBody(), about.toRequestBody(),"put".toRequestBody()
-            ))
+            ResultState.Success(
+                userService.editProduct(
+                    productId,
+                    category_id = category_id.toRequestBody(),
+                    mainprice = mainprice.toRequestBody(),
+                    discount = discount.toRequestBody(),
+                    stoke = stoke.toRequestBody(),
+                    image,
+                    name = name.toRequestBody(),
+                    list,
+                    currecny.toRequestBody(),
+                    about.toRequestBody(),
+                    "put".toRequestBody()
+                )
+            )
         } catch (e: Exception) {
             Log.e("ErroePayment", e.localizedMessage.toString())
             ResultState.Error(e.localizedMessage.toString())
@@ -406,28 +425,6 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     suspend fun removeProduct(
@@ -459,7 +456,8 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
     }
 
 
-    suspend fun getTerms(type:String
+    suspend fun getTerms(
+        type: String
 
     ): ResultState<TermsCondtionModel> {
 

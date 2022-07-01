@@ -1,27 +1,19 @@
 package com.market.presentation.authentication.trader.create.tagercompletedata
 
-import android.R
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.FileUtils
-import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide.with
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
-import com.google.android.material.navigation.NavigationBarView
 import com.market.data.models.SendCompleteJoin
 import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.categories.Category
@@ -29,13 +21,10 @@ import com.market.databinding.ActivityCompleteTagerDataBinding
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
 import com.market.utils.ResultState
-import com.market.utils.mFileUtils
 import com.market.utils.prepareFilePart
+import com.zeeshan.material.multiselectionspinner.MultiSelectionSpinner
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.EarlyEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import java.io.File
-import java.net.URI
+
 
 @AndroidEntryPoint
 class CompleteTagerDataActivity : BaseActivity() {
@@ -45,6 +34,7 @@ class CompleteTagerDataActivity : BaseActivity() {
 
     val viewModel: TagerCompleteViewModel by viewModels()
     lateinit var listCat: ArrayList<Category>
+    var selected: ArrayList<Category> = ArrayList()
     var imageUrl: Uri? = null
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -101,14 +91,30 @@ class CompleteTagerDataActivity : BaseActivity() {
                         list.add(it.name)
                     }
 
-                    val adapter = ArrayAdapter(
-                        this,
-                        R.layout.simple_list_item_1,
-                        list
-                    )
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.cat.adapter = adapter
 
+                    val itemsNames = ArrayList<String>()
+                    listCat.forEach {
+                        itemsNames.add(it.name)
+                    }
+                    binding.cat.items = itemsNames as List<Any>?
+                    binding.cat.setOnItemSelectedListener(object :
+                        MultiSelectionSpinner.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            view: View,
+                            isSelected: Boolean,
+                            position: Int
+                        ) {
+                            if (isSelected) {
+                                selected.add(listCat.get(position))
+
+                            } else {
+                                selected.removeAt(position)
+                            }
+
+                        }
+
+                        override fun onSelectionCleared() {}
+                    })
 
                 }
                 else -> {
@@ -151,28 +157,25 @@ class CompleteTagerDataActivity : BaseActivity() {
 
         binding.button.setOnClickListener {
 
+            if(selected.isNullOrEmpty()){
+                Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
 
-            var categoriesId = 0
-
-            listCat.forEach {
-
-                if (it.name.equals(binding.cat.selectedItem.toString().toString())) {
-                    categoriesId = it.id
-                }
-
+                return@setOnClickListener
             }
+
+
             imageUrl?.let {
                 if (getLatLong().first.equals("0")) {
                     Toast.makeText(this, "اكمل بيانتاتك ", Toast.LENGTH_LONG).show()
 
                 } else {
-                    if((!binding.arrivalTime.text.toString().isBlank())&&
+                    if ((!binding.arrivalTime.text.toString().isBlank()) &&
                         (!binding.description.text.toString().isBlank())
-                        ){
+                    ) {
                         pd.show()
                         viewModel.uploadStore(
                             SendCompleteJoin(
-                                categoriesId.toString(),
+                               selected.toString(),
                                 arrivaltime = binding.arrivalTime.text.toString(),
                                 binding.instaLink.text.toString(),
                                 binding.faceLink.text.toString(),
@@ -185,11 +188,12 @@ class CompleteTagerDataActivity : BaseActivity() {
                             ),
                             intent.getStringExtra("token").toString(),
                             prepareFilePart(
-                                "image", FileUriUtils.getRealPath(this, imageUrl.toString().toUri()).toString(),
+                                "image",
+                                FileUriUtils.getRealPath(this, imageUrl.toString().toUri())
+                                    .toString(),
                             )
                         )
-                    }else
-                    {
+                    } else {
                         Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
 
                     }

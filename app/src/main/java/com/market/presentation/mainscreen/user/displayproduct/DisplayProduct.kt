@@ -23,6 +23,7 @@ import com.market.data.models.get.productdetails.Image
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.productdetails.Rate
 import com.market.databinding.ActivityDisplayProductBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.user.displayproduct.comments.CommentsAdapter
 import com.market.presentation.mainscreen.user.displayproduct.pagers.ProductImageFragment
@@ -95,43 +96,50 @@ class DisplayProduct : BaseActivity() {
             onBackPressed()
         }
         binding.button.setOnClickListener {
+            if (checkIsLogin()) {
+                if (!edit) {
 
-            if (!edit) {
 
+                    if (!binding.CommentText.text.toString().isNullOrEmpty()) {
+                        pd.show()
+                        viewModel.addComment(
+                            getLoginData().data.token,
+                            productId,
+                            binding.ratingBar2.rating,
+                            binding.CommentText.text.toString(),
+                            getLatLong().first,
+                            getLatLong().second
+                        )
+                        binding.CommentText.setText("")
+                        binding.ratingBar2.rating = 0.0f
 
-                if (!binding.CommentText.text.toString().isNullOrEmpty()) {
-                    pd.show()
-                    viewModel.addComment(
-                        getLoginData().data.token,
-                        productId,
-                        binding.ratingBar2.rating,
-                        binding.CommentText.text.toString(),
-                        getLatLong().first,
-                        getLatLong().second
-                    )
-                    binding.CommentText.setText("")
-                    binding.ratingBar2.rating = 0.0f
-
+                    } else {
+                        Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
+                    }
                 } else {
-                    Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
-                }
-            } else {
-                edit = false
-                if (!binding.CommentText.text.toString().isNullOrEmpty()) {
-                    binding.textView50.visibility = View.GONE
+                    edit = false
+                    if (!binding.CommentText.text.toString().isNullOrEmpty()) {
+                        binding.textView50.visibility = View.GONE
 
-                    pd.show()
-                    viewModel.editeComment(
-                        getLoginData().data.token,
-                        productId, binding.ratingBar2.rating, binding.CommentText.text.toString(),
-                        CommentId, getLatLong().first, getLatLong().second
-                    )
-                    binding.CommentText.setText("")
-                    binding.ratingBar2.rating = 0.0f
+                        pd.show()
+                        viewModel.editeComment(
+                            getLoginData().data.token,
+                            productId, binding.ratingBar2.rating, binding.CommentText.text.toString(),
+                            CommentId, getLatLong().first, getLatLong().second
+                        )
+                        binding.CommentText.setText("")
+                        binding.ratingBar2.rating = 0.0f
 
-                } else {
-                    Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this, "اضف التعليق ", Toast.LENGTH_LONG).show()
+                    }
                 }
+
+            }else
+            {
+                val intent = Intent(this@DisplayProduct, LoginUser::class.java)
+                startActivity(intent)
+
             }
 
 

@@ -14,6 +14,7 @@ import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.market.data.models.get.search.SearchResults
 import com.market.databinding.ActivitySearchBinding
+import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
@@ -39,16 +40,22 @@ class SearchActivity : BaseActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                val addressList: List<Address> = coder.getFromLocation(
-                    getLatLong().first.toDouble(),
-                    getLatLong().second.toDouble(),
-                    1
-                )
-                if (!addressList.isNullOrEmpty()) {
-                    val location: Address = addressList[0]
-                    binding.textView39.text = location.countryName.toString()
+                try {
+                    val addressList: List<Address> = coder.getFromLocation(
+                        getLatLong().first.toDouble(),
+                        getLatLong().second.toDouble(),
+                        1
+                    )
+                    if (!addressList.isNullOrEmpty()) {
+                        val location: Address = addressList[0]
+                        binding.textView39.text = location.countryName.toString()
+
+                    }
+
+                }catch (e:Exception){
 
                 }
+
             }
 
         }
@@ -72,7 +79,7 @@ class SearchActivity : BaseActivity() {
                     keyCode == KeyEvent.KEYCODE_ENTER
                 ) {
                     // Perform action on key press
-                    Log.e("Clicked","ClikedALI")
+                    Log.e("Clicked", "ClikedALI")
                     viewModel.performSearch(
                         binding.searchText.text.toString(),
                         getLatLong().first.toString(), getLatLong().second.toString()
@@ -103,11 +110,19 @@ class SearchActivity : BaseActivity() {
     private fun initAdapter(searchResults: SearchResults) {
 
         binding.recyclerView3.layoutManager = GridLayoutManager(this, 2)
-        binding.recyclerView3.adapter = SearchAdapter(searchResults) { boolean, id ->
+        binding.recyclerView3.adapter = SearchAdapter(searchResults,checkIsLogin()) { boolean, id ->
 
 
             if (boolean) {
-                viewModel.perFormLike(id)
+                if (checkIsLogin()) {
+                    viewModel.perFormLike(id)
+                } else {
+
+                    val intent = Intent(this@SearchActivity, LoginUser::class.java)
+                    startActivity(intent)
+
+                }
+
             } else {
                 viewModel.perFormUnLike(id)
 
