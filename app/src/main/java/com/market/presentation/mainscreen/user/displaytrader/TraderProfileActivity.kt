@@ -206,11 +206,14 @@ class TraderProfileActivity : BaseActivity() {
 //        cat?.add(Category("","",10,"","","sa","",false))
 
 
-        binding.RecCat.adapter = CategoriesAdapter(cat) {
-            callDependOnCat(it)
+        if(binding.RecCat.adapter?.itemCount?: 0<=0){
+            binding.RecCat.adapter = CategoriesAdapter(cat) {
+                callDependOnCat(it)
+
+            }
+            binding.RecCat.layoutManager = linearLayoutManager
 
         }
-        binding.RecCat.layoutManager = linearLayoutManager
 
 
         val linearLayoutManagerProduct = GridLayoutManager(this, 2)

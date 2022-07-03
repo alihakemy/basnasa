@@ -35,13 +35,15 @@ class SectionsAdapter(val merchants: List<Merchant>?,val logined:Boolean,inline 
 
             binding.starButton.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton?) {
+                    likeButton?.isLiked?.let { likeds(it,merchants?.id.toString()) }
+
                     if(logined){
                         merchants?.favaurite= likeButton?.isLiked == true
 
                     }else{
                         merchants?.favaurite= likeButton?.isLiked == false
+                        likeButton?.isLiked=false
                     }
-                    likeButton?.isLiked?.let { likeds(it,merchants?.id.toString()) }
                 }
 
                 override fun unLiked(likeButton: LikeButton?) {
