@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.market.data.models.get.login.LoginResponse
 import com.market.databinding.UpdateUserProfileActivityBinding
+import com.market.presentation.MainActivity
 import com.market.presentation.authentication.forget.ForgetPasswordStep1
 import com.market.presentation.authentication.forget.ForgetPasswordStep2
 import com.market.presentation.authentication.user.login.LoginUser
@@ -38,9 +39,15 @@ class UpdateUserProfileActivity : BaseActivity() {
 
         binding.imageView52.setOnClickListener {
             viewModel.logOut()
+            val intent = Intent(this, MainActivity::class.java)
+           startActivity(intent)
+           finishAffinity()
         }
         binding.textView72.setOnClickListener {
             viewModel.logOut()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finishAffinity()
         }
 
         //updateProfile
