@@ -28,6 +28,7 @@ import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity.Companion.startNotification
 import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.presentation.mainscreen.trader.TaderMainActivity
+import com.market.presentation.mainscreen.trader.editeProfile.EditeTagerProfiles
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.ui.offers.OfferViewModel
 import com.market.presentation.mainscreen.user.ui.offers.OffersActivity
@@ -113,6 +114,10 @@ class UserMoreFragments : Fragment() {
             activitys.checkIsLogin()
         ) {
             binding.textView36.isVisible = false
+
+        }else
+        {
+            binding.account.isVisible=false
         }
 
 
@@ -149,7 +154,7 @@ class UserMoreFragments : Fragment() {
                     startActivity(intent)
                 }else
                 {
-                    // start update tager
+
                 }
 
             } else {

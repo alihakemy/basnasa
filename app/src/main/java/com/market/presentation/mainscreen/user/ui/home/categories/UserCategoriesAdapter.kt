@@ -22,7 +22,7 @@ class UserCategoriesAdapter(private  val categories: List<Category>) :
                 category.imagePath
             ).into(binding.imageView11)
             Glide.with(binding. imageView18.context).load(
-                category.image_path_hidden
+                category.imagePathHidden
             ).into(binding. imageView18)
 
             binding.parent.setBackgroundColor(Color.parseColor(category.color))

@@ -261,7 +261,7 @@ class HomeFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment =
             UserSliderFragment.newInstance(
-                slider.get(position).imagePath,
+                slider.get(position).imagePath.toString(),
                 slider.get(position).id.toString()
             )
     }
@@ -274,7 +274,7 @@ class HomeFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment =
             UserSliderFragment.newInstance(
-                slider.get(position).imagePath,
+                slider.get(position).imagePath.toString(),
                 slider.get(position).id.toString()
             )
     }

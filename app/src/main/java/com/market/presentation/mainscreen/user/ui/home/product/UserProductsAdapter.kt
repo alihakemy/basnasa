@@ -18,7 +18,7 @@ class UserProductsAdapter(private val products: List<Product>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) {
 
-            Glide.with(binding.imageView14.context).load(product.image_path)
+            Glide.with(binding.imageView14.context).load(product.imagePath)
                 .into(binding.imageView14)
 
             binding.textView29.text = product.name
@@ -31,7 +31,7 @@ class UserProductsAdapter(private val products: List<Product>) :
             binding.textView33.paintFlags =
                 binding.textView33.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-            Glide.with(binding.circleImageView.context).load(product.tager_image)
+            Glide.with(binding.circleImageView.context).load(product.tagerImage)
                 .into(binding.circleImageView)
 
             binding.root.setOnClickListener {

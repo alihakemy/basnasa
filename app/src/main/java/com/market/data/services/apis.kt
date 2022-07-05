@@ -12,11 +12,9 @@ import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.data.models.get.tagerprofile.TagerProfile
-import com.market.data.models.get.tagetcomplet.TagetCompleteData
 import com.market.data.models.get.terms.TermsCondtionModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Response
 import retrofit2.http.*
 
 interface apis {

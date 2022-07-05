@@ -211,9 +211,9 @@ class EditeTagerProfiles : BaseActivity() {
 
     }
     companion object{
-        fun startTagerProfile(productId: Merchant?, context: Context) {
+        fun startTagerProfile(merchantId: Merchant?, context: Context) {
             val intent = Intent(context,EditeTagerProfiles::class.java)
-            intent.putExtra("Merchant", productId)
+            intent.putExtra("Merchant", merchantId)
             context.startActivity(intent)
         }
     }
