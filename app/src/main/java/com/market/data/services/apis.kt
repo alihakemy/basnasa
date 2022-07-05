@@ -4,6 +4,7 @@ import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.links.SocialLinks
+import com.market.data.models.get.login.LoginResponse
 import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.paymentPackages.PaymentPackages
 import com.market.data.models.get.productdetails.ProductDetails
@@ -207,6 +208,9 @@ interface apis {
     suspend fun getPage(
         @Query("id") id: String,
     ): TermsCondtionModel
+
+    @POST("/api/updateProfile")
+    suspend  fun updateUserProfile( @Body hashMap: HashMap<String, String>) : LoginResponse
 
 
 }

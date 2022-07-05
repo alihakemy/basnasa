@@ -9,6 +9,7 @@ data class User(
     val name: String,
     val phone: String,
     val rate: Int,
+    val status:Int,
     var shop_name: String? ,
     var instagram_link: String?,
     var facebook_link: String?,

@@ -6,6 +6,7 @@ import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.links.SocialLinks
+import com.market.data.models.get.login.LoginResponse
 import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.paymentPackages.PaymentPackages
 import com.market.data.models.get.productdetails.ProductDetails
@@ -21,6 +22,22 @@ import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(private val userService: apis) {
+
+
+    suspend fun updateUserProfile(hashMap: HashMap<String, String>): ResultState<LoginResponse> {
+
+        return try {
+
+
+            ResultState.Success(userService.updateUserProfile(hashMap))
+
+
+        } catch (e: Exception) {
+            ResultState.Error(e.localizedMessage.toString())
+        }
+
+    }
+
 
     private fun getToken(token: String): String = "Bearer $token"
 

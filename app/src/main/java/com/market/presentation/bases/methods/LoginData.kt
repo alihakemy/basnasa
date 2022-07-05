@@ -33,7 +33,7 @@ class LoginData constructor(private val sharedPreferences: SharedPreferences) : 
         } else {
             LoginResponse(data = Data("","",
                 User("clients", emptyList(),"",-1,"","","",
-                0,"",
+                0,0,"",
                 "","","","","")),""
             ,"","")
         }

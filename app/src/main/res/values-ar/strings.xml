@@ -106,5 +106,11 @@
     <string name="hide">اخفاء</string>
     <string name="ShowsALL">عرض الكل</string>
     <string name="EditStore">تعديل بيانات المتجر</string>
+    <string name="changePassword">تغير كلمه السر</string>
+    <string name="send">ارسال</string>
+    <string name="EditeUserData">تعديل بيانات المستخدم</string>
+    <string name="editPassWord">تعديل كلمه المرور</string>
+    <string name="NewPassWords">يرجى إدخال كلمة المرور الجديدة</string>
+    <string name="EnterOldPassword">يرجى إدخال كلمة المرور القديمة</string>
 
 </resources>

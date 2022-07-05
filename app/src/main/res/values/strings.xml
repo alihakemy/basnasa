@@ -117,4 +117,10 @@
     <string name="hide">Hide</string>
     <string name="ShowsALL">Show ALL</string>
     <string name="EditStore">Edit Store Data</string>
+    <string name="changePassword">Change Password</string>
+    <string name="send">send</string>
+    <string name="EditeUserData">Edit User Data</string>
+    <string name="editPassWord">Edit Password</string>
+    <string name="NewPassWords">Enter New Password</string>
+    <string name="EnterOldPassword">Enter Old Password</string>
 </resources>

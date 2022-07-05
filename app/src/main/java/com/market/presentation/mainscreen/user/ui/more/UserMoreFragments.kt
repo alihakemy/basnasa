@@ -31,6 +31,7 @@ import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.ui.offers.OfferViewModel
 import com.market.presentation.mainscreen.user.ui.offers.OffersActivity
+import com.market.presentation.mainscreen.user.updateprofile.UpdateUserProfileActivity
 import com.market.utils.ResultState
 import com.market.utils.startLink
 import dagger.hilt.android.AndroidEntryPoint
@@ -108,8 +109,9 @@ class UserMoreFragments : Fragment() {
 
         }
 
-        if (!activitys.getLoginData().data.user.Roles.toString().toLowerCase().equals("tager")&&
-                activitys.checkIsLogin()) {
+        if (!activitys.getLoginData().data.user.Roles.toString().toLowerCase().equals("tager") &&
+            activitys.checkIsLogin()
+        ) {
             binding.textView36.isVisible = false
         }
 
@@ -141,8 +143,20 @@ class UserMoreFragments : Fragment() {
         }
 
         binding.account.setOnClickListener {
-            val intent = Intent(requireContext(), LoginUser::class.java)
-            startActivity(intent)
+            if (activitys.checkIsLogin()) {
+                if (!activitys.getLoginData().data.user.Roles.toLowerCase().equals("tager")) {
+                    val intent = Intent(requireContext(), UpdateUserProfileActivity::class.java)
+                    startActivity(intent)
+                }else
+                {
+                    // start update tager
+                }
+
+            } else {
+                val intent = Intent(requireContext(), LoginUser::class.java)
+                startActivity(intent)
+
+            }
 
         }
         binding.join.setOnClickListener {
