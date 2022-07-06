@@ -95,6 +95,9 @@ class FirstFragment : Fragment() {
         binding.count.text = data?.data?.merchant?.allProducts.toString()
 
 
+        Log.e("BannerALI",data?.data?.merchant?.bannerPath.toString().trim())
+        Glide.with(requireContext()).load(data?.data?.merchant?.bannerPath.toString().trim().toString())
+            .into(binding.imageView54)
         binding.profileImage.setOnClickListener {
             ShowMyTagerProfile.startTagerProfile(
                 data?.data?.merchant?.userId.toString(),

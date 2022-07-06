@@ -58,8 +58,9 @@ interface Authentication {
 
     @Multipart
     @POST("api/completeTager")
+    @JvmSuppressWildcards
     suspend fun completeTager(
-        @Part("category_id") category_id: RequestBody,
+        @Part("category_id[]") category_id: List<RequestBody>,
         @Part("arrivaltime") arrivaltime: RequestBody,
         @Part("instagram_link") instagram_link: RequestBody,
         @Part("facebook_link") facebook_link: RequestBody,
@@ -71,14 +72,17 @@ interface Authentication {
 
         @Part("phone ") phone: RequestBody,
         @Header("Authorization") token: String,
-        @Part image: MultipartBody.Part
-    ): Response<TagetCompleteData>
+        @Part image: MultipartBody.Part,
+        @Part files: List<MultipartBody.Part>,
+
+        ): Response<TagetCompleteData>
 
 
     @Multipart
     @POST("api/completeTager")
+    @JvmSuppressWildcards
     suspend fun completeTager(
-        @Part("category_id") category_id: RequestBody,
+        @Part("category_id[]") category_id: List<RequestBody>,
         @Part("arrivaltime") arrivaltime: RequestBody,
         @Part("instagram_link") instagram_link: RequestBody,
         @Part("facebook_link") facebook_link: RequestBody,
@@ -90,6 +94,7 @@ interface Authentication {
 
         @Part("phone ") phone: RequestBody,
         @Header("Authorization") token: String,
-    ): Response<TagetCompleteData>
+        @Part files: List<MultipartBody.Part>
 
+        ): Response<TagetCompleteData>
 }

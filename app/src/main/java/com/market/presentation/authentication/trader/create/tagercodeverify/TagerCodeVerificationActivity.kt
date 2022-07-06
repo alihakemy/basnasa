@@ -13,12 +13,13 @@ import com.market.data.models.SendVerificationPhone
 import com.market.data.models.get.verificationPhone.VerificationPhone
 import com.market.databinding.TagerCodeVerificationActivityBinding
 import com.market.presentation.authentication.trader.create.tagercompletedata.CompleteTagerDataActivity
+import com.market.presentation.bases.BaseActivity
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class TagerCodeVerificationActivity : AppCompatActivity() {
+class TagerCodeVerificationActivity : BaseActivity() {
     var binding: TagerCodeVerificationActivityBinding? = null
     val viewModel: TagerCodeVerificationViewModel by viewModels()
     var timers: CountDownTimer? = null

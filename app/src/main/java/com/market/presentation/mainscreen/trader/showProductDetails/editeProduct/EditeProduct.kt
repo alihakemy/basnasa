@@ -26,6 +26,7 @@ import com.market.data.models.get.currency.PaymentMethod
 import com.market.data.models.get.productdetails.Products
 import com.market.databinding.ActivityAddProductBinding
 import com.market.databinding.ActivityEditeProductBinding
+import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.trader.addproduct.AddProductViewModel
 import com.market.presentation.mainscreen.trader.addproduct.adapter.ImageAdapter
 import com.market.utils.ResultState
@@ -34,7 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MultipartBody
 
 @AndroidEntryPoint
-class EditeProduct : AppCompatActivity() {
+class EditeProduct : BaseActivity() {
     lateinit var binding: ActivityEditeProductBinding
     val viewModel: EditProductViewModel by viewModels()
     private var img: ArrayList<String> = arrayListOf()

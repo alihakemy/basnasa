@@ -7,12 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.market.databinding.ActivityTaderMainBinding
+import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.trader.tagerdata.SecondFragment
 import com.market.presentation.mainscreen.trader.tagerpage.FirstFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TaderMainActivity : AppCompatActivity() {
+class TaderMainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityTaderMainBinding
 

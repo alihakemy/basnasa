@@ -11,10 +11,11 @@ import com.market.utils.ResultState
 import com.market.data.models.ConfirmNewPassword
 import com.market.data.models.get.getconfirenewpassword.GetConfirmNewPassword
 import com.market.databinding.NewPasswordActivityBinding
+import com.market.presentation.bases.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ForgetPasswordStep3 : AppCompatActivity() {
+class ForgetPasswordStep3 : BaseActivity() {
   lateinit var binding:NewPasswordActivityBinding
   val viewModel : ResetPasswordViewModel by viewModels ()
     override fun onCreate(savedInstanceState: Bundle?) {

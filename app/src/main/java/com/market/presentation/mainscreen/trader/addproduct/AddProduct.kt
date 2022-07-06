@@ -21,6 +21,7 @@ import com.market.data.models.get.categories.Category
 import com.market.data.models.get.currency.Currency
 import com.market.data.models.get.currency.PaymentMethod
 import com.market.databinding.ActivityAddProductBinding
+import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.trader.addproduct.adapter.ImageAdapter
 import com.market.utils.ResultState
 import com.market.utils.prepareFilePart
@@ -29,7 +30,7 @@ import okhttp3.MultipartBody
 
 
 @AndroidEntryPoint
-class AddProduct : AppCompatActivity() {
+class AddProduct : BaseActivity() {
     lateinit var binding: ActivityAddProductBinding
     val viewModel: AddProductViewModel by viewModels()
     private var img: ArrayList<String> = arrayListOf()

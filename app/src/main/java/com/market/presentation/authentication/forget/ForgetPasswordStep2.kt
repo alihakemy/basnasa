@@ -11,10 +11,11 @@ import com.market.R
 import com.market.data.models.ResendCode
 import com.market.databinding.ForgetPasswordActivityBinding
 import com.market.presentation.authentication.trader.create.tagercodeverify.TagerCodeVerificationViewModel
+import com.market.presentation.bases.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ForgetPasswordStep2 : AppCompatActivity() {
+class ForgetPasswordStep2 : BaseActivity() {
     lateinit var binding: ForgetPasswordActivityBinding
     var timers: CountDownTimer? = null
     val viewModel: TagerCodeVerificationViewModel by viewModels()

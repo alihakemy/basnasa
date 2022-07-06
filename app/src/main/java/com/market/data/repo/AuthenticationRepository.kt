@@ -169,10 +169,7 @@ class AuthenticationRepository @Inject constructor(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.facebook_link
             )
-            val category_id: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                sendCompleteJoin.category_id.toString()
-            )
+
             val arrivaltime: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.arrivaltime
@@ -209,22 +206,32 @@ class AuthenticationRepository @Inject constructor(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.phone
             )
+            val list = ArrayList<RequestBody>()
+            sendCompleteJoin.category_id.forEachIndexed { index, i ->
+
+                list.add(
+                    RequestBody.create(
+                        "multipart/form-data".toMediaTypeOrNull(),
+                        i.toString()
+                    )
+                )
+            }
 
 
             val result = authentication.completeTager(
-                category_id = category_id,
+                category_id = list,
                 arrivaltime = arrivaltime,
                 phone = phone,
                 lat = lat,
                 long = long,
                 about = about,
-
                 facebook_link = facebook_link,
                 instagram_link = instagram_link,
                 snapchat_link = snapchat_link,
                 token = "Bearer $token",
                 image = image,
-                whatsapp_link = whatsapp_link
+                whatsapp_link = whatsapp_link,
+               files = sendCompleteJoin.files
             )
 
             if (result.isSuccessful) {
@@ -262,10 +269,7 @@ class AuthenticationRepository @Inject constructor(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.facebook_link
             )
-            val category_id: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                sendCompleteJoin.category_id.toString()
-            )
+
             val arrivaltime: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.arrivaltime
@@ -302,21 +306,32 @@ class AuthenticationRepository @Inject constructor(
                 "multipart/form-data".toMediaTypeOrNull(),
                 sendCompleteJoin.phone
             )
+            val list = ArrayList<RequestBody>()
+            sendCompleteJoin.category_id.forEachIndexed { index, i ->
+
+                list.add(
+                    RequestBody.create(
+                        "multipart/form-data".toMediaTypeOrNull(),
+                        i.toString()
+                    )
+                )
+            }
 
 
             val result = authentication.completeTager(
-                category_id = category_id,
+                category_id = list,
                 arrivaltime = arrivaltime,
                 phone = phone,
                 lat = lat,
                 long = long,
                 about = about,
-
                 facebook_link = facebook_link,
                 instagram_link = instagram_link,
                 snapchat_link = snapchat_link,
                 token = "Bearer $token",
-                whatsapp_link = whatsapp_link
+                whatsapp_link = whatsapp_link,
+                        files = sendCompleteJoin.files
+
             )
 
             if (result.isSuccessful) {

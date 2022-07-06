@@ -156,6 +156,10 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-dynamic-links'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation ('com.akexorcist:localization:1.2.11') {
+        exclude group: 'androidx.core', module: 'core'
+    }
+    implementation 'com.akexorcist:localization:1.2.11'
 
 
 }

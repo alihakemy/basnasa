@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
 import com.market.data.models.SendCompleteJoin
@@ -20,10 +21,12 @@ import com.market.data.models.get.categories.Category
 import com.market.databinding.ActivityCompleteTagerDataBinding
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.trader.addproduct.adapter.ImageAdapter
 import com.market.utils.ResultState
 import com.market.utils.prepareFilePart
 import com.zeeshan.material.multiselectionspinner.MultiSelectionSpinner
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MultipartBody
 
 
 @AndroidEntryPoint
@@ -55,7 +58,64 @@ class CompleteTagerDataActivity : BaseActivity() {
                 }
             }
         }
+    val imagesList = ArrayList<MultipartBody.Part>()
+    private var img: ArrayList<String> = arrayListOf()
 
+    private val startForProfileImageResultList =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data
+
+                    imagesList.add(
+                        prepareFilePart(
+                            "banners[]",
+                            FileUriUtils.getRealPath(this, fileUri.toString().toUri()).toString(),
+                        )
+                    )
+
+                    img.add(fileUri.toString())
+                    renderImagesList(img)
+
+                }
+                ImagePicker.RESULT_ERROR -> {
+                }
+                else -> {
+                }
+            }
+        }
+    private fun renderImagesList(arrayList: ArrayList<String>?) {
+
+
+        var adapter: ImageAdapter = ImageAdapter(arrayList, this) { postion ->
+
+            removeImageFromList(postion)
+
+
+        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(this).also {
+            it.orientation = LinearLayoutManager.HORIZONTAL
+        }
+        binding.recyclerView.adapter = adapter
+
+        binding.recyclerView.visibility = View.VISIBLE
+        adapter.notifyDataSetChanged()
+
+
+    }
+
+    private fun removeImageFromList(postion: Int) {
+        if (!imagesList.isNullOrEmpty()) {
+            img.removeAt(postion)
+            imagesList.removeAt(postion)
+            renderImagesList(img)
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCompleteTagerDataBinding.inflate(layoutInflater)
@@ -156,9 +216,24 @@ class CompleteTagerDataActivity : BaseActivity() {
 
         }
 
+        binding.imageView70.setOnClickListener {
+
+            ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(
+                    1080,
+                    1080
+                )  //Final image resolution will be less than 1080 x 1080(Optional)
+                .createIntent { intent ->
+                    startForProfileImageResultList.launch(intent)
+                }
+
+
+        }
+
         binding.button.setOnClickListener {
 
-            if(selected.isNullOrEmpty()){
+            if (selected.isNullOrEmpty()) {
                 Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
 
                 return@setOnClickListener
@@ -173,14 +248,15 @@ class CompleteTagerDataActivity : BaseActivity() {
                     if ((!binding.arrivalTime.text.toString().isBlank()) &&
                         (!binding.description.text.toString().isBlank())
                     ) {
-                        val ids=ArrayList<Int>()
+                        val ids = ArrayList<Int>()
                         selected.forEach {
                             ids.add(it.id)
                         }
                         pd.show()
                         viewModel.uploadStore(
                             SendCompleteJoin(
-                               ids,
+                                imagesList,
+                                ids,
                                 arrivaltime = binding.arrivalTime.text.toString(),
                                 binding.instaLink.text.toString(),
                                 binding.faceLink.text.toString(),

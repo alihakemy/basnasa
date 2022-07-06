@@ -2,6 +2,7 @@ package com.market.data.models
 
 import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
+import retrofit2.http.Part
 
 
 data class SendLogin(val email: String, val password: String,val device_token:String)
@@ -29,6 +30,9 @@ data class ConfirmNewPassword(
 
 
 data class SendCompleteJoin(
+
+    val files: List<MultipartBody.Part>,
+
 
     val category_id: ArrayList<Int>,
     val arrivaltime: String,

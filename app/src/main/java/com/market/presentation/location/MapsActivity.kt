@@ -30,6 +30,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.market.R
 import com.market.databinding.ActivityMapsBinding
 import com.market.presentation.MainActivity
+import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.trader.TaderMainActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.onboarding.OnBoarding
@@ -41,7 +42,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding

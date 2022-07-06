@@ -11,10 +11,11 @@ import com.market.utils.ResultState
 import com.market.data.models.ForgetPassword
 import com.market.data.models.get.forgetpassword.GetForgetPassword
 import com.market.databinding.ActivityForgetPasswordStep1Binding
+import com.market.presentation.bases.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ForgetPasswordStep1 : AppCompatActivity() {
+class ForgetPasswordStep1 : BaseActivity() {
 
     lateinit var binding: ActivityForgetPasswordStep1Binding
     val viewModel: ResetPasswordViewModel by viewModels()

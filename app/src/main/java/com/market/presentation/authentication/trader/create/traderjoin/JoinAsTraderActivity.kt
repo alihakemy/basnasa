@@ -15,12 +15,13 @@ import com.market.data.models.get.register.RegisterResponse
 import com.market.databinding.JoinAsTraderActivityBinding
 import com.market.presentation.authentication.trader.create.tagercodeverify.TagerCodeVerificationActivity
 import com.market.presentation.authentication.user.create.CreateAccountViewModel
+import com.market.presentation.bases.BaseActivity
 import com.market.presentation.mainscreen.termsandConditions.TermsAndConditions
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class JoinAsTraderActivity : AppCompatActivity() {
+class JoinAsTraderActivity :BaseActivity() {
     var binding:JoinAsTraderActivityBinding ?=null
     val viewModel: JoinAsTraderViewModel by viewModels()
     val bundle = Bundle()

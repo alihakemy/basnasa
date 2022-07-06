@@ -58,7 +58,8 @@ fun prepareFilePart(partName: String, fileUri: String): MultipartBody.Part {
     val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
 
     // MultipartBody.Part is used to send also the actual file name
-    return MultipartBody.Part.createFormData(partName, file.name, requestFile)
+    val time =System.currentTimeMillis()
+    return MultipartBody.Part.createFormData(partName,"androidali$time", requestFile)
 }
 
 fun getIso(context: Context): String {

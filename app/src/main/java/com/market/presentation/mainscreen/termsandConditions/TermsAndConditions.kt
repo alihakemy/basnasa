@@ -10,11 +10,12 @@ import androidx.lifecycle.Observer
 import com.market.R
 import com.market.data.models.get.terms.TermsCondtionModel
 import com.market.databinding.ActivityTermsAndConditionsBinding
+import com.market.presentation.bases.BaseActivity
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TermsAndConditions : AppCompatActivity() {
+class TermsAndConditions : BaseActivity() {
 
     val viewModels: TermConditionViewModels by viewModels()
     lateinit var binding: ActivityTermsAndConditionsBinding

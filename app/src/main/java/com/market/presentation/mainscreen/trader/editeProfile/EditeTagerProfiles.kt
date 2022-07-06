@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
@@ -24,10 +25,12 @@ import com.market.databinding.ActivityEditeTagerProfilesBinding
 import com.market.presentation.authentication.trader.create.tagercompletedata.TagerCompleteViewModel
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
+import com.market.presentation.mainscreen.trader.addproduct.adapter.ImageAdapter
 import com.market.utils.ResultState
 import com.market.utils.prepareFilePart
 import com.zeeshan.material.multiselectionspinner.MultiSelectionSpinner
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MultipartBody
 
 @AndroidEntryPoint
 class EditeTagerProfiles : BaseActivity() {
@@ -59,6 +62,64 @@ class EditeTagerProfiles : BaseActivity() {
                 }
             }
         }
+    val imagesList = ArrayList<MultipartBody.Part>()
+    private var img: ArrayList<String> = arrayListOf()
+
+    private val startForProfileImageResultList =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data
+
+                    imagesList.add(
+                        prepareFilePart(
+                            "banners[]",
+                            FileUriUtils.getRealPath(this, fileUri.toString().toUri()).toString(),
+                        )
+                    )
+
+                    img.add(fileUri.toString())
+                    renderImagesList(img)
+
+                }
+                ImagePicker.RESULT_ERROR -> {
+                }
+                else -> {
+                }
+            }
+        }
+    private fun renderImagesList(arrayList: ArrayList<String>?) {
+
+
+        var adapter: ImageAdapter = ImageAdapter(arrayList, this) { postion ->
+
+            removeImageFromList(postion)
+
+
+        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(this).also {
+            it.orientation = LinearLayoutManager.HORIZONTAL
+        }
+        binding.recyclerView.adapter = adapter
+
+        binding.recyclerView.visibility = View.VISIBLE
+        adapter.notifyDataSetChanged()
+
+
+    }
+
+    private fun removeImageFromList(postion: Int) {
+        if (!imagesList.isNullOrEmpty()) {
+            img.removeAt(postion)
+            imagesList.removeAt(postion)
+            renderImagesList(img)
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,8 +133,6 @@ class EditeTagerProfiles : BaseActivity() {
 
 
 
-        binding.editTextTextPersonName2.setText(getLoginData().data.user.name)
-        binding.editTextTextPersonName3.setText(getLoginData().data.user.email)
         binding.editTextTextPersonName.setText(getLoginData().data.user.shop_name)
 
         Glide.with(this).load(merchant?.imagePath.toString())
@@ -169,28 +228,83 @@ class EditeTagerProfiles : BaseActivity() {
 
 
         }
+        binding.imageView70.setOnClickListener {
 
+            ImagePicker.with(this)
+                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(
+                    1080,
+                    1080
+                )  //Final image resolution will be less than 1080 x 1080(Optional)
+                .createIntent { intent ->
+                    startForProfileImageResultList.launch(intent)
+                }
+
+
+        }
         binding.button.setOnClickListener {
 
 
-            if(selected.isNullOrEmpty()){
+            if (selected.isNullOrEmpty()) {
                 Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
 
                 return@setOnClickListener
             }
+
 
             imageUrl?.let {
                 if (getLatLong().first.equals("0")) {
                     Toast.makeText(this, "اكمل بيانتاتك ", Toast.LENGTH_LONG).show()
 
                 } else {
-                    pd.show()
-                    val ids=ArrayList<Int>()
+                    if ((!binding.arrivalTime.text.toString().isBlank()) &&
+                        (!binding.description.text.toString().isBlank())
+                    ) {
+                        val ids = ArrayList<Int>()
+                        selected.forEach {
+                            ids.add(it.id)
+                        }
+                        pd.show()
+                        viewModel.uploadStore(
+                            SendCompleteJoin(
+                                imagesList,
+                                ids,
+                                arrivaltime = binding.arrivalTime.text.toString(),
+                                binding.instaLink.text.toString(),
+                                binding.faceLink.text.toString(),
+                                binding.whatLink.text.toString(),
+                                binding.snapLink.text.toString(),
+                                getLatLong().first,
+                                getLatLong().second,
+                                binding.description.text.toString(),
+                                binding.phone.text.toString()
+                            ),
+                            intent.getStringExtra("token").toString(),
+                            prepareFilePart(
+                                "image",
+                                FileUriUtils.getRealPath(this, imageUrl.toString().toUri())
+                                    .toString(),
+                            )
+                        )
+                    } else {
+                        Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
+
+                    }
+
+                }
+
+            } ?: let {
+                if ((!binding.arrivalTime.text.toString().isBlank()) &&
+                    (!binding.description.text.toString().isBlank())
+                ) {
+                    val ids = ArrayList<Int>()
                     selected.forEach {
                         ids.add(it.id)
                     }
+                    pd.show()
                     viewModel.uploadStore(
                         SendCompleteJoin(
+                            imagesList,
                             ids,
                             arrivaltime = binding.arrivalTime.text.toString(),
                             binding.instaLink.text.toString(),
@@ -202,38 +316,13 @@ class EditeTagerProfiles : BaseActivity() {
                             binding.description.text.toString(),
                             binding.phone.text.toString()
                         ),
-                        intent.getStringExtra("token").toString(),
-                        prepareFilePart(
-                            "image",
-                            FileUriUtils.getRealPath(this, imageUrl.toString().toUri()).toString(),
-                        )
+                        intent.getStringExtra("token").toString()
                     )
-                }
+                } else {
+                    Toast.makeText(this, "اكمل بياناتك ", Toast.LENGTH_LONG).show()
 
-            } ?: let {
-                pd.show()
-                val ids=ArrayList<Int>()
-                selected.forEach {
-                    ids.add(it.id)
                 }
-                viewModel.uploadStore(
-                    SendCompleteJoin(
-                        ids,
-                        arrivaltime = binding.arrivalTime.text.toString(),
-                        binding.instaLink.text.toString(),
-                        binding.faceLink.text.toString(),
-                        binding.whatLink.text.toString(),
-                        binding.snapLink.text.toString(),
-                        getLatLong().first,
-                        getLatLong().second,
-                        binding.description.text.toString(),
-                        binding.phone.text.toString()
-                    ),
-                    intent.getStringExtra("token").toString()
-                )
             }
-
-
         }
 
 
