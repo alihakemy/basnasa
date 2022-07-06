@@ -115,25 +115,28 @@ class OffersFragment : Fragment() {
             when (val result = it) {
                 is ResultState.Success<Offers> -> {
 
-                    initCatAdapter(result.data?.data?.subCategories)
-                    activity?.let {
+                    kotlin.runCatching {
+                        initCatAdapter(result.data?.data?.subCategories)
+                        activity?.let {
 
 
-                        binding.banner.adapter = ScreenSlidePagerAdapter(
-                            it,
-                            result?.data?.data?.banner
-                        )
+                            binding.banner.adapter = ScreenSlidePagerAdapter(
+                                it,
+                                result?.data?.data?.banner
+                            )
 
-                        TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
-                        }.attach()
+                            TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
+                            }.attach()
 
+                        }
+                        Log.e("OFFERSALISAMI", result.data?.data?.merchants.toString())
+
+                        initMercant(result.data?.data?.merchants)
+
+                        merchant = result.data?.data?.merchants as ArrayList<Merchant>?
+                        initClickChange()
                     }
-                    Log.e("OFFERSALISAMI", result.data?.data?.merchants.toString())
 
-                    initMercant(result.data?.data?.merchants)
-
-                    merchant = result.data?.data?.merchants as ArrayList<Merchant>?
-                    initClickChange()
                 }
                 else -> {
 
