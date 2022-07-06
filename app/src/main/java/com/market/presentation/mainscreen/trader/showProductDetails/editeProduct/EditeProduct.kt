@@ -108,8 +108,8 @@ class EditeProduct : AppCompatActivity() {
 
     }
 
-    val currencyName :ArrayList<String> = ArrayList()
-    val paymentMethod :ArrayList<PaymentMethod> = ArrayList()
+    val currencyName: ArrayList<String> = ArrayList()
+    val paymentMethod: ArrayList<PaymentMethod> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditeProductBinding.inflate(layoutInflater)
@@ -207,11 +207,11 @@ class EditeProduct : AppCompatActivity() {
                         }
 
                     }
-                    var currencyId:String ="3"
+                    var currencyId: String = "3"
                     paymentMethod.forEach {
 
-                        if(binding.currency.selectedItem.toString().equals(it.name)){
-                            currencyId=it.id.toString()
+                        if (binding.currency.selectedItem.toString().equals(it.name)) {
+                            currencyId = it.id.toString()
                         }
 
                     }
@@ -235,17 +235,101 @@ class EditeProduct : AppCompatActivity() {
                     }
 
                 } else {
-                    Toast.makeText(this, "اضف صور", Toast.LENGTH_LONG).show()
+                    if (binding.productName.text.isBlank()) {
+                        Toast.makeText(this, "اسم المنتج", Toast.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+
+                    if (binding.textView91.text.isBlank()) {
+                        Toast.makeText(this, "سعر المنتج", Toast.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+                    var categoriesId = 0
+                    listCat.forEach {
+
+                        if (it.name.equals(binding.cat.selectedItem.toString().toString())) {
+                            categoriesId = it.id
+                        }
+
+                    }
+                    var currencyId: String = "3"
+                    paymentMethod.forEach {
+
+                        if (binding.currency.selectedItem.toString().equals(it.name)) {
+                            currencyId = it.id.toString()
+                        }
+
+                    }
+
+                    viewModel.editeProduct(
+                        list = imagesList,
+                        category_id = categoriesId.toString(),
+                        mainprice = binding.textView91.text.toString(),
+                        discount = binding.discount.text.toString(),
+                        stoke = binding.textView91.text.toString(),
+                        about = binding.details.text.toString(),
+                        name = binding.productName.text.toString(),
+                        currecny = currencyId,
+                        productId = product?.id.toString()
+                    )
+
+                    if (!pd.isShowing) {
+                        pd.show()
+
+                    }
                 }
             } else {
-                Toast.makeText(this, "  اضف صور رئسيه", Toast.LENGTH_LONG).show()
+
+
+                if (binding.productName.text.isBlank()) {
+                    Toast.makeText(this, "اسم المنتج", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
+                if (binding.textView91.text.isBlank()) {
+                    Toast.makeText(this, "سعر المنتج", Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+                var categoriesId = 0
+                listCat.forEach {
+
+                    if (it.name.equals(binding.cat.selectedItem.toString().toString())) {
+                        categoriesId = it.id
+                    }
+
+                }
+                var currencyId: String = "3"
+                paymentMethod.forEach {
+
+                    if (binding.currency.selectedItem.toString().equals(it.name)) {
+                        currencyId = it.id.toString()
+                    }
+
+                }
+
+                viewModel.editeProduct(
+                    list = imagesList,
+                    category_id = categoriesId.toString(),
+                    mainprice = binding.textView91.text.toString(),
+                    discount = binding.discount.text.toString(),
+                    stoke = binding.textView91.text.toString(),
+                    about = binding.details.text.toString(),
+                    name = binding.productName.text.toString(),
+                    currecny = currencyId,
+                    productId = product?.id.toString()
+                )
+
+                if (!pd.isShowing) {
+                    pd.show()
+
+                }
 
             }
 
 
         }
 
-        viewModel.currency.observe(this,  Observer {
+        viewModel.currency.observe(this, Observer {
 
             when (val result = it) {
                 is ResultState.Success<Currency> -> {
@@ -265,7 +349,7 @@ class EditeProduct : AppCompatActivity() {
             }
         })
 
-            viewModel.results.observe(this, Observer {
+        viewModel.results.observe(this, Observer {
 
             when (val result = it) {
                 is ResultState.Success<DefaultResponse> -> {

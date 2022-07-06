@@ -82,4 +82,33 @@ class EditProductViewModel @Inject constructor(
     }
 
 
+    fun editeProduct(
+        list: ArrayList<MultipartBody.Part>,
+        category_id: String,
+        mainprice: String,
+        discount: String,
+        stoke: String,
+        name: String,
+        currecny: String,
+        about: String,
+        productId:String
+    ) {
+        viewModelScope.launch {
+            results.postValue(
+                repo.editProduct(
+                    productId,
+                    list=list,
+                    category_id = category_id,
+                    mainprice = mainprice,
+                    discount = discount,
+                    stoke = stoke,
+                    name = name,
+                    currecny = currecny,
+                    about = about
+                )
+            )
+        }
+    }
+
+
 }

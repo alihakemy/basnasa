@@ -77,16 +77,6 @@
 
                 android:hint="الاسم" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName3"
-
-                style="@style/editext"
-                android:hint="البريد الاليكترونى "
-                android:textSize="14sp"
-
-
-                android:padding="10dp" />
-
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
