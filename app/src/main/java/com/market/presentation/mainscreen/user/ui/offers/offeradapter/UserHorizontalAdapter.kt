@@ -24,6 +24,7 @@ class UserHorizontalAdapter(
                 .load(get.imagePath?.toString())
                 .into(binding.image)
             binding.textView30.text = get.shopName?.toString()
+            binding.textView26.text=get?.distance.toString()
             binding.textView35.text = get.name.toString()
             binding.textView.text = "(" + get.rateCount + ")"
             binding.ratingBar.rating = get.rate?.toFloat() ?: 0f

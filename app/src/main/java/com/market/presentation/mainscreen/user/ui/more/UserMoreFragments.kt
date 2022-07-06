@@ -5,6 +5,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -98,7 +99,17 @@ class UserMoreFragments : Fragment() {
             }
 
         }
+        val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
+        binding.textView102.setOnClickListener {
+            preferences.edit().putString("lang","En").commit()
+            activitys.setLanguage("En")
+        }
+
+        binding.textView101.setOnClickListener {
+            preferences.edit().putString("lang","ar").commit()
+            activitys.setLanguage("ar")
+        }
 
         binding.linearLayout12.setOnClickListener {
 

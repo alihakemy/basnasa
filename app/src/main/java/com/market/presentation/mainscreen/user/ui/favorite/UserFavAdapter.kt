@@ -83,10 +83,15 @@ class UserFavAdapter() :
             holder.binding.root.setOnClickListener {
                 TraderProfileActivity.startTagerProfile(list[position]?.id.toString(), it.context)
             }
+            holder.binding.textView26.text=list[position].distance?.toString()
+
 
         } else  if (holder is UserCategoriesViewHolder1 ) {
             Glide.with(holder.binding.image.context).load(list[position].imagePath?.toString()).into(holder.binding.image)
             holder.binding.textView30.text=list[position].shopName?.toString()
+            holder.binding.textView26.text=list[position].distance?.toString()
+
+
             holder.binding.textView35.text=list[position].name.toString()
             holder.binding.textView.text="("+list[position].rateCount+")"
             holder.binding.ratingBar.rating=list[position].rate?.toFloat() ?:0f

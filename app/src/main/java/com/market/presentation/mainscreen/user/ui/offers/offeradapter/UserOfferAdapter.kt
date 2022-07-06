@@ -30,6 +30,7 @@ class UserOfferAdapter(
 
             binding.textView25.text = get?.shopName.toString()
             binding.ratingBar.rating = get?.rate?.toFloat() ?: 0.0f
+            binding.textView26.text=get?.distance.toString()
 
             binding.ratingBar.numStars = 4
             binding.starButton.isLiked = get?.favaurite == true
