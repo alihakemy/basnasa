@@ -5,10 +5,8 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,17 +16,14 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
-import com.market.R
 import com.market.data.models.SendCompleteJoin
 import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.categories.Category
 import com.market.data.models.get.tagerprofile.Merchant
-import com.market.databinding.ActivityEditeProductBinding
 import com.market.databinding.ActivityEditeTagerProfilesBinding
 import com.market.presentation.authentication.trader.create.tagercompletedata.TagerCompleteViewModel
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
-import com.market.presentation.mainscreen.trader.showMyProfile.ShowMyTagerProfile
 import com.market.utils.ResultState
 import com.market.utils.prepareFilePart
 import com.zeeshan.material.multiselectionspinner.MultiSelectionSpinner
@@ -128,7 +123,7 @@ class EditeTagerProfiles : BaseActivity() {
                                 selected.add(listCat.get(position))
 
                             } else {
-                                selected.removeAt(position)
+                            //    selected.removeAt(position)
                             }
 
                         }
@@ -190,9 +185,13 @@ class EditeTagerProfiles : BaseActivity() {
 
                 } else {
                     pd.show()
+                    val ids=ArrayList<Int>()
+                    selected.forEach {
+                        ids.add(it.id)
+                    }
                     viewModel.uploadStore(
                         SendCompleteJoin(
-                            selected.toArray().toString(),
+                            ids,
                             arrivaltime = binding.arrivalTime.text.toString(),
                             binding.instaLink.text.toString(),
                             binding.faceLink.text.toString(),
@@ -213,9 +212,13 @@ class EditeTagerProfiles : BaseActivity() {
 
             } ?: let {
                 pd.show()
+                val ids=ArrayList<Int>()
+                selected.forEach {
+                    ids.add(it.id)
+                }
                 viewModel.uploadStore(
                     SendCompleteJoin(
-                        selected.toArray().toString(),
+                        ids,
                         arrivaltime = binding.arrivalTime.text.toString(),
                         binding.instaLink.text.toString(),
                         binding.faceLink.text.toString(),

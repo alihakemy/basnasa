@@ -108,7 +108,8 @@ class CompleteTagerDataActivity : BaseActivity() {
                                 selected.add(listCat.get(position))
 
                             } else {
-                                selected.removeAt(position)
+
+//                                selected.removeAt(position)
                             }
 
                         }
@@ -172,10 +173,14 @@ class CompleteTagerDataActivity : BaseActivity() {
                     if ((!binding.arrivalTime.text.toString().isBlank()) &&
                         (!binding.description.text.toString().isBlank())
                     ) {
+                        val ids=ArrayList<Int>()
+                        selected.forEach {
+                            ids.add(it.id)
+                        }
                         pd.show()
                         viewModel.uploadStore(
                             SendCompleteJoin(
-                               selected.toString(),
+                               ids,
                                 arrivaltime = binding.arrivalTime.text.toString(),
                                 binding.instaLink.text.toString(),
                                 binding.faceLink.text.toString(),

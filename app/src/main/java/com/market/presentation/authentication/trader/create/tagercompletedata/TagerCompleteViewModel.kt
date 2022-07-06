@@ -42,6 +42,7 @@ class TagerCompleteViewModel @Inject constructor(private  val  authenticationRep
 
       fun uploadStore(sendCompleteJoin: SendCompleteJoin, token:String,image: MultipartBody.Part){
 
+          Log.e("RequestItems",sendCompleteJoin.category_id.toString())
 
         viewModelScope.launch(Dispatchers.IO){
 

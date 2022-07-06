@@ -30,7 +30,7 @@ data class ConfirmNewPassword(
 
 data class SendCompleteJoin(
 
-    val category_id: String,
+    val category_id: ArrayList<Int>,
     val arrivaltime: String,
     val instagram_link: String,
     val facebook_link: String,

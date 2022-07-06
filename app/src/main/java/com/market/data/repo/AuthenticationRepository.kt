@@ -171,7 +171,7 @@ class AuthenticationRepository @Inject constructor(
             )
             val category_id: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
-                sendCompleteJoin.category_id
+                sendCompleteJoin.category_id.toString()
             )
             val arrivaltime: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
@@ -264,7 +264,7 @@ class AuthenticationRepository @Inject constructor(
             )
             val category_id: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
-                sendCompleteJoin.category_id
+                sendCompleteJoin.category_id.toString()
             )
             val arrivaltime: RequestBody = RequestBody.create(
                 "multipart/form-data".toMediaTypeOrNull(),
