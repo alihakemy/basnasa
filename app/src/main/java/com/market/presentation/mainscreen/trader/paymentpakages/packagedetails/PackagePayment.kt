@@ -142,7 +142,7 @@ class PackagePayment : BaseActivity() {
                 is MFResult.Fail -> {
                     Log.d(TAG, "Fail: " + Gson().toJson(result.error))
 
-                    // showAlertDialog(Gson().toJson(result.error))
+                    showAlertDialog(Gson().toJson(result.error))
 
                 }
             }
