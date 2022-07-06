@@ -167,12 +167,17 @@ class UserMoreFragments : Fragment() {
 
         }
         binding.join.setOnClickListener {
+            if (activitys.checkIsLogin()) {
+                val intent = Intent(requireContext(), CompleteTagerDataActivity::class.java)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.putExtra("token", activitys.getLoginData().data.token)
+                startActivity(intent)
+            }else{
+                val intent = Intent(requireContext(), LoginUser::class.java)
+                startActivity(intent)
+            }
 
-            val intent = Intent(requireContext(), CompleteTagerDataActivity::class.java)
-            intent.flags =
-                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra("token", activitys.getLoginData().data.token)
-            startActivity(intent)
 
         }
         binding.offers.setOnClickListener {
