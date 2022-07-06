@@ -21,6 +21,8 @@ import com.market.R
 import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.categories.Category
+import com.market.data.models.get.currency.Currency
+import com.market.data.models.get.currency.PaymentMethod
 import com.market.data.models.get.productdetails.Products
 import com.market.databinding.ActivityAddProductBinding
 import com.market.databinding.ActivityEditeProductBinding
@@ -106,7 +108,8 @@ class EditeProduct : AppCompatActivity() {
 
     }
 
-
+    val currencyName :ArrayList<String> = ArrayList()
+    val paymentMethod :ArrayList<PaymentMethod> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditeProductBinding.inflate(layoutInflater)
@@ -204,6 +207,14 @@ class EditeProduct : AppCompatActivity() {
                         }
 
                     }
+                    var currencyId:String ="3"
+                    paymentMethod.forEach {
+
+                        if(binding.currency.selectedItem.toString().equals(it.name)){
+                            currencyId=it.id.toString()
+                        }
+
+                    }
                     imageMain?.let { it1 ->
                         viewModel.editeProduct(
                             list = imagesList,
@@ -214,7 +225,7 @@ class EditeProduct : AppCompatActivity() {
                             stoke = binding.textView91.text.toString(),
                             about = binding.details.text.toString(),
                             name = binding.productName.text.toString(),
-                            currecny = binding.currency.text.toString(),
+                            currecny = currencyId,
                             productId = product?.id.toString()
                         )
                     }
@@ -234,7 +245,27 @@ class EditeProduct : AppCompatActivity() {
 
         }
 
-        viewModel.results.observe(this, Observer {
+        viewModel.currency.observe(this,  Observer {
+
+            when (val result = it) {
+                is ResultState.Success<Currency> -> {
+
+                    result.data?.data?.paymentMethod?.forEach {
+                        it.name?.let { it1 -> currencyName.add(it1) }
+                        paymentMethod.add(it)
+                    }
+                    val adapter = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        currencyName
+                    )
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.currency.adapter = adapter
+                }
+            }
+        })
+
+            viewModel.results.observe(this, Observer {
 
             when (val result = it) {
                 is ResultState.Success<DefaultResponse> -> {

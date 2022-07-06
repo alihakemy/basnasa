@@ -65,6 +65,36 @@ class TagerCompleteViewModel @Inject constructor(private  val  authenticationRep
 
     }
 
+    fun uploadStore(sendCompleteJoin: SendCompleteJoin, token:String){
+
+
+        viewModelScope.launch(Dispatchers.IO){
+
+            when(val result = authenticationRepository.completeJoinTager(sendCompleteJoin,token)){
+
+                is ResultState.Success<TagetCompleteData>->{
+                    Log.e("REsultALI",result.data!!.data.toString())
+                    status.postValue("Sucess")
+                }
+                else ->{
+                    Log.e("REsultALIERREOR",result.message.toString())
+                    status.postValue(result.message.toString())
+                }
+
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
 
 
 

@@ -110,14 +110,17 @@ class UserMoreFragments : Fragment() {
 
         }
 
-        if (!activitys.getLoginData().data.user.Roles.toString().toLowerCase().equals("tager") &&
-            activitys.checkIsLogin()
+        if (activitys.getLoginData().data.user.Roles.toString().toLowerCase().equals("tager")
+
         ) {
+
+            binding.join.isVisible = false
+            binding.account.isVisible = false
+            binding.line1.isVisible = false
+
+        } else {
             binding.textView36.isVisible = false
 
-        }else
-        {
-            binding.account.isVisible=false
         }
 
 
@@ -152,8 +155,7 @@ class UserMoreFragments : Fragment() {
                 if (!activitys.getLoginData().data.user.Roles.toLowerCase().equals("tager")) {
                     val intent = Intent(requireContext(), UpdateUserProfileActivity::class.java)
                     startActivity(intent)
-                }else
-                {
+                } else {
 
                 }
 

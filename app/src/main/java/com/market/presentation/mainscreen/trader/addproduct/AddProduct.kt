@@ -18,6 +18,8 @@ import com.github.dhaval2404.imagepicker.util.FileUriUtils
 import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.categories.Categories
 import com.market.data.models.get.categories.Category
+import com.market.data.models.get.currency.Currency
+import com.market.data.models.get.currency.PaymentMethod
 import com.market.databinding.ActivityAddProductBinding
 import com.market.presentation.mainscreen.trader.addproduct.adapter.ImageAdapter
 import com.market.utils.ResultState
@@ -91,6 +93,8 @@ class AddProduct : AppCompatActivity() {
             }
         }
 
+    val currencyName :ArrayList<String> = ArrayList()
+    val paymentMethod :ArrayList<PaymentMethod> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProductBinding.inflate(layoutInflater)
@@ -101,6 +105,7 @@ class AddProduct : AppCompatActivity() {
 
         pd.setCancelable(false)
 
+        viewModel.getCurrency()
 
         binding.imageView69.setOnClickListener {
             ImagePicker.with(this)
@@ -129,6 +134,28 @@ class AddProduct : AppCompatActivity() {
 
         }
 
+
+        viewModel.currency.observe(this, Observer {
+
+            when(val  result =it){
+                is ResultState.Success<Currency> ->{
+
+                    result.data?.data?.paymentMethod?.forEach {
+                        it.name?.let { it1 -> currencyName.add(it1) }
+                        paymentMethod.add(it)
+                    }
+                    val adapter = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        currencyName
+                    )
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.currency.adapter = adapter
+                }
+            }
+
+
+        })
 
         viewModel.categories.observe(this, Observer {
 
@@ -181,6 +208,15 @@ class AddProduct : AppCompatActivity() {
 
                     }
                     imageMain?.let { it1 ->
+                        var currencyId:String ="3"
+                        paymentMethod.forEach {
+
+                            if(binding.currency.selectedItem.toString().equals(it.name)){
+                                currencyId=it.id.toString()
+                            }
+
+                        }
+
                         viewModel.addProduct(
                             list = imagesList,
                             it1,
@@ -190,7 +226,7 @@ class AddProduct : AppCompatActivity() {
                             stoke = binding.textView91.text.toString(),
                             about = binding.details.text.toString(),
                             name = binding.productName.text.toString(),
-                            currecny = binding.currency.text.toString()
+                            currecny = currencyId
                         )
                     }
                     if (!pd.isShowing) {

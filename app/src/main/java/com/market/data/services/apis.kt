@@ -1,6 +1,7 @@
 package com.market.data.services
 
 import com.market.data.models.get.addComment.DefaultResponse
+import com.market.data.models.get.currency.Currency
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.links.SocialLinks
@@ -209,6 +210,10 @@ interface apis {
 
     @POST("/api/updateProfile")
     suspend  fun updateUserProfile( @Body hashMap: HashMap<String, String>) : LoginResponse
+
+
+    @GET("/api/currency")
+    suspend  fun getCurrency() : Currency
 
 
 }

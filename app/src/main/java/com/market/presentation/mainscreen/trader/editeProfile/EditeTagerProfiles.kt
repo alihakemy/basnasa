@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
 import com.market.R
@@ -73,6 +74,15 @@ class EditeTagerProfiles : BaseActivity() {
         pd.setCancelable(false)
 
         val merchant=intent.getParcelableExtra<Merchant>("Merchant")
+
+
+
+        binding.editTextTextPersonName2.setText(getLoginData().data.user.name)
+        binding.editTextTextPersonName3.setText(getLoginData().data.user.email)
+        binding.editTextTextPersonName.setText(getLoginData().data.user.shop_name)
+
+        Glide.with(this).load(merchant?.imagePath.toString())
+            .into(binding.imageView7)
 
 
         binding.imageView3.setOnClickListener {
@@ -182,7 +192,7 @@ class EditeTagerProfiles : BaseActivity() {
                     pd.show()
                     viewModel.uploadStore(
                         SendCompleteJoin(
-                            selected.toString(),
+                            selected.toArray().toString(),
                             arrivaltime = binding.arrivalTime.text.toString(),
                             binding.instaLink.text.toString(),
                             binding.faceLink.text.toString(),
@@ -202,7 +212,22 @@ class EditeTagerProfiles : BaseActivity() {
                 }
 
             } ?: let {
-                Toast.makeText(this, "اختار صوره ", Toast.LENGTH_LONG).show()
+                pd.show()
+                viewModel.uploadStore(
+                    SendCompleteJoin(
+                        selected.toArray().toString(),
+                        arrivaltime = binding.arrivalTime.text.toString(),
+                        binding.instaLink.text.toString(),
+                        binding.faceLink.text.toString(),
+                        binding.whatLink.text.toString(),
+                        binding.snapLink.text.toString(),
+                        getLatLong().first,
+                        getLatLong().second,
+                        binding.description.text.toString(),
+                        binding.phone.text.toString()
+                    ),
+                    intent.getStringExtra("token").toString()
+                )
             }
 
 

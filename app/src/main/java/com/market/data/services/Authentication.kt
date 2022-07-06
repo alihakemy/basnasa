@@ -75,4 +75,21 @@ interface Authentication {
     ): Response<TagetCompleteData>
 
 
+    @Multipart
+    @POST("api/completeTager")
+    suspend fun completeTager(
+        @Part("category_id") category_id: RequestBody,
+        @Part("arrivaltime") arrivaltime: RequestBody,
+        @Part("instagram_link") instagram_link: RequestBody,
+        @Part("facebook_link") facebook_link: RequestBody,
+        @Part("whatsapp_link") whatsapp_link: RequestBody,
+        @Part("snapchat_link") snapchat_link: RequestBody,
+        @Part("lat") lat: RequestBody,
+        @Part("long") long: RequestBody,
+        @Part("about") about: RequestBody,
+
+        @Part("phone ") phone: RequestBody,
+        @Header("Authorization") token: String,
+    ): Response<TagetCompleteData>
+
 }

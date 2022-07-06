@@ -3,6 +3,7 @@ package com.market.data.repo
 import android.util.Log
 import com.market.BuildConfig
 import com.market.data.models.get.addComment.DefaultResponse
+import com.market.data.models.get.currency.Currency
 import com.market.data.models.get.fav.Favourites
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.links.SocialLinks
@@ -22,6 +23,19 @@ import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(private val userService: apis) {
+
+
+    suspend fun getCurrency():ResultState<Currency> {
+        return try {
+
+
+            ResultState.Success(userService.getCurrency())
+
+
+        } catch (e: Exception) {
+            ResultState.Error(e.localizedMessage.toString())
+        }
+    }
 
 
     suspend fun updateUserProfile(hashMap: HashMap<String, String>): ResultState<LoginResponse> {

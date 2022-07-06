@@ -251,6 +251,99 @@ class AuthenticationRepository @Inject constructor(
         }
     }
 
+    suspend fun completeJoinTager(
+        sendCompleteJoin: SendCompleteJoin,
+        token: String
+    ): ResultState<TagetCompleteData> {
+        return try {
+
+
+            val facebook_link: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.facebook_link
+            )
+            val category_id: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.category_id
+            )
+            val arrivaltime: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.arrivaltime
+            )
+
+            val instagram_link: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.instagram_link
+            )
+
+            val whatsapp_link: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.whatsapp_link
+            )
+
+            val snapchat_link: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.snapchat_link
+            )
+
+            val lat: RequestBody =
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), sendCompleteJoin.lat)
+
+            val long: RequestBody =
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), sendCompleteJoin.long)
+
+            val about: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.about
+            )
+
+
+            val phone: RequestBody = RequestBody.create(
+                "multipart/form-data".toMediaTypeOrNull(),
+                sendCompleteJoin.phone
+            )
+
+
+            val result = authentication.completeTager(
+                category_id = category_id,
+                arrivaltime = arrivaltime,
+                phone = phone,
+                lat = lat,
+                long = long,
+                about = about,
+
+                facebook_link = facebook_link,
+                instagram_link = instagram_link,
+                snapchat_link = snapchat_link,
+                token = "Bearer $token",
+                whatsapp_link = whatsapp_link
+            )
+
+            if (result.isSuccessful) {
+                result.body()?.error?.let {
+                    ResultState.Error(it)
+                } ?: let {
+                    if (result.body()?.status.toString().trim().toLowerCase().equals("true")) {
+                        ResultState.Success(result.body()!!)
+                    } else {
+                        ResultState.Error(result.body()?.status.toString())
+                    }
+                }
+
+            } else {
+
+                ResultState.Error(result.body()?.error.toString())
+
+            }
+
+        } catch (e: Exception) {
+
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+    }
+
+
     suspend fun getNotification(): ResultState<NotificationModel> {
         return try {
             val result = authentication.getNotification()

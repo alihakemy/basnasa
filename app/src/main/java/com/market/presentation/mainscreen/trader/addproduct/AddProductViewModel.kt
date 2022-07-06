@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.market.data.models.get.User
 import com.market.data.models.get.addComment.DefaultResponse
 import com.market.data.models.get.categories.Categories
+import com.market.data.models.get.currency.Currency
 import com.market.data.repo.AuthenticationRepository
 import com.market.data.repo.UserRepoImp
 import com.market.utils.ResultState
@@ -20,6 +21,18 @@ class AddProductViewModel @Inject constructor(
     private val authenticationRepository: AuthenticationRepository,
     private val repo: UserRepoImp
 ) : ViewModel() {
+
+    val currency :MutableLiveData<ResultState<Currency>> = MutableLiveData()
+
+    fun getCurrency(){
+        viewModelScope.launch {
+
+            currency.postValue( repo.getCurrency())
+
+
+        }
+    }
+
 
     val categories: MutableLiveData<ResultState<Categories>> =
         MutableLiveData<ResultState<Categories>>()
