@@ -112,5 +112,6 @@
     <string name="editPassWord">تعديل كلمه المرور</string>
     <string name="NewPassWords">يرجى إدخال كلمة المرور الجديدة</string>
     <string name="EnterOldPassword">يرجى إدخال كلمة المرور القديمة</string>
+    <string name="welcome"> مرحبا </string>
 
 </resources>

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import com.market.R
 import com.market.data.models.get.homeusers.*
 import com.market.data.models.get.links.SocialLinks
 import com.market.databinding.FragmentHomeBinding
@@ -34,8 +35,10 @@ import com.market.presentation.mainscreen.user.ui.home.sliderFragment.UserSlider
 import com.market.presentation.mainscreen.user.ui.offers.SliderFragment
 import com.market.utils.ResultState
 import com.market.utils.startLink
+import com.romainpiel.shimmer.Shimmer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -47,6 +50,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     var flagonce=false
+   var mActivity: MainActivityUser ?=null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,23 +63,37 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         var coder = Geocoder(requireContext())
-        val activity = (activity as MainActivityUser)
+        activity?.let {
+            mActivity=(it as MainActivityUser)
+        }
 
+        val shimmer = Shimmer()
+        shimmer.start(binding.shimmerTv)
+        val name =mActivity?.getLoginData()?.data?.user?.name.toString()
+        binding.shimmerTv.text= getString(R.string.welcome) + name
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                homeViewModel.getHomeScreen(
-                    latitude = activity.getLatLong().first,
-                    longitude = activity.getLatLong().second
-                )
+                mActivity?.getLatLong()?.first?.let {
+                    mActivity?.getLatLong()?.second?.let { it1 ->
+                        homeViewModel.getHomeScreen(
+                            latitude = it,
+                            longitude = it1
+                        )
+                    }
+                }
                 try {
 
-                    val addressList: List<Address> = coder.getFromLocation(
-                        activity.getLatLong().first.toDouble(),
-                        activity.getLatLong().second.toDouble(),
-                        1
-                    )
+                    val addressList: List<Address> = mActivity?.getLatLong()?.first?.toDouble()?.let {
+                        mActivity?.getLatLong()?.second?.toDouble()?.let { it1 ->
+                            coder.getFromLocation(
+                                it,
+                                it1,
+                                1
+                            )
+                        }
+                    } ?: emptyList()
                     if (!addressList.isNullOrEmpty()) {
                         val location: Address = addressList[0]
                         binding.textView39.text = location.countryName.toString()
@@ -91,17 +109,25 @@ class HomeFragment : Fragment() {
 
         binding.refresh.setOnRefreshListener {
             flagonce=false
-            homeViewModel.getHomeScreen(
-                latitude = activity.getLatLong().first,
-                longitude = activity.getLatLong().second
-            )
+            mActivity?.getLatLong()?.first?.let {
+                mActivity?.getLatLong()?.second?.let { it1 ->
+                    homeViewModel.getHomeScreen(
+                        latitude = it,
+                        longitude = it1
+                    )
+                }
+            }
             try {
 
-                val addressList: List<Address> = coder.getFromLocation(
-                    activity.getLatLong().first.toDouble(),
-                    activity.getLatLong().second.toDouble(),
-                    1
-                )
+                val addressList: List<Address> = mActivity?.getLatLong()?.first?.toDouble()?.let {
+                    mActivity?.getLatLong()?.second?.toDouble()?.let { it1 ->
+                        coder.getFromLocation(
+                            it,
+                            it1,
+                            1
+                        )
+                    }
+                }?: emptyList()
                 if (!addressList.isNullOrEmpty()) {
                     val location: Address = addressList[0]
                     binding.textView39.text = location.countryName.toString()

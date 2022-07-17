@@ -165,6 +165,7 @@ dependencies {
         exclude group: 'androidx.core', module: 'core'
     }
     implementation 'com.akexorcist:localization:1.2.11'
+    implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
 
 
 }
