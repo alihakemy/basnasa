@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
         val shimmer = Shimmer()
         shimmer.start(binding.shimmerTv)
         val name =mActivity?.getLoginData()?.data?.user?.name.toString()
-        binding.shimmerTv.text= getString(R.string.welcome) + name
+        binding.shimmerTv.text= getString(R.string.welcome) +" "+name
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
