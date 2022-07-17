@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    var flagonce=false
+
    var mActivity: MainActivityUser ?=null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
 
 
         binding.refresh.setOnRefreshListener {
-            flagonce=false
+
             mActivity?.getLatLong()?.first?.let {
                 mActivity?.getLatLong()?.second?.let { it1 ->
                     homeViewModel.getHomeScreen(
@@ -169,12 +169,11 @@ class HomeFragment : Fragment() {
                     initMerchants(results.data?.data?.merchants)
 
 
-                    if(!flagonce){
+
                         results.data?.data?.slider?.let { it1 -> initSlider(it1) }
                         results.data?.data?.banner?.let { it1 -> initBanner(it1) }
 
-                        flagonce=true
-                    }
+
 
 
                 }
@@ -234,12 +233,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun initBanner(banner: List<Banner>) {
-        activity?.let {
+        activity?.let { activity->
             kotlin.runCatching {
-                binding.banner.adapter = ScreenSlidePagerAdapters(it, banner)
+                binding.banner.adapter = ScreenSlidePagerAdapters(activity, banner)
 
                 TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
                 }.attach()
+            }.onFailure {
+                kotlin.runCatching {
+                    binding.banner.adapter = ScreenSlidePagerAdapters(activity, banner)
+
+                    TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
+                    }.attach()
+                }
             }
 
         }
@@ -277,10 +283,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun initSlider(slider: List<Slider>) {
-        activity?.let {
+        activity?.let { activity ->
             kotlin.runCatching {
-                val adapter = ScreenSlidePagerAdapter(it, slider)
+                val adapter = ScreenSlidePagerAdapter(activity, slider)
                 binding.sliderViewPager.adapter = adapter
+            }.onFailure {
+                kotlin.runCatching {
+                    val adapter = ScreenSlidePagerAdapter(activity, slider)
+                    binding.sliderViewPager.adapter = adapter
+                }
             }
 
         }
