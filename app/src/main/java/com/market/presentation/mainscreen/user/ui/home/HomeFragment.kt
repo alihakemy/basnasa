@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
@@ -28,7 +27,6 @@ import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.search.SearchActivity
-import com.market.presentation.mainscreen.user.search.adapter.SearchAdapter
 import com.market.presentation.mainscreen.user.ui.home.categories.UserCategoriesAdapter
 import com.market.presentation.mainscreen.user.ui.home.merchants.UserMerchantsAdapter
 import com.market.presentation.mainscreen.user.ui.home.product.UserProductsAdapter
@@ -215,8 +213,10 @@ class HomeFragment : Fragment() {
         override fun getItemCount(): Int = banner?.size ?: 0
         override fun createFragment(position: Int): Fragment =
             SliderFragment.newInstance(
-                banner?.get(position)?.imagePath.toString(),
-                banner?.get(position)?.id.toString()
+                banner[position].imagePath.toString(),
+                banner[position].id.toString(),
+                banner[position].typeDirection.toString(),
+                banner[position].showNumber.toString()
             )
     }
 
@@ -253,18 +253,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private inner class ScreenSliderPagerAdapter(fa: FragmentActivity, val slider: List<Banner>) :
-        FragmentStateAdapter(fa) {
 
-
-        override fun getItemCount(): Int = slider.size
-
-        override fun createFragment(position: Int): Fragment =
-            UserSliderFragment.newInstance(
-                slider.get(position).imagePath.toString(),
-                slider.get(position).id.toString()
-            )
-    }
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity, val slider: List<Slider>) :
         FragmentStateAdapter(fa) {
@@ -275,7 +264,9 @@ class HomeFragment : Fragment() {
         override fun createFragment(position: Int): Fragment =
             UserSliderFragment.newInstance(
                 slider.get(position).imagePath.toString(),
-                slider.get(position).id.toString()
+                slider.get(position).id.toString(),
+                slider[position].typeDirection.toString(),
+                slider[position].showNumber.toString()
             )
     }
 }

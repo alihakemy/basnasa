@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
@@ -21,18 +19,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.market.BuildConfig
 import com.market.R
 import com.market.data.models.get.offers.Banner
 import com.market.data.models.get.offers.Merchant
 import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.offers.SubCategory
 import com.market.databinding.ActivityOffersBinding
-import com.market.databinding.FragmentDashboardBinding
 import com.market.presentation.authentication.user.login.LoginUser
 import com.market.presentation.bases.BaseActivity
 import com.market.presentation.location.MapsActivity
-import com.market.presentation.mainscreen.user.MainActivityUser
 import com.market.presentation.mainscreen.user.search.SearchActivity
 import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserHorizontalAdapter
 import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserOfferAdapter
@@ -217,7 +212,9 @@ class OffersActivity : BaseActivity() {
         override fun createFragment(position: Int): Fragment =
             SliderFragment.newInstance(
                 banner?.get(position)?.imagePath.toString(),
-                banner?.get(position)?.id.toString()
+                banner?.get(position)?.id.toString(),
+                banner?.get(position)?.typeDirection.toString(),
+                banner?.get(position)?.showNumber.toString()
             )
     }
 }

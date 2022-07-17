@@ -9,5 +9,9 @@ data class Banner(
     @SerializedName("id")
     var id: Int?,
     @SerializedName("imagePath")
-    var imagePath: String?
+    var imagePath: String?,
+    @SerializedName("typeDirection")
+    var typeDirection:String?,
+    @SerializedName("showNumber")
+    var showNumber:String?
 )

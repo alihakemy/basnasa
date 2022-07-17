@@ -22,9 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.market.BuildConfig
 import com.market.R
-import com.market.data.models.get.links.SocialLinks
 import com.market.data.models.get.offers.Banner
 import com.market.data.models.get.offers.Merchant
 import com.market.data.models.get.offers.Offers
@@ -40,7 +38,6 @@ import com.market.presentation.mainscreen.user.ui.offers.offeradapter.UserOfferA
 import com.market.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.annotation.meta.When
 
 @AndroidEntryPoint
 class OffersFragment : Fragment() {
@@ -244,7 +241,9 @@ class OffersFragment : Fragment() {
         override fun createFragment(position: Int): Fragment =
             SliderFragment.newInstance(
                 banner?.get(position)?.imagePath.toString(),
-                banner?.get(position)?.id.toString()
+                banner?.get(position)?.id.toString(),
+                banner?.get(position)?.typeDirection.toString(),
+                banner?.get(position)?.showNumber.toString()
             )
     }
 }

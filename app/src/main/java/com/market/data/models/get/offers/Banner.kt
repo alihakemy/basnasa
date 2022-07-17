@@ -5,7 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Banner(
     @SerializedName("id")
-    val id: Int?,
+    var id: Int?,
     @SerializedName("imagePath")
-    val imagePath: String?
+    var imagePath: String?,
+    @SerializedName("typeDirection")
+    var typeDirection:String?,
+    @SerializedName("showNumber")
+    var showNumber:String?
 )
