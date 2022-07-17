@@ -24,6 +24,7 @@ import com.market.R
 import com.market.data.models.get.homeusers.*
 import com.market.data.models.get.links.SocialLinks
 import com.market.databinding.FragmentHomeBinding
+import com.market.popups.DialogPopUp
 import com.market.presentation.location.MapsActivity
 import com.market.presentation.mainscreen.notification.NotificationActivity
 import com.market.presentation.mainscreen.user.MainActivityUser
@@ -228,7 +229,7 @@ class HomeFragment : Fragment() {
 
         })
 
-
+        DialogPopUp(requireContext()).show()
         return root
     }
 

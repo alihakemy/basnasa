@@ -69,6 +69,7 @@
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_spe_event_scshlumberger_2.xml" value="0.1" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/ic_vuesax_linear_arrow_left.xml" value="0.15" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/rec_red.xml" value="0.1755" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/rectangle_curved.xml" value="0.142" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/round_rectangle.xml" value="0.1755" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/round_rectangle3.xml" value="0.1275" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/drawable/round_rectangle_color.xml" value="0.1765" />
@@ -108,6 +109,7 @@
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/content_tader_main.xml" value="0.13760683760683762" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/create_user_account_activity.xml" value="0.17916666666666667" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/dialog.xml" value="0.1598731884057971" />
+        <entry key="..\:/basnas-androide-master/app/src/main/res/layout/dialogpop.xml" value="0.1368106028217187" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/fav_header_items.xml" value="0.16666666666666666" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/fav_user_item1.xml" value="0.22" />
         <entry key="..\:/basnas-androide-master/app/src/main/res/layout/fav_user_item11.xml" value="0.1" />
