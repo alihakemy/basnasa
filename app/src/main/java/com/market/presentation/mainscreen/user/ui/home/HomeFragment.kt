@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    var flagonce=false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -89,6 +90,7 @@ class HomeFragment : Fragment() {
 
 
         binding.refresh.setOnRefreshListener {
+            flagonce=false
             homeViewModel.getHomeScreen(
                 latitude = activity.getLatLong().first,
                 longitude = activity.getLatLong().second
@@ -133,14 +135,20 @@ class HomeFragment : Fragment() {
                 is ResultState.Success<HomeUser> -> {
                     binding.refresh.isRefreshing=false
 
-                    results.data?.data?.slider?.let { it1 -> initSlider(it1) }
 
                     results.data?.data?.categories?.let { it1 -> initCategories(it1) }
 
                     results?.data?.data?.products?.let { it1 -> initProducts(it1) }
 
                     initMerchants(results.data?.data?.merchants)
-                    results.data?.data?.banner?.let { it1 -> initBanner(it1) }
+
+
+                    if(!flagonce){
+                        results.data?.data?.slider?.let { it1 -> initSlider(it1) }
+                        results.data?.data?.banner?.let { it1 -> initBanner(it1) }
+
+                        flagonce=true
+                    }
 
 
                 }
@@ -201,10 +209,13 @@ class HomeFragment : Fragment() {
 
     private fun initBanner(banner: List<Banner>) {
         activity?.let {
-            binding.banner.adapter = ScreenSlidePagerAdapters(it, banner)
+            kotlin.runCatching {
+                binding.banner.adapter = ScreenSlidePagerAdapters(it, banner)
 
-            TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
-            }.attach()
+                TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
+                }.attach()
+            }
+
         }
     }
 
@@ -241,9 +252,10 @@ class HomeFragment : Fragment() {
 
     private fun initSlider(slider: List<Slider>) {
         activity?.let {
-            val adapter = ScreenSlidePagerAdapter(it, slider)
-            binding.sliderViewPager.adapter = adapter
-
+            kotlin.runCatching {
+                val adapter = ScreenSlidePagerAdapter(it, slider)
+                binding.sliderViewPager.adapter = adapter
+            }
 
         }
     }
