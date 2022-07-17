@@ -173,9 +173,9 @@ class DisplayProduct : BaseActivity() {
         TabLayoutMediator(binding.tabLayout, binding.banner) { tab, position ->
         }.attach()
 
-        binding.textView45.text = data?.data?.products?.discount?.toString() + "%Off"
+        binding.textView45.text = data?.data?.products?.prefitPrice?.toString() + "%Off"
 
-        binding.textView32.text = data?.data?.products?.prefitPrice?.toString()
+        binding.textView32.text = data?.data?.products?.discount?.toString()
 
         kotlin.runCatching {
             if (data?.data?.products?.mainprice?.toString()?.toDouble() == 0.0) {

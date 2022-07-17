@@ -23,6 +23,7 @@ import com.like.OnLikeListener
 import com.market.data.models.get.productdetails.Rate
 import com.market.data.models.get.tagerdetails.Category
 import com.market.data.models.get.tagerdetails.Data
+import com.market.data.models.get.tagerdetails.Product
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.databinding.ActivityTraderProfileBinding
 import com.market.presentation.authentication.user.login.LoginUser
@@ -48,6 +49,8 @@ class TraderProfileActivity : BaseActivity() {
     var showAll = false
     lateinit var pd: ProgressDialog
 
+    var productAdapter: ProductAdapter?=null
+    var  flag =false
     fun SharePostLink(id: String)
     {
 
@@ -117,6 +120,8 @@ class TraderProfileActivity : BaseActivity() {
                     getLatLong().second
                 )
 
+
+
             }
         }
 
@@ -129,6 +134,7 @@ class TraderProfileActivity : BaseActivity() {
 
                     renderData(results.data?.data)
 
+
                 }
                 else -> {
 
@@ -137,7 +143,11 @@ class TraderProfileActivity : BaseActivity() {
             }
 
         })
+        val linearLayoutManagerProduct = GridLayoutManager(this, 2)
 
+        productAdapter= ProductAdapter()
+        binding.rec.adapter =    productAdapter
+            binding.rec.layoutManager = linearLayoutManagerProduct
 
     }
 
@@ -205,8 +215,11 @@ class TraderProfileActivity : BaseActivity() {
         }
 //        cat?.add(Category("","",10,"","","sa","",false))
 
+        if(!flag){
 
         if(binding.RecCat.adapter?.itemCount?: 0<=0){
+
+
             binding.RecCat.adapter = CategoriesAdapter(cat) {
                 callDependOnCat(it)
 
@@ -215,10 +228,19 @@ class TraderProfileActivity : BaseActivity() {
 
         }
 
+            if(!cat.isNullOrEmpty()){
+                callDependOnCat(cat?.first())
 
-        val linearLayoutManagerProduct = GridLayoutManager(this, 2)
-        binding.rec.adapter = ProductAdapter(data?.products)
-        binding.rec.layoutManager = linearLayoutManagerProduct
+            }
+
+
+            flag=true
+        }
+
+        data?.products?.let { productAdapter?.setProduct(it) }
+
+
+
 
 
 

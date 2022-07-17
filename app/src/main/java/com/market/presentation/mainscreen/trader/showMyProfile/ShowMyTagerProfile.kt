@@ -21,6 +21,7 @@ import com.market.R
 import com.market.data.models.get.productdetails.Rate
 import com.market.data.models.get.tagerdetails.Category
 import com.market.data.models.get.tagerdetails.Data
+import com.market.data.models.get.tagerdetails.Product
 import com.market.data.models.get.tagerdetails.TagerDetails
 import com.market.databinding.ActivityShowMyTagerProfileBinding
 import com.market.databinding.ActivityTraderProfileBinding
@@ -45,6 +46,8 @@ class ShowMyTagerProfile : BaseActivity() {
     var CommentId = 0
     var showAll = false
     lateinit var pd: ProgressDialog
+    var productAdapter: ProductAdapter?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityShowMyTagerProfileBinding.inflate(layoutInflater)
@@ -79,6 +82,12 @@ class ShowMyTagerProfile : BaseActivity() {
             }
 
         })
+        val linearLayoutManagerProduct = GridLayoutManager(this, 2)
+
+        productAdapter= ProductAdapter()
+        binding.rec.adapter =    productAdapter
+        binding.rec.layoutManager = linearLayoutManagerProduct
+
     }
 
     private fun renderData(data: Data?) {
@@ -131,9 +140,7 @@ class ShowMyTagerProfile : BaseActivity() {
 
 
 
-        val linearLayoutManagerProduct = GridLayoutManager(this,2)
-        binding.rec.adapter = ProductAdapter(data?.products)
-        binding.rec.layoutManager =   linearLayoutManagerProduct
+        data?.products?.let { productAdapter?.setProduct(it) }
 
 
 

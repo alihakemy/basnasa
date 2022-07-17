@@ -25,9 +25,9 @@ class UserProductsAdapter(private val products: List<Product>) :
             binding.textView31.text = product.tager
             binding.textView34.text = product.content
 
-            binding.textView32.text = product.mainprice
+            binding.textView32.text = product.discount
 
-            binding.textView33.text = product.prefitPrice
+            binding.textView33.text = product.mainprice
             binding.textView33.paintFlags =
                 binding.textView33.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 

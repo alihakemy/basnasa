@@ -37,6 +37,7 @@ class PackagePayment : BaseActivity() {
     lateinit var binding: ActivityPackagePaymentBinding
     val viewModel: SelectPackageViewModel by viewModels()
     lateinit var intentData: Package
+    var paymentMethod =1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPackagePaymentBinding.inflate(layoutInflater)
@@ -81,20 +82,37 @@ class PackagePayment : BaseActivity() {
 
         binding.textView79.text = "ساريه لمده$numOfDays يوم "
 
+        binding.imageView59.setImageResource(R.drawable.ic_componendfdt_6___18)
 
         binding.imageView59.setOnClickListener {
-            intentData?.price?.let { it1 -> executePayment(1, it1) }
+            paymentMethod=1
+            binding.imageView59.setImageResource(R.drawable.ic_componendfdt_6___18)
+            binding.imageView62.setImageResource(R.drawable.ic_componendfdt_6___1)
+            binding.imageView63.setImageResource(R.drawable.ic_componendfdt_6___1)
+
 
         }
         binding.imageView62.setOnClickListener {
-            intentData?.price?.let { it1 -> executePayment(2, it1) }
+            paymentMethod=2
+            binding.imageView59.setImageResource(R.drawable.ic_componendfdt_6___1)
+            binding.imageView62.setImageResource(R.drawable.ic_componendfdt_6___18)
+            binding.imageView63.setImageResource(R.drawable.ic_componendfdt_6___1)
 
         }
         binding.imageView63.setOnClickListener {
-            intentData?.price?.let { it1 -> executePayment(2, it1) }
+            paymentMethod=2
+            binding.imageView59.setImageResource(R.drawable.ic_componendfdt_6___1)
+            binding.imageView62.setImageResource(R.drawable.ic_componendfdt_6___1)
+            binding.imageView63.setImageResource(R.drawable.ic_componendfdt_6___18)
 
         }
         binding.textView87.text = intentData?.price.toString() + "K.D"
+
+        binding.textView86.setOnClickListener {
+
+            intentData?.price?.let { it1 -> executePayment(paymentMethod, it1) }
+
+        }
 
 
     }
@@ -162,6 +180,9 @@ class PackagePayment : BaseActivity() {
             }
 
         })
+
+      //  viewModel.subscribePackage(intentData.id.toString(), invoiceId)
+
 
     }
 

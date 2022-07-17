@@ -190,7 +190,7 @@ class AddProduct : BaseActivity() {
         binding.textView92.setOnClickListener {
 
             if (imageMain != null) {
-                if (!imagesList.isNullOrEmpty()) {
+
                     if (binding.productName.text.isBlank()) {
                         Toast.makeText(this, "اسم المنتج", Toast.LENGTH_LONG).show()
                         return@setOnClickListener
@@ -235,9 +235,7 @@ class AddProduct : BaseActivity() {
 
                     }
 
-                } else {
-                    Toast.makeText(this, "اضف صور", Toast.LENGTH_LONG).show()
-                }
+
             } else {
                 Toast.makeText(this, "  اضف صور رئسيه", Toast.LENGTH_LONG).show()
 

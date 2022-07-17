@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
@@ -22,6 +23,7 @@ import com.market.R
 import com.market.data.models.get.links.SocialLinks
 import com.market.databinding.FragmentUserMoreFragmentsBinding
 import com.market.databinding.VerificationCodeFragmentBinding
+import com.market.presentation.MainActivity
 import com.market.presentation.authentication.trader.create.tagercompletedata.CompleteTagerDataActivity
 import com.market.presentation.authentication.trader.traderlogin.LoginAsTrader
 import com.market.presentation.authentication.user.login.LoginUser
@@ -103,12 +105,24 @@ class UserMoreFragments : Fragment() {
 
         binding.textView102.setOnClickListener {
             preferences.edit().putString("lang","En").commit()
-            activitys.setLanguage("En")
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            ActivityCompat.finishAffinity(requireActivity())
+           // activitys.setLanguage("En")
         }
 
         binding.textView101.setOnClickListener {
             preferences.edit().putString("lang","ar").commit()
-            activitys.setLanguage("ar")
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            ActivityCompat.finishAffinity(requireActivity())
+
+//            activitys.setLanguage("ar")
+
         }
 
         binding.linearLayout12.setOnClickListener {

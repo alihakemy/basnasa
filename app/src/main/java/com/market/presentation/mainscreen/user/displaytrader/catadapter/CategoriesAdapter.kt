@@ -11,12 +11,14 @@ import com.market.databinding.CatTagetItemBinding
 import com.market.databinding.CommentsItemBinding
 import com.market.databinding.SearchItemUserBinding
 
-open class CategoriesAdapter(val categories: List<Category>? , val clicked:(cat: Category?)->Unit) :
+open class CategoriesAdapter(val categories: List<Category>? ,inline val clicked:(cat: Category?)->Unit) :
     RecyclerView.Adapter<CategoriesAdapter.CatViewHolder>() {
     inner class CatViewHolder(val binding: CatTagetItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cat: Category?) {
             binding.line.isVisible = cat?.selected == true
+
+
 
             binding.textView65.text = cat?.name.toString()
             binding.root.setOnClickListener {
@@ -49,6 +51,7 @@ open class CategoriesAdapter(val categories: List<Category>? , val clicked:(cat:
 
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         holder.bind(categories?.get(position))
+
     }
 
     override fun getItemCount(): Int {

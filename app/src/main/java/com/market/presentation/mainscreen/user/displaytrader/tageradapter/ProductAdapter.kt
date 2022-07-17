@@ -9,8 +9,14 @@ import com.market.data.models.get.tagerdetails.Product
 import com.market.databinding.TagerItemBinding
 import com.market.presentation.mainscreen.user.displayproduct.DisplayProduct.Companion.startDisplayProduct
 
-open class ProductAdapter(val product: List<Product>?) :
+open class ProductAdapter() :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+    val product: ArrayList<Product>? = ArrayList()
+    fun setProduct(list:ArrayList<Product>){
+        product?.clear()
+        product?.addAll(list)
+        notifyDataSetChanged()
+    }
     inner class ProductViewHolder(val binding: TagerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product?) {
@@ -18,7 +24,7 @@ open class ProductAdapter(val product: List<Product>?) :
             Glide.with(binding.root.context).load(product?.imagePath.toString()).into(binding.image)
 
             binding.textView62.text = product?.name.toString()
-            binding.textView64.text = product?.prefitPrice.toString()
+            binding.textView64.text = product?.discount.toString()
 
             binding.textView33.text = product?.mainprice.toString()
             binding.textView33.paintFlags =

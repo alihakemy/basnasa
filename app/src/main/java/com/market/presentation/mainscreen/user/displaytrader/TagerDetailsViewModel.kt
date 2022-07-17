@@ -23,6 +23,7 @@ class TagerDetailsViewModel @Inject constructor(val repoImp: UserRepoImp):ViewMo
 
         viewModelScope.launch {
             val response = repoImp.TagerDetails(tagerId,latitude,longitude)
+
             results.postValue(response)
 
         }

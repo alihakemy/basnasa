@@ -42,12 +42,8 @@ object Module {
     ): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(appContext)
 
-        val lang = if (Locale.getDefault().displayLanguage.toLowerCase().contains("e")) {
-            "en"
-        } else {
-            "ar"
-        }
 
         return OkHttpClient.Builder()
 
@@ -55,7 +51,7 @@ object Module {
             .writeTimeout(10, TimeUnit.MINUTES)
             .readTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(Interceptors(sharedPreferences, lang))
+            .addInterceptor(Interceptors(sharedPreferences,preferences.getString("lang", "ar").toString()))
 
             .addInterceptor(ChuckerInterceptor(appContext))
 

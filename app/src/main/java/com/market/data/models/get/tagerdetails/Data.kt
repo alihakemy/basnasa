@@ -10,7 +10,7 @@ data class Data(
     @SerializedName("merchant")
     val merchant: Merchant?,
     @SerializedName("products")
-    val products: List<Product>?,
+    val products: ArrayList<Product>?,
     @SerializedName("rates")
     val rates: ArrayList<Rate>?
 )
