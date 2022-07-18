@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.market.data.models.get.homeusers.HomeUser
 import com.market.data.models.get.links.SocialLinks
+import com.market.data.models.get.popups.popups
 import com.market.data.repo.UserRepoImp
 import com.market.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,11 @@ class HomeViewModel @Inject constructor(private val userRepoImp: UserRepoImp) : 
 
     val results: MutableLiveData<ResultState<HomeUser>> =
         MutableLiveData<ResultState<HomeUser>>()
+    val popupss:MutableLiveData<ResultState<popups>> =MutableLiveData<ResultState<popups>>()
 
+    init {
+        getPopups()
+    }
 
     fun getHomeScreen(
         latitude: String,
@@ -40,6 +45,14 @@ class HomeViewModel @Inject constructor(private val userRepoImp: UserRepoImp) : 
 
         }
         return data
+    }
+
+    fun getPopups() {
+        viewModelScope.launch {
+
+           popupss.postValue( userRepoImp.getpopups())
+
+        }
     }
 
 

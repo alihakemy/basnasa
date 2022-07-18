@@ -10,6 +10,7 @@ import com.market.data.models.get.links.SocialLinks
 import com.market.data.models.get.login.LoginResponse
 import com.market.data.models.get.offers.Offers
 import com.market.data.models.get.paymentPackages.PaymentPackages
+import com.market.data.models.get.popups.popups
 import com.market.data.models.get.productdetails.ProductDetails
 import com.market.data.models.get.search.SearchResults
 import com.market.data.models.get.setions.Sections
@@ -521,7 +522,19 @@ class UserRepoImp @Inject constructor(private val userService: apis) {
         }
 
     }
+    suspend fun getpopups(
 
+    ): ResultState<popups> {
+
+        return try {
+            val result = userService.getPopups()
+            ResultState.Success(result)
+        } catch (e: Exception) {
+            ResultState.Error(e.localizedMessage.toString())
+
+        }
+
+    }
 
     suspend fun getTerms(
         type: String

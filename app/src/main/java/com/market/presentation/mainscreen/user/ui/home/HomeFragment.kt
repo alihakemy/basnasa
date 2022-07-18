@@ -23,6 +23,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.market.R
 import com.market.data.models.get.homeusers.*
 import com.market.data.models.get.links.SocialLinks
+import com.market.data.models.get.popups.popups
 import com.market.databinding.FragmentHomeBinding
 import com.market.popups.DialogPopUp
 import com.market.presentation.location.MapsActivity
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-   var mActivity: MainActivityUser ?=null
+    var mActivity: MainActivityUser? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,13 +66,13 @@ class HomeFragment : Fragment() {
 
         var coder = Geocoder(requireContext())
         activity?.let {
-            mActivity=(it as MainActivityUser)
+            mActivity = (it as MainActivityUser)
         }
 
         val shimmer = Shimmer()
         shimmer.start(binding.shimmerTv)
-        val name =mActivity?.getLoginData()?.data?.user?.name.toString()
-        binding.shimmerTv.text= getString(R.string.welcome) +" "+name
+        val name = mActivity?.getLoginData()?.data?.user?.name.toString()
+        binding.shimmerTv.text = getString(R.string.welcome) + " " + name
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -86,21 +87,22 @@ class HomeFragment : Fragment() {
                 }
                 try {
 
-                    val addressList: List<Address> = mActivity?.getLatLong()?.first?.toDouble()?.let {
-                        mActivity?.getLatLong()?.second?.toDouble()?.let { it1 ->
-                            coder.getFromLocation(
-                                it,
-                                it1,
-                                1
-                            )
-                        }
-                    } ?: emptyList()
+                    val addressList: List<Address> =
+                        mActivity?.getLatLong()?.first?.toDouble()?.let {
+                            mActivity?.getLatLong()?.second?.toDouble()?.let { it1 ->
+                                coder.getFromLocation(
+                                    it,
+                                    it1,
+                                    1
+                                )
+                            }
+                        } ?: emptyList()
                     if (!addressList.isNullOrEmpty()) {
                         val location: Address = addressList[0]
                         binding.textView39.text = location.countryName.toString()
 
                     }
-                }catch (e:Exception){
+                } catch (e: Exception) {
 
                 }
 
@@ -128,13 +130,13 @@ class HomeFragment : Fragment() {
                             1
                         )
                     }
-                }?: emptyList()
+                } ?: emptyList()
                 if (!addressList.isNullOrEmpty()) {
                     val location: Address = addressList[0]
                     binding.textView39.text = location.countryName.toString()
 
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
 
             }
         }
@@ -160,7 +162,7 @@ class HomeFragment : Fragment() {
 
             when (val results = it) {
                 is ResultState.Success<HomeUser> -> {
-                    binding.refresh.isRefreshing=false
+                    binding.refresh.isRefreshing = false
 
 
                     results.data?.data?.categories?.let { it1 -> initCategories(it1) }
@@ -171,10 +173,8 @@ class HomeFragment : Fragment() {
 
 
 
-                        results.data?.data?.slider?.let { it1 -> initSlider(it1) }
-                        results.data?.data?.banner?.let { it1 -> initBanner(it1) }
-
-
+                    results.data?.data?.slider?.let { it1 -> initSlider(it1) }
+                    results.data?.data?.banner?.let { it1 -> initBanner(it1) }
 
 
                 }
@@ -229,12 +229,25 @@ class HomeFragment : Fragment() {
 
         })
 
-        DialogPopUp(requireContext()).show()
+
+        homeViewModel.popupss.observe(viewLifecycleOwner, Observer {
+
+            when (val result = it) {
+                is ResultState.Success<popups> -> {
+                    DialogPopUp(requireContext(),result.data).show()
+                }
+                else ->{
+
+                }
+            }
+
+        })
+
         return root
     }
 
     private fun initBanner(banner: List<Banner>) {
-        activity?.let { activity->
+        activity?.let { activity ->
             kotlin.runCatching {
                 binding.banner.adapter = ScreenSlidePagerAdapters(activity, banner)
 
@@ -302,7 +315,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentActivity, val slider: List<Slider>) :
