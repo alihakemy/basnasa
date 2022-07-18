@@ -230,18 +230,7 @@ class HomeFragment : Fragment() {
         })
 
 
-        homeViewModel.popupss.observe(viewLifecycleOwner, Observer {
 
-            when (val result = it) {
-                is ResultState.Success<popups> -> {
-                    DialogPopUp(requireContext(),result.data).show()
-                }
-                else ->{
-
-                }
-            }
-
-        })
 
         return root
     }
