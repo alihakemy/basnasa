@@ -51,7 +51,7 @@ object Module {
             .writeTimeout(10, TimeUnit.MINUTES)
             .readTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(Interceptors(sharedPreferences,preferences.getString("lang", "ar").toString()))
+            .addInterceptor(Interceptors(sharedPreferences,preferences.getString("lang", "en").toString()))
 
             .addInterceptor(ChuckerInterceptor(appContext))
 

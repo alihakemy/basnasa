@@ -21,7 +21,7 @@ class Interceptors(
             .header("Authorization", "Bearer ${getToken(sharedPreferences = sharedPreferences)}")
             .header("Accept", "application/json")
             .header("Content-Type", "application/json")
-            .header("lang",lang)
+            .header("lang",sharedPreferences.getString("lang", "en").toString())
             .build()
         return chain.proceed(request)
     }

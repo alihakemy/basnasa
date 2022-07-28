@@ -20,9 +20,7 @@ class HomeViewModel @Inject constructor(private val userRepoImp: UserRepoImp) : 
         MutableLiveData<ResultState<HomeUser>>()
     val popupss:MutableLiveData<ResultState<popups>> =MutableLiveData<ResultState<popups>>()
 
-    init {
-        getPopups()
-    }
+
 
     fun getHomeScreen(
         latitude: String,

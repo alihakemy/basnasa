@@ -1,6 +1,7 @@
 package com.market.presentation.mainscreen.user.ui.more
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -40,6 +41,7 @@ import com.market.utils.ResultState
 import com.market.utils.startLink
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +55,8 @@ private const val ARG_PARAM2 = "param2"
  */
 @AndroidEntryPoint
 class UserMoreFragments : Fragment() {
+    @Inject
+    lateinit var preferences:SharedPreferences
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -101,10 +105,9 @@ class UserMoreFragments : Fragment() {
             }
 
         }
-        val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         binding.textView102.setOnClickListener {
-            preferences.edit().putString("lang","En").commit()
+            preferences.edit().putString("lang","en").commit()
             val intent = Intent(requireContext(), MainActivity::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK

@@ -450,7 +450,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:src="@drawable/ic_xmlid_826_" />
+
+                    android:paddingTop="@dimen/dimen_4"
+                    android:backgroundTint="@color/gray"
+                    android:src="@drawable/aaaa"
+                    app:tint="#acacac"  />
 
                 <ImageView
                     android:id="@+id/imageView36"

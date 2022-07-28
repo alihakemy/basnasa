@@ -41,6 +41,7 @@ class MainActivityUser : BaseActivity() {
         val homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
 
+        homeViewModel.getPopups()
         homeViewModel.popupss.observe(this, Observer {
 
             when (val result = it) {
