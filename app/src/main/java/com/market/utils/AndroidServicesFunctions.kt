@@ -5,17 +5,21 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.telephony.TelephonyManager
+import android.view.MotionEvent
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.util.*
 
 
 fun isAtLeastVersion(version: Int): Boolean {
@@ -79,4 +83,35 @@ fun String.isValidEmail(): Boolean {
 
 fun Intent.clearStack() {
     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+}
+
+
+
+
+
+
+fun ViewPager2.enableAutoScroll(totalPages: Int): Timer {
+    val autoTimerTask = Timer()
+    var currentPageIndex = currentItem
+    autoTimerTask.schedule(object : TimerTask() {
+        override fun run() {
+            currentItem = currentPageIndex++
+            if (currentPageIndex == totalPages) currentPageIndex = 0
+        }
+    }, 0, 4000)
+
+    // Stop auto paging when user touch the view
+
+    getRecyclerView().setOnTouchListener {  _,event ->
+        if (event.action == MotionEvent.ACTION_DOWN) autoTimerTask.cancel()
+        false
+    }
+
+    return autoTimerTask // Return the reference for cancel
+}
+
+fun ViewPager2.getRecyclerView(): RecyclerView {
+    val recyclerViewField = ViewPager2::class.java.getDeclaredField("mRecyclerView")
+    recyclerViewField.isAccessible = true
+    return recyclerViewField.get(this) as RecyclerView
 }

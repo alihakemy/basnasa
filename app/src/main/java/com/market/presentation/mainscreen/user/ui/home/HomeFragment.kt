@@ -36,6 +36,7 @@ import com.market.presentation.mainscreen.user.ui.home.product.UserProductsAdapt
 import com.market.presentation.mainscreen.user.ui.home.sliderFragment.UserSliderFragment
 import com.market.presentation.mainscreen.user.ui.offers.SliderFragment
 import com.market.utils.ResultState
+import com.market.utils.enableAutoScroll
 import com.market.utils.startLink
 import com.romainpiel.shimmer.Shimmer
 import dagger.hilt.android.AndroidEntryPoint
@@ -290,6 +291,7 @@ class HomeFragment : Fragment() {
             kotlin.runCatching {
                 val adapter = ScreenSlidePagerAdapter(activity, slider)
                 binding.sliderViewPager.adapter = adapter
+                binding.sliderViewPager.enableAutoScroll(slider.size)
             }.onFailure {
                 kotlin.runCatching {
                     val adapter = ScreenSlidePagerAdapter(activity, slider)
