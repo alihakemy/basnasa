@@ -110,9 +110,30 @@ class PackagePayment : BaseActivity() {
 
         binding.textView86.setOnClickListener {
 
-            intentData?.price?.let { it1 -> executePayment(paymentMethod, it1) }
+            if(intentData.price?.toInt()==0){
+                viewModel.subscribePackage(intentData.id.toString(), intentData.id.toString())
+
+            }else{
+                intentData?.price?.let { it1 -> executePayment(paymentMethod, it1) }
+
+            }
 
         }
+        viewModel.result.observe(this, androidx.lifecycle.Observer {
+
+            when (val result = it) {
+                is ResultState.Success<DefaultResponse> -> {
+
+                    binding.done.isVisible = true
+
+                    finish()
+                }
+                else -> {
+                    Toast.makeText(this, result.message.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+
+        })
 
 
     }
@@ -132,6 +153,7 @@ class PackagePayment : BaseActivity() {
                 is MFResult.Fail -> {
                     Log.d(TAG, "Fail: " + Gson().toJson(result.error))
                 }
+                else -> {}
             }
         }
     }
@@ -163,6 +185,7 @@ class PackagePayment : BaseActivity() {
                     showAlertDialog(Gson().toJson(result.error))
 
                 }
+                else -> {}
             }
         }
         viewModel.result.observe(this, androidx.lifecycle.Observer {
@@ -216,6 +239,7 @@ class PackagePayment : BaseActivity() {
                 is MFResult.Fail -> {
                     Log.d(TAG, "Fail: " + Gson().toJson(result.error))
                 }
+                else -> {}
             }
 
         }

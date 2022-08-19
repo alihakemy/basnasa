@@ -8,7 +8,6 @@
     </style>
 
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <item name="android:windowBackground">@drawable/splashs</item>
         <item name="android:statusBarColor">#4CB595</item>
 
     </style>

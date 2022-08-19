@@ -29,7 +29,7 @@ class SearchAdapter(private  val searchResults:SearchResults,val logined:Boolean
             binding.ratingBar.rating=get?.rate?.toFloat() ?:0.0f
 
             binding.ratingBar.numStars =4
-            binding.starButton.isLiked=get?.favaurite
+            binding.starButton.isLiked= get?.favaurite == true
 
 
             binding.textView20.text ="("+ get?.rate_count +")"
@@ -77,9 +77,9 @@ class SearchAdapter(private  val searchResults:SearchResults,val logined:Boolean
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
 
-        holder.bind(searchResults?.data.merchants.get(position))
+        searchResults?.data?.merchants?.get(position)?.let { holder.bind(it) }
 
     }
 
-    override fun getItemCount(): Int = searchResults?.data.merchants.size ?:0
+    override fun getItemCount(): Int = searchResults?.data?.merchants?.size ?:0
 }

@@ -153,6 +153,7 @@ class AddProduct : BaseActivity() {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.currency.adapter = adapter
                 }
+                else -> {}
             }
 
 
