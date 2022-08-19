@@ -3,6 +3,7 @@ package com.market.presentation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.core.view.WindowCompat
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity() : BaseActivity() {
+    private val SPLASH_DISPLAY_LENGTH = 1000
 
     private lateinit var binding: ActivityMainBinding
 
@@ -27,6 +29,12 @@ class MainActivity() : BaseActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        /* New Handler to start the Menu-Activity
+       * and close this Splash-Screen after some seconds.*/
+        /* New Handler to start the Menu-Activity
+         * and close this Splash-Screen after some seconds.*/Handler().postDelayed(Runnable { /* Create an Intent that will start the Menu-Activity. */
+
 
         if (checkOnboard()) {
             if (getIntent().getData() != null) {
@@ -48,6 +56,17 @@ class MainActivity() : BaseActivity() {
                                     TraderProfileActivity.startTagerProfile( deepLink.getQueryParameter("tagerId").toString(), this)
 
                                     finishAffinity()
+                                }else ->{
+                                if (getLocation()) {
+                                    val intent = Intent(this, MainActivityUser::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    val intent = Intent(this, MapsActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                }
+
                                 }
                             }
                         }
@@ -116,7 +135,7 @@ class MainActivity() : BaseActivity() {
             startActivity(intent)
             finish()
         }
-
+        }, SPLASH_DISPLAY_LENGTH.toLong())
     }
 
 
